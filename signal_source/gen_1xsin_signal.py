@@ -4,21 +4,24 @@ import matplotlib.pyplot as plt
 from matplotlib.pylab import mpl
 import os
 
-def to_bin(value, num):#十进制数据，二进制位宽
-	bin_chars = ""
-	temp = value
-	for i in range(num):
-		bin_char = bin(temp % 2)[-1]
-		temp = temp // 2
-		bin_chars = bin_char + bin_chars
-	return bin_chars.upper()#输出指定位宽的二进制字符串
+
+def to_bin(value, num):  # 十进制数据，二进制位宽
+    bin_chars = ""
+    temp = value
+    for i in range(num):
+        bin_char = bin(temp % 2)[-1]
+        temp = temp // 2
+        bin_chars = bin_char + bin_chars
+    return bin_chars.upper()  # 输出指定位宽的二进制字符串
+
 
 mpl.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文
 mpl.rcParams['axes.unicode_minus'] = False  # 显示负号
 
-signal_freq = 1e6 # 1MHz
-sampling_rate = 8e6 # 8MHz
+signal_freq = 1e6  # 1MHz
+sampling_rate = 8e6  # 8MHz
 N = 128
+N = 1024
 
 # 采样点选择1400个，因为设置的信号频率分量最高为600赫兹，根据采样定理知采样频率要大于信号频率2倍，所以这里设置采样频率为1400赫兹（即一秒内有1400个采样点，一样意思的）
 x = np.linspace(0, 1, sampling_rate)
@@ -40,7 +43,7 @@ normalization_y = abs_y / N  # 归一化处理（双边频谱）
 normalization_half_y = normalization_y[range(int(N / 2))]  # 由于对称性，只取一半区间（单边频谱）
 
 plt.subplot(231)
-plt.plot(x[:100], y[:100])
+plt.plot(x, y)
 plt.title('原始波形')
 
 plt.subplot(232)
@@ -68,13 +71,13 @@ plt.show()
 test_y = []
 count = 0
 file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
-# f = open(file_name, 'ab')
+
 f = open(file_name, 'wb')
 # COE文件头
 f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
 f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
 for i in range(0, N):
-# for i in range(0, 100):
+    # for i in range(0, 100):
     count += 1
     int_yi = int(round(y[i], 1) * 10) + 10
 
@@ -92,7 +95,7 @@ for i in range(0, N):
     # hex_xi = hex(int_xi)
     # 指定长度10进制转16进制
     hex_yi = ("{:#04X}".format(int_yi))
-    print(hex_yi)
+    # print(hex_yi)
 
     # 写文件
     if i == N - 1:
@@ -100,7 +103,6 @@ for i in range(0, N):
         f.write((hex_yi[2:] + ";").encode("utf-8"))
     else:
         f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
-
 
 f.close()
 print("Done!")
