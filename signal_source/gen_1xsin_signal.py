@@ -2,6 +2,7 @@ import numpy as np
 from scipy.fftpack import fft, ifft
 import matplotlib.pyplot as plt
 from matplotlib.pylab import mpl
+import os
 
 def to_bin(value, num):#十进制数据，二进制位宽
 	bin_chars = ""
@@ -64,34 +65,20 @@ plt.title('单边振幅谱(归一化)', fontsize=9, color='blue')
 
 plt.show()
 
-# print(bin(-3))
-# print('转换为二进制数的补码为：',bin(2**8+(-3)))#补码的计算方法
-# print(len(y))
-# print((y[:100]*10000))
-
 test_y = []
 count = 0
 file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
-f = open(file_name, 'ab')
+# f = open(file_name, 'ab')
+f = open(file_name, 'wb')
+# COE文件头
+f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
+f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
 for i in range(0, N):
 # for i in range(0, 100):
     count += 1
-    # h_xi = "{:#06X}".format(int(round(y[i], 3) * 1000 + 1000))
-    # # print("{:#06X}".format(int(round(x1[i],3)*1000 +1000)))
-    # f.write(bytes(h_xi[2:], encoding="utf8"))
-    # f.write(bytes(" ", encoding="utf8"))
-    # y[i] = y[i] + 10
-    # print(count, y[i])
-    # int3_xi = round(y[i], 1) * 10
-    # int3_xi = y[i]
-    # print(count, int3_xi)
-    
-    # hex_yi = ("{:#04X}".format(int(result, 2)))
-    # f.write(bytes(y[i], encoding="utf8"))
-    # f.write(bytes(" ", encoding="utf8"))
+    int_yi = int(round(y[i], 1) * 10) + 10
 
-    int3_xi = int(round(y[i], 1) * 10)
-
+    # 原码转补码
     # if int3_xi >= 0:
     #     tem = to_bin(int3_xi, 7)
     #     tem = tem.replace("0b", "")
@@ -101,20 +88,22 @@ for i in range(0, N):
     #     tem = tem.replace("-0b", "")
     #     result = ("1{}".format(tem))
 
-    result = int3_xi + 10
+    test_y.append(int_yi)
+    # hex_xi = hex(int_xi)
+    # 指定长度10进制转16进制
+    hex_yi = ("{:#04X}".format(int_yi))
+    print(hex_yi)
 
-    test_y.append(result)
-    result = hex(result)
-    print(result)
-    # hex_yi = ("{:#04X}".format(int(result, 2)))
-    # hex_yi = ("{:#04X}".format(hex(result)))
-    # print(hex_yi)
-    # f.write(bytes(hex_yi[2:], encoding="utf8"))
-    # f.write(bytes(" ", encoding="utf8"))
+    # 写文件
+    if i == N - 1:
+        # 最后一行
+        f.write((hex_yi[2:] + ";").encode("utf-8"))
+    else:
+        f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
+
 
 f.close()
-print("done")
-
+print("Done!")
 
 # 变换后波形
 test_x = np.arange(N)  # 频率个数
