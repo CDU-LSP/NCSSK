@@ -18,17 +18,23 @@ def to_bin(value, num):  # 十进制数据，二进制位宽
 mpl.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文
 mpl.rcParams['axes.unicode_minus'] = False  # 显示负号
 
-signal_freq = 1e6  # 1MHz
-sampling_rate = 8e6  # 8MHz
+test_y = []
+signal_freq = int(1e6)  # 1MHz
+sampling_rate = int(8e6)  # 8MHz
+# sampling_rate = 4e6  # 4MHz
 N = 128
-N = 1024
+# N = 2048
+# 是否写文件？1->写；0->不写
+flag = 0
 
 # 采样点选择1400个，因为设置的信号频率分量最高为600赫兹，根据采样定理知采样频率要大于信号频率2倍，所以这里设置采样频率为1400赫兹（即一秒内有1400个采样点，一样意思的）
 x = np.linspace(0, 1, sampling_rate)
 
-# 设置需要采样的信号，频率分量有200，400和600
-# y = 7 * np.sin(2 * np.pi * 200 * x) + 5 * np.sin(2 * np.pi * 400 * x) + 3 * np.sin(2 * np.pi * 600 * x)
+# 设置需要采样的信号，频率为signal_freq
 y = 1 * np.sin(2 * np.pi * signal_freq * x)
+# y = 0.5 * np.sin(2 * np.pi * signal_freq * x) + 0.5 * np.sin(2 * np.pi * int(1.05e6) * x)
+y = y * 10 + 10
+y = np.rint(y)
 
 y = y[:N]
 fft_y = fft(y)  # 快速傅里叶变换
@@ -68,48 +74,48 @@ plt.title('单边振幅谱(归一化)', fontsize=9, color='blue')
 
 plt.show()
 
-test_y = []
-count = 0
-file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
+if flag == 1:
+    count = 0
+    file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
+    # file_name = "test"
+    f = open(file_name, 'wb')
+    # COE文件头
+    f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
+    f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
+    for i in range(0, N):
+        # for i in range(0, 100):
+        count += 1
+        int_yi = int(round(y[i], 1) * 10) + 10
 
-f = open(file_name, 'wb')
-# COE文件头
-f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
-f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
-for i in range(0, N):
-    # for i in range(0, 100):
-    count += 1
-    int_yi = int(round(y[i], 1) * 10) + 10
+        # 原码转补码
+        # if int3_xi >= 0:
+        #     tem = to_bin(int3_xi, 7)
+        #     tem = tem.replace("0b", "")
+        #     result = ("0{}".format(tem))
+        # elif int3_xi < 0:
+        #     tem = to_bin(int3_xi, 7)
+        #     tem = tem.replace("-0b", "")
+        #     result = ("1{}".format(tem))
 
-    # 原码转补码
-    # if int3_xi >= 0:
-    #     tem = to_bin(int3_xi, 7)
-    #     tem = tem.replace("0b", "")
-    #     result = ("0{}".format(tem))
-    # elif int3_xi < 0:
-    #     tem = to_bin(int3_xi, 7)
-    #     tem = tem.replace("-0b", "")
-    #     result = ("1{}".format(tem))
+        test_y.append(int_yi)
+        # hex_xi = hex(int_xi)
+        # 指定长度10进制转16进制
+        hex_yi = ("{:#04X}".format(int_yi))
+        # print(hex_yi)
 
-    test_y.append(int_yi)
-    # hex_xi = hex(int_xi)
-    # 指定长度10进制转16进制
-    hex_yi = ("{:#04X}".format(int_yi))
-    # print(hex_yi)
-
-    # 写文件
-    if i == N - 1:
-        # 最后一行
-        f.write((hex_yi[2:] + ";").encode("utf-8"))
-    else:
-        f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
-
-f.close()
+        # 写文件
+        if i == N - 1:
+            # 最后一行
+            f.write((hex_yi[2:] + ";").encode("utf-8"))
+        else:
+            f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
+    f.close()
+    # 变换后波形
+    test_x = np.arange(N)  # 频率个数
+    # test_x = np.arange(100)  # 频率个数
+    plt.plot(test_x, test_y)
+    plt.title('原始波形')
+    plt.show()
+elif flag == 0:
+    pass
 print("Done!")
-
-# 变换后波形
-test_x = np.arange(N)  # 频率个数
-# test_x = np.arange(100)  # 频率个数
-plt.plot(test_x, test_y)
-plt.title('原始波形')
-plt.show()
