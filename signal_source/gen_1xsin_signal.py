@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 from scipy.fftpack import fft, ifft
 import matplotlib.pyplot as plt
@@ -26,19 +28,38 @@ N = 128
 # N = 2048
 # 是否写文件？1->写；0->不写
 flag = 0
+# 相位移动
+signal_phase = 135
+print(signal_phase)
 
 # 采样点选择1400个，因为设置的信号频率分量最高为600赫兹，根据采样定理知采样频率要大于信号频率2倍，所以这里设置采样频率为1400赫兹（即一秒内有1400个采样点，一样意思的）
 x = np.linspace(0, 1, sampling_rate)
 
 # 设置需要采样的信号，频率为signal_freq
-y = 1 * np.sin(2 * np.pi * signal_freq * x)
+# y = 1 * np.cos(2 * np.pi * signal_freq * x)
+
+# y = 1 * np.cos(2 * np.pi * signal_freq * (x + 1 / sampling_rate * (sampling_rate / signal_freq * signal_phase / 360)))
+y = 1 * np.cos(2 * np.pi * signal_freq * x)
 # y = 0.5 * np.sin(2 * np.pi * signal_freq * x) + 0.5 * np.sin(2 * np.pi * int(1.05e6) * x)
+# y = np.around(y, decimals=2)
+# y = y * 100
+# y = y + 100
 y = y * 10 + 10
 y = np.rint(y)
 
 y = y[:N]
+# print(y[:10])
 fft_y = fft(y)  # 快速傅里叶变换
 fft_y = fft_y[:N]
+# print(fft_y)
+# print(fft_y[16])
+max_fft_y_real = np.real(fft_y[16])
+max_fft_y_imag = np.imag(fft_y[16])
+cal_signal_phase_radian = np.arctan(max_fft_y_imag / max_fft_y_real)
+cal_signal_phase_angle = math.degrees(cal_signal_phase_radian)
+if cal_signal_phase_angle < 0:
+    cal_signal_phase_angle = 180 + cal_signal_phase_angle
+print(cal_signal_phase_angle)
 
 x = np.arange(N)  # 频率个数
 half_x = x[range(int(N / 2))]  # 取一半区间
@@ -53,11 +74,13 @@ plt.plot(x, y)
 plt.title('原始波形')
 
 plt.subplot(232)
-plt.plot(x, fft_y, 'black')
+# plt.plot(x, fft_y, 'black')
+plt.plot(x, np.real(fft_y), 'black')
 plt.title('双边振幅谱(未求振幅绝对值)', fontsize=9, color='black')
 
 plt.subplot(233)
-plt.plot(x, abs_y, 'r')
+# plt.plot(x, abs_y, 'r')
+plt.plot(x, np.imag(fft_y), 'r')
 plt.title('双边振幅谱(未归一化)', fontsize=9, color='red')
 
 plt.subplot(234)
@@ -76,7 +99,8 @@ plt.show()
 
 if flag == 1:
     count = 0
-    file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
+    file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(
+        signal_freq, sampling_rate, N)
     # file_name = "test"
     f = open(file_name, 'wb')
     # COE文件头
