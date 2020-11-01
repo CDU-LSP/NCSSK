@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 import matplotlib.pyplot as plt
 import zipfile
@@ -21,6 +23,7 @@ reader = csv.reader(csvFile)
 # 建立空字典
 y_i = []
 y_q = []
+
 for item in reader:
     # 忽略第一行
     if reader.line_num == 1:
@@ -28,6 +31,7 @@ for item in reader:
     y_i.append(int(item[3]))
     y_q.append(int(item[4]))
 
+csvFile.close()
 y_1 = []
 y_2 = []
 y_3 = []
@@ -97,15 +101,6 @@ plt.subplot(211)
 plt.plot(x, y_1)
 plt.title('i')
 
-# plt.subplot(412)
-# plt.plot(x, y_2)
-# plt.title('i+q')
-#
-# x_3 = np.arange(len(y_3))  # 频率个数
-# plt.subplot(413)
-# plt.plot(x_3, y_3)
-# plt.title('i,q')
-
 x_abs_i = np.arange(len(abs_fft_i))
 # print(len(abs_i))
 plt.subplot(212)
@@ -115,19 +110,52 @@ plt.title('fft_i')
 plt.show()
 
 signal_freq = MHz_freq
-sampling_rate = 20.33e6
+sampling_rate = 20.33
 count = 0
 N = len(y_1)
 
-file_name = "{:.0e}Hzcos+10_signal_{:.0e}Hz_{}_.bin".format(signal_freq, sampling_rate, N)
+# 读取csv至字典
+csvFile = open("{}\\{}\\waveform.csv".format(path, file_name.replace(".ila", "")), "r")
+reader = csv.reader(csvFile)
+
+# 建立空字典
+y_i = []
+y_q = []
+
+for item in reader:
+    # 忽略第一行
+    if reader.line_num == 1:
+        continue
+    y_i.append(int(item[3]))
+    # y_q.append(int(item[4]))
+
+csvFile.close()
+
+all_zero = ""
+all_one = ""
+
+file_name = "{}MHzcos_signal_{}MHz_{}.bin".format(signal_freq, sampling_rate, N)
 # file_name = "test"
 f = open(file_name, 'wb')
 # COE文件头
 f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
 f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
-# for i in range(0, N):
-for i in range(0, 10):
+for i in range(0, N):
     # for i in range(0, 100):
+    # y_i[i] = str(y_i[i])
+    y_i[i] = ("%012d" % y_i[i])
+    print(i)
+    print(y_i[i])
+    if y_i[i][0] == "1":
+        for n in range(16 - len(y_i[i])):
+            all_one = "1" + all_one
+        y_i[i] = all_one + y_i[i]
+    if y_i[i][0] == "0":
+        for n in range(16 - len(y_i[i])):
+            all_zero = "0" + all_zero
+        y_i[i] = all_zero + y_i[i]
+    all_zero = ""
+    all_one = ""
     count += 1
     # int_yi = int(round(y[i], 1) * 10) + 10
 
@@ -144,20 +172,43 @@ for i in range(0, 10):
     # test_y.append(int_yi)
     # hex_xi = hex(int_xi)
     # 指定长度10进制转16进制
-    print(y_1[i])
-    hex_yi = ("{:#04X}".format(y_1[i]))
+    print(y_i[i])
+    y_i[i] = str(y_i[i])
+    y_i[i] = int(y_i[i], 2)
+    hex_yi = ("{:#06X}".format(y_i[i]))
     print(hex_yi)
 
-    # # 写文件
-    # if i == N - 1:
-    #     # 最后一行
-    #     f.write((hex_yi[2:] + ";").encode("utf-8"))
-    # else:
-    #     f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
+    # 写文件
+    if i == N - 1:
+        # 最后一行
+        f.write((hex_yi[2:] + ";").encode("utf-8"))
+    else:
+        f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
 f.close()
+print("DONE!")
 # 变换后波形
 # test_x = np.arange(N)  # 频率个数
 # # test_x = np.arange(100)  # 频率个数
 # plt.plot(test_x, test_y)
 # plt.title('原始波形')
 # plt.show()
+
+max_fft_y_real = np.real(fft_i[max_list_abs_fft_i])
+max_fft_y_imag = np.imag(fft_i[max_list_abs_fft_i])
+cal_signal_phase_radian = np.arctan(max_fft_y_imag / max_fft_y_real)
+cal_signal_phase_angle = math.degrees(cal_signal_phase_radian)
+print("phase:")
+print(cal_signal_phase_angle)
+if cal_signal_phase_angle < 0:
+    cal_signal_phase_angle = 180 + cal_signal_phase_angle
+print(cal_signal_phase_angle)
+
+plt.subplot(211)
+plt.plot(x, np.real(fft_i))
+plt.title('real')
+
+plt.subplot(212)
+plt.plot(x, np.imag(fft_i))
+plt.title('imag')
+
+plt.show()
