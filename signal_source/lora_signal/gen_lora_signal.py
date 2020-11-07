@@ -78,16 +78,53 @@ for i in range(len(y_i)):
     # y_3.append(y_i[i])
     # y_3.append(y_q[i])
 
-# print(y[:100])
-# print(type(y_i[1]))
 # y = y[:1000]
-fft_i = np.fft.fft(y_1)  # 快速傅里叶变换
-abs_fft_i = np.abs(fft_i)[range(int(len(y_1) / 2))]
-list_abs_fft_i = abs_fft_i.tolist()
-max_list_abs_fft_i = list_abs_fft_i.index(max(list_abs_fft_i))  # 返回最大值的索引
-freq = max_list_abs_fft_i * 45000
-MHz_freq = freq / 1e6
-print("Signal@{}MHz".format(MHz_freq))
+real_width_list = []
+imag_width_list = []
+y_save = y_1
+for i in range(1):
+    # if i != 0:
+    #     y_temp = y_save
+    #     y_1 = y_save[i:]
+    #     y_1.append(y_temp[:i - 1])
+    print(y_1[:10])
+    # y_1 = y_1[0:512]
+    # y_1 = y_1[0:128]
+    y_1 = y_1[15:512 + 15]
+    # y_1 = y_1[24:1024 + 24]
+    # y_1 = y_1
+    print(y_1[:10])
+    print("len y_1:{}".format(len(y_1)))
+    fft_i = np.fft.fft(y_1)  # 快速傅里叶变换
+    abs_fft_i = np.abs(fft_i)[range(int(len(y_1) / 2))]
+    list_abs_fft_i = abs_fft_i.tolist()
+    max_list_abs_fft_i = list_abs_fft_i.index(max(list_abs_fft_i))  # 返回最大值的索引
+    freq = max_list_abs_fft_i * 23040000 / (len(y_1) / 2)
+    MHz_freq = freq / 1e6
+    print("Signal@{}MHz".format(MHz_freq))
+    print("max_list_abs_fft_i:{}".format(max_list_abs_fft_i))
+
+
+    max_fft_y_real = np.real(fft_i[max_list_abs_fft_i])
+    max_fft_y_imag = np.imag(fft_i[max_list_abs_fft_i])
+
+    print(max_fft_y_real, bin(int(max_fft_y_real)))
+    print(max_fft_y_imag, bin(int(max_fft_y_imag)))
+    real_width_list.append(len(str(bin(int(max_fft_y_real)))) - 2)
+    imag_width_list.append(len(str(bin(int(max_fft_y_imag)))) - 2)
+    # print(real_width_list)
+    # print(imag_width_list)
+
+# print(max(real_width_list))
+# print(max(imag_width_list))
+
+cal_signal_phase_radian = np.arctan(max_fft_y_imag / max_fft_y_real)
+cal_signal_phase_angle = math.degrees(cal_signal_phase_radian)
+print("phase:")
+print(cal_signal_phase_angle)
+if cal_signal_phase_angle < 0:
+    cal_signal_phase_angle = 180 + cal_signal_phase_angle
+print(cal_signal_phase_angle)
 
 f = open(txt_name, "ab+")
 # os.linesep代表当前系统上的换位符
@@ -114,94 +151,83 @@ sampling_rate = 20.33
 count = 0
 N = len(y_1)
 
-# 读取csv至字典
-csvFile = open("{}\\{}\\waveform.csv".format(path, file_name.replace(".ila", "")), "r")
-reader = csv.reader(csvFile)
+# 是否写文件？1->写；0->不写
+flag = 0
 
-# 建立空字典
-y_i = []
-y_q = []
+if flag == 1:
+    # 读取csv至字典
+    csvFile = open("{}\\{}\\waveform.csv".format(path, file_name.replace(".ila", "")), "r")
+    reader = csv.reader(csvFile)
 
-for item in reader:
-    # 忽略第一行
-    if reader.line_num == 1:
-        continue
-    y_i.append(int(item[3]))
-    # y_q.append(int(item[4]))
+    # 建立空字典
+    y_i = []
+    y_q = []
 
-csvFile.close()
+    for item in reader:
+        # 忽略第一行
+        if reader.line_num == 1:
+            continue
+        y_i.append(int(item[3]))
+        # y_q.append(int(item[4]))
 
-all_zero = ""
-all_one = ""
+    csvFile.close()
 
-file_name = "{}MHzcos_signal_{}MHz_{}.bin".format(signal_freq, sampling_rate, N)
-# file_name = "test"
-f = open(file_name, 'wb')
-# COE文件头
-f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
-f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
-for i in range(0, N):
-    # for i in range(0, 100):
-    # y_i[i] = str(y_i[i])
-    y_i[i] = ("%012d" % y_i[i])
-    print(i)
-    print(y_i[i])
-    if y_i[i][0] == "1":
-        for n in range(16 - len(y_i[i])):
-            all_one = "1" + all_one
-        y_i[i] = all_one + y_i[i]
-    if y_i[i][0] == "0":
-        for n in range(16 - len(y_i[i])):
-            all_zero = "0" + all_zero
-        y_i[i] = all_zero + y_i[i]
     all_zero = ""
     all_one = ""
-    count += 1
-    # int_yi = int(round(y[i], 1) * 10) + 10
 
-    # 原码转补码
-    # if int3_xi >= 0:
-    #     tem = to_bin(int3_xi, 7)
-    #     tem = tem.replace("0b", "")
-    #     result = ("0{}".format(tem))
-    # elif int3_xi < 0:
-    #     tem = to_bin(int3_xi, 7)
-    #     tem = tem.replace("-0b", "")
-    #     result = ("1{}".format(tem))
+    file_name = "{}MHzcos_signal_{}MHz_{}.bin".format(signal_freq, sampling_rate, N)
+    # file_name = "test"
+    f = open(file_name, 'wb')
+    # COE文件头
+    f.write(("MEMORY_INITIALIZATION_RADIX=16;" + os.linesep).encode("utf-8"))
+    f.write(("MEMORY_INITIALIZATION_VECTOR=" + os.linesep).encode("utf-8"))
+    for i in range(0, N):
+        # for i in range(0, 100):
+        # y_i[i] = str(y_i[i])
+        y_i[i] = ("%012d" % y_i[i])
+        print(i)
+        print(y_i[i])
+        if y_i[i][0] == "1":
+            for n in range(16 - len(y_i[i])):
+                all_one = "1" + all_one
+            y_i[i] = all_one + y_i[i]
+        if y_i[i][0] == "0":
+            for n in range(16 - len(y_i[i])):
+                all_zero = "0" + all_zero
+            y_i[i] = all_zero + y_i[i]
+        all_zero = ""
+        all_one = ""
+        count += 1
+        # int_yi = int(round(y[i], 1) * 10) + 10
 
-    # test_y.append(int_yi)
-    # hex_xi = hex(int_xi)
-    # 指定长度10进制转16进制
-    print(y_i[i])
-    y_i[i] = str(y_i[i])
-    y_i[i] = int(y_i[i], 2)
-    hex_yi = ("{:#06X}".format(y_i[i]))
-    print(hex_yi)
+        # 原码转补码
+        # if int3_xi >= 0:
+        #     tem = to_bin(int3_xi, 7)
+        #     tem = tem.replace("0b", "")
+        #     result = ("0{}".format(tem))
+        # elif int3_xi < 0:
+        #     tem = to_bin(int3_xi, 7)
+        #     tem = tem.replace("-0b", "")
+        #     result = ("1{}".format(tem))
 
-    # 写文件
-    if i == N - 1:
-        # 最后一行
-        f.write((hex_yi[2:] + ";").encode("utf-8"))
-    else:
-        f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
-f.close()
-print("DONE!")
-# 变换后波形
-# test_x = np.arange(N)  # 频率个数
-# # test_x = np.arange(100)  # 频率个数
-# plt.plot(test_x, test_y)
-# plt.title('原始波形')
-# plt.show()
+        # test_y.append(int_yi)
+        # hex_xi = hex(int_xi)
+        # 指定长度10进制转16进制
+        # print(y_i[i])
+        y_i[i] = str(y_i[i])
+        y_i[i] = int(y_i[i], 2)
+        hex_yi = ("{:#06X}".format(y_i[i]))
+        # print(hex_yi)
 
-max_fft_y_real = np.real(fft_i[max_list_abs_fft_i])
-max_fft_y_imag = np.imag(fft_i[max_list_abs_fft_i])
-cal_signal_phase_radian = np.arctan(max_fft_y_imag / max_fft_y_real)
-cal_signal_phase_angle = math.degrees(cal_signal_phase_radian)
-print("phase:")
-print(cal_signal_phase_angle)
-if cal_signal_phase_angle < 0:
-    cal_signal_phase_angle = 180 + cal_signal_phase_angle
-print(cal_signal_phase_angle)
+        # 写文件
+        if i == N - 1:
+            # 最后一行
+            f.write((hex_yi[2:] + ";").encode("utf-8"))
+        else:
+            f.write((hex_yi[2:] + "," + os.linesep).encode("utf-8"))
+    f.close()
+elif flag == 0:
+    pass
 
 plt.subplot(211)
 plt.plot(x, np.real(fft_i))
@@ -212,3 +238,5 @@ plt.plot(x, np.imag(fft_i))
 plt.title('imag')
 
 plt.show()
+
+print("DONE!")
