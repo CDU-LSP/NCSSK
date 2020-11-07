@@ -138,13 +138,13 @@ phase_diff_times_kesai  phase_diff_times_kesai_inst
 
 get_pitch_angle get_pitch_angle_inst
 (
-    .Clk             (sys_clk),
-    .Rst_n           (sys_rst_n),
-    .clock_lock      (locked),
+    .Clk             (sys_clk       ),
+    .Rst_n           (sys_rst_n     ),
+    .clock_lock      (locked        ),
     .data_in_valid   (mult_out_valid),
 
-    .data_in         (mult_out    ),
-    .arccos_result   (arccos_result) 
+    .data_in         (mult_out      ),
+    .arccos_result   (arccos_result ) 
 );
 
 endmodule
