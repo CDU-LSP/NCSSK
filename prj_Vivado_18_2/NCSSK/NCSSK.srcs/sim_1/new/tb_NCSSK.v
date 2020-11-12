@@ -58,7 +58,6 @@ initial
         #50000
 
 
-
         sys_rst_n <= 1'b0;
         // rom_fft_rst_n <= 1'b0;
         #20
@@ -75,8 +74,6 @@ initial
         #20
         rom_fft_rst_n <= 1'b1;
         #50000
-
-
 
         $stop;
     end
