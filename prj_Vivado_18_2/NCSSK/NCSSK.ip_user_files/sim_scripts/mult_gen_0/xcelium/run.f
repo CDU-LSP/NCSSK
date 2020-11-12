@@ -1,8 +1,8 @@
 -makelib xcelium_lib/xil_defaultlib -sv \
-  "D:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+  "E:/2018.2/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 -endlib
 -makelib xcelium_lib/xpm \
-  "D:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_VCOMP.vhd" \
+  "E:/2018.2/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_VCOMP.vhd" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../../NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0_sim_netlist.v" \

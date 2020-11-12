@@ -90,7 +90,9 @@ architecture tb of tb_cordic_0 is
   -----------------------------------------------------------------------
 
   -- General inputs
-  signal aclk               : std_logic := '0';  -- the master clock(for testbench, DUT is asynchronous)
+  signal aclk               : std_logic := '0';  -- the master clock
+  signal aclken             : std_logic := '1';  -- clock enable
+  signal aresetn            : std_logic := '1';  -- synchronous active low reset, overrides aclken
 
   -- Slave channel CARTESIAN inputs
   signal s_axis_cartesian_tvalid    : std_logic := '0';  -- TVALID for channel S_AXIS_CARTESIAN
@@ -114,9 +116,9 @@ architecture tb of tb_cordic_0 is
   -- If using ModelSim or Questa, add "-voptargs=+acc=n" to the vsim command
   -- to prevent the simulator optimizing away these signals.
   -----------------------------------------------------------------------
-  signal s_axis_cartesian_tdata_real     : std_logic_vector(23 downto 0) := (others => '0');
-  signal s_axis_cartesian_tdata_imag     : std_logic_vector(23 downto 0) := (others => '0');
-  signal s_axis_phase_tdata_real         : std_logic_vector(23 downto 0) := (others => '0');
+  signal s_axis_cartesian_tdata_real     : std_logic_vector(21 downto 0) := (others => '0');
+  signal s_axis_cartesian_tdata_imag     : std_logic_vector(21 downto 0) := (others => '0');
+  signal s_axis_phase_tdata_real         : std_logic_vector(21 downto 0) := (others => '0');
 
   signal m_axis_dout_tdata_real  : std_logic_vector(15 downto 0) := (others => '0');
   signal m_axis_dout_tdata_imag  : std_logic_vector(15 downto 0) := (others => '0');
@@ -135,10 +137,10 @@ architecture tb of tb_cordic_0 is
   -----------------------------------------------------------------------
 
   constant IP_CARTESIAN_DEPTH : integer := 30;
-  constant IP_CARTESIAN_WIDTH : integer := 24;
+  constant IP_CARTESIAN_WIDTH : integer := 22;
   constant IP_CARTESIAN_SHIFT : integer := 3;  -- bit shift for amplitude
   constant IP_PHASE_DEPTH : integer := 32;
-  constant IP_PHASE_WIDTH : integer := 24;
+  constant IP_PHASE_WIDTH : integer := 22;
   constant IP_PHASE_SHIFT : integer := 0;  -- no bit shift, max amplitude
   type T_IP_INT_ENTRY is record
     re : integer;
@@ -206,6 +208,9 @@ begin
 
   dut : entity work.cordic_0
     port map (
+      aclk                => aclk,
+      aclken              => aclken,
+      aresetn             => aresetn,
       s_axis_cartesian_tvalid     => s_axis_cartesian_tvalid,
       s_axis_cartesian_tdata      => s_axis_cartesian_tdata,
       m_axis_dout_tvalid  => m_axis_dout_tvalid,
@@ -234,6 +239,46 @@ begin
   end process clock_gen;
 
   -----------------------------------------------------------------------
+  -- Generate clock enable
+  -----------------------------------------------------------------------
+
+  -- Disable the clock for 20 clock cycles starting in cycle 100.
+  -- Keep the clock enable tied high for the rest of the test.
+  aclken_gen : process
+  begin
+    aclken <= '1';
+    -- Drive clock enable T_HOLD time after rising edge of clock
+    wait until rising_edge(aclk);
+    wait for T_HOLD;
+    -- Clock enable goes low in cycle 100, goes high 20 cycles later
+    wait for CLOCK_PERIOD * 100;
+    aclken <= '0';
+    wait for CLOCK_PERIOD * 20;
+    aclken <= '1';
+    wait;
+  end process aclken_gen;
+
+  -----------------------------------------------------------------------
+  -- Generate reset
+  -----------------------------------------------------------------------
+
+  -- Reset the core in cycle 200. Hold the reset active for 2 clock
+  -- cycles, as stipulated in the CORDIC Datasheet.
+  aresetn_gen : process
+  begin
+    aresetn <= '1';  -- inactive (aresetn is active low)
+    -- Drive reset T_HOLD time after rising edge of clock
+    wait until rising_edge(aclk);
+    wait for T_HOLD;
+    -- Reset goes low (active) in cycle 200, goes high 2 cycles later
+    wait for CLOCK_PERIOD * 200;
+    aresetn <= '0';
+    wait for CLOCK_PERIOD * 2;
+    aresetn <= '1';
+    wait;
+  end process aresetn_gen;
+
+  -----------------------------------------------------------------------
   -- Generate inputs
   -----------------------------------------------------------------------
 
@@ -251,7 +296,7 @@ begin
     loop
 
       -- Drive inputs T_HOLD time after rising edge of clock
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1' and aclken = '1';
       wait for T_HOLD;
 
       -- Drive AXI TVALID signals to demonstrate different types of operation
@@ -299,9 +344,11 @@ begin
       if cartesian_tvalid_nxt /= '1' then
         s_axis_cartesian_tdata <= (others => 'X');
       else
-        -- TDATA: Real and imaginary components are each 24 bits wide and byte-aligned at their LSBs
-        s_axis_cartesian_tdata(23 downto 0) <= IP_CARTESIAN_DATA(ip_cartesian_index).re;
-        s_axis_cartesian_tdata(47 downto 24) <= IP_CARTESIAN_DATA(ip_cartesian_index).im;
+        -- TDATA: Real and imaginary components are each 22 bits wide and byte-aligned at their LSBs
+        s_axis_cartesian_tdata(21 downto 0) <= IP_CARTESIAN_DATA(ip_cartesian_index).re;
+        s_axis_cartesian_tdata(23 downto 22) <= (others => IP_CARTESIAN_DATA(ip_cartesian_index).re(21));  -- sign-extend;
+        s_axis_cartesian_tdata(45 downto 24) <= IP_CARTESIAN_DATA(ip_cartesian_index).im;
+        s_axis_cartesian_tdata(47 downto 46) <= (others => IP_CARTESIAN_DATA(ip_cartesian_index).im(21));  -- sign-extend;
 
       end if;
 
@@ -310,8 +357,9 @@ begin
       if phase_tvalid_nxt /= '1' then
         s_axis_phase_tdata <= (others => 'X');
       else
-        -- TDATA: Real component is 24 bits wide and byte-aligned at its LSBs
-        s_axis_phase_tdata(23 downto 0) <= IP_PHASE_DATA(ip_phase_index).re;
+        -- TDATA: Real component is 22 bits wide and byte-aligned at its LSBs
+        s_axis_phase_tdata(21 downto 0) <= IP_PHASE_DATA(ip_phase_index).re;
+        s_axis_phase_tdata(23 downto 22) <= (others => IP_PHASE_DATA(ip_phase_index).re(21));  -- sign-extend
       end if;
 
       -- Increment input data indices
@@ -349,7 +397,7 @@ begin
     -- Instead, check the protocol of the DOUT channel:
     -- check that the payload is valid (not X) when TVALID is high
 
-    if m_axis_dout_tvalid = '1' then
+    if m_axis_dout_tvalid = '1' and aresetn = '1' and aclken = '1' then
       if is_x(m_axis_dout_tdata) then
         report "ERROR: m_axis_dout_tdata is invalid when m_axis_dout_tvalid is high" severity error;
         check_ok := false;
@@ -366,8 +414,8 @@ begin
   -- Assign TDATA fields to aliases, for easy simulator waveform viewing
   -----------------------------------------------------------------------
 
-  s_axis_cartesian_tdata_real  <= s_axis_cartesian_tdata(23 downto 0);
-  s_axis_cartesian_tdata_imag  <= s_axis_cartesian_tdata(47 downto 24);
+  s_axis_cartesian_tdata_real  <= s_axis_cartesian_tdata(21 downto 0);
+  s_axis_cartesian_tdata_imag  <= s_axis_cartesian_tdata(45 downto 24);
 
   m_axis_dout_tdata_phase      <= m_axis_dout_tdata(15 downto 0);
 

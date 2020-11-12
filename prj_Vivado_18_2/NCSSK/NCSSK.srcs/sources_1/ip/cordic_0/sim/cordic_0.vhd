@@ -58,6 +58,9 @@ USE cordic_v6_0_14.cordic_v6_0_14;
 
 ENTITY cordic_0 IS
   PORT (
+    aclk : IN STD_LOGIC;
+    aclken : IN STD_LOGIC;
+    aresetn : IN STD_LOGIC;
     s_axis_cartesian_tvalid : IN STD_LOGIC;
     s_axis_cartesian_tdata : IN STD_LOGIC_VECTOR(47 DOWNTO 0);
     m_axis_dout_tvalid : OUT STD_LOGIC;
@@ -130,6 +133,12 @@ ARCHITECTURE cordic_0_arch OF cordic_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_cartesian_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_CARTESIAN TDATA";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_cartesian_tvalid: SIGNAL IS "XIL_INTERFACENAME S_AXIS_CARTESIAN, TDATA_NUM_BYTES 6, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 0, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.000, LAYERED_METADATA undef";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_cartesian_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_CARTESIAN TVALID";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF aresetn: SIGNAL IS "XIL_INTERFACENAME aresetn_intf, POLARITY ACTIVE_LOW";
+  ATTRIBUTE X_INTERFACE_INFO OF aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 aresetn_intf RST";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF aclken: SIGNAL IS "XIL_INTERFACENAME aclken_intf, POLARITY ACTIVE_LOW";
+  ATTRIBUTE X_INTERFACE_INFO OF aclken: SIGNAL IS "xilinx.com:signal:clockenable:1.0 aclken_intf CE";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF aclk: SIGNAL IS "XIL_INTERFACENAME aclk_intf, ASSOCIATED_BUSIF M_AXIS_DOUT:S_AXIS_PHASE:S_AXIS_CARTESIAN, ASSOCIATED_RESET aresetn, ASSOCIATED_CLKEN aclken, FREQ_HZ 1000000, PHASE 0.000";
+  ATTRIBUTE X_INTERFACE_INFO OF aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 aclk_intf CLK";
 BEGIN
   U0 : cordic_v6_0_14
     GENERIC MAP (
@@ -138,16 +147,16 @@ BEGIN
       C_COARSE_ROTATE => 1,
       C_DATA_FORMAT => 0,
       C_XDEVICEFAMILY => "zynq",
-      C_HAS_ACLKEN => 0,
-      C_HAS_ACLK => 0,
+      C_HAS_ACLKEN => 1,
+      C_HAS_ACLK => 1,
       C_HAS_S_AXIS_CARTESIAN => 1,
       C_HAS_S_AXIS_PHASE => 0,
-      C_HAS_ARESETN => 0,
-      C_INPUT_WIDTH => 24,
+      C_HAS_ARESETN => 1,
+      C_INPUT_WIDTH => 22,
       C_ITERATIONS => 0,
       C_OUTPUT_WIDTH => 16,
       C_PHASE_FORMAT => 1,
-      C_PIPELINE_MODE => 0,
+      C_PIPELINE_MODE => -2,
       C_PRECISION => 0,
       C_ROUND_MODE => 3,
       C_SCALE_COMP => 0,
@@ -165,9 +174,9 @@ BEGIN
       C_M_AXIS_DOUT_TUSER_WIDTH => 1
     )
     PORT MAP (
-      aclk => '1',
-      aclken => '1',
-      aresetn => '1',
+      aclk => aclk,
+      aclken => aclken,
+      aresetn => aresetn,
       s_axis_phase_tvalid => '0',
       s_axis_phase_tuser => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 1)),
       s_axis_phase_tlast => '0',

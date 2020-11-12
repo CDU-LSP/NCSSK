@@ -29,42 +29,55 @@ reg     [6:0]   delay_point     ;
 reg             rom_fft_rst_n   ;
 
 //output
-wire    [20:0]   pitch_angle    ;
+wire    [21:0]   angle          ;
+wire             angle_valid    ;
 
 //var
 //...
+initial sys_clk_PL = 1'b1;
 
 always #4 sys_clk_PL = ~sys_clk_PL;   //125MHz
 
 initial
     begin
-        sys_clk_PL = 1'b1;
         sys_rst_n <= 1'b0;
         // rom_fft_rst_n <= 1'b0;
         #20
         sys_rst_n <= 1'b1;
         // rom_fft_rst_n <= 1'b1;
-
         #200
-        delay_point <= 7'd0;
+        delay_point <= 7'd1;
         rom_fft_rst_n <= 1'b0;
         #20
         rom_fft_rst_n <= 1'b1;
-
         #50000
-        delay_point <= 7'd5;
+        delay_point <= 7'd10;        //max=12
         rom_fft_rst_n <= 1'b0;
         #20
         rom_fft_rst_n <= 1'b1;
+        #50000
 
-        // //if there is 3 sigs
-        // #50000
-        // delay_point <= 7'd10;
+
+
+        sys_rst_n <= 1'b0;
         // rom_fft_rst_n <= 1'b0;
-        // #20
+        #20
+        sys_rst_n <= 1'b1;
         // rom_fft_rst_n <= 1'b1;
-
+        #200
+        delay_point <= 7'd42;
+        rom_fft_rst_n <= 1'b0;
+        #20
+        rom_fft_rst_n <= 1'b1;
         #50000
+        delay_point <= 7'd33;        //max=12
+        rom_fft_rst_n <= 1'b0;
+        #20
+        rom_fft_rst_n <= 1'b1;
+        #50000
+
+
+
         $stop;
     end
 
@@ -75,7 +88,8 @@ NCSSK_top   NCSSK_top_inst
     .delay_point    (delay_point    ),
     .rom_fft_rst_n  (rom_fft_rst_n  ),
 
-    .pitch_angle    (pitch_angle    ) 
+    .angle          (angle          ), 
+    .angle_valid    (angle_valid    )
 );
 
 endmodule

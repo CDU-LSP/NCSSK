@@ -59,11 +59,11 @@ USE mult_gen_v12_0_14.mult_gen_v12_0_14;
 ENTITY mult_gen_0 IS
   PORT (
     CLK : IN STD_LOGIC;
-    A : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+    A : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
     B : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
     CE : IN STD_LOGIC;
     SCLR : IN STD_LOGIC;
-    P : OUT STD_LOGIC_VECTOR(18 DOWNTO 0)
+    P : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
   );
 END mult_gen_0;
 
@@ -95,11 +95,11 @@ ARCHITECTURE mult_gen_0_arch OF mult_gen_0 IS
     );
     PORT (
       CLK : IN STD_LOGIC;
-      A : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+      A : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
       B : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
       CE : IN STD_LOGIC;
       SCLR : IN STD_LOGIC;
-      P : OUT STD_LOGIC_VECTOR(18 DOWNTO 0)
+      P : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
     );
   END COMPONENT mult_gen_v12_0_14;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -126,11 +126,11 @@ BEGIN
       C_HAS_CE => 1,
       C_HAS_SCLR => 1,
       C_LATENCY => 5,
-      C_A_WIDTH => 13,
+      C_A_WIDTH => 14,
       C_A_TYPE => 0,
       C_B_WIDTH => 6,
       C_B_TYPE => 1,
-      C_OUT_HIGH => 18,
+      C_OUT_HIGH => 19,
       C_OUT_LOW => 0,
       C_MULT_TYPE => 0,
       C_CE_OVERRIDES_SCLR => 0,

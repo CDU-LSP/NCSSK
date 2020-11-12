@@ -11,9 +11,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=D:/Xilinx/SDK/2018.2/bin;D:/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/nt64;D:/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/nt64:D:/Xilinx/Vivado/2018.2/bin
+  PATH=E:/2018.2/Xilinx/SDK/2018.2/bin;E:/2018.2/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/nt64;E:/2018.2/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/nt64:E:/2018.2/Xilinx/Vivado/2018.2/bin
 else
-  PATH=D:/Xilinx/SDK/2018.2/bin;D:/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/nt64;D:/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/nt64:D:/Xilinx/Vivado/2018.2/bin:$PATH
+  PATH=E:/2018.2/Xilinx/SDK/2018.2/bin;E:/2018.2/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/nt64;E:/2018.2/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/nt64:E:/2018.2/Xilinx/Vivado/2018.2/bin:$PATH
 fi
 export PATH
 
@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/c_sub_1_synth_1'
+HD_PWD='E:/vivadoPrj/2018.2/NCSSK/NCSSK.runs/c_sub_1_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

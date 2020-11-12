@@ -54,6 +54,9 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 COMPONENT cordic_0
   PORT (
+    aclk : IN STD_LOGIC;
+    aclken : IN STD_LOGIC;
+    aresetn : IN STD_LOGIC;
     s_axis_cartesian_tvalid : IN STD_LOGIC;
     s_axis_cartesian_tdata : IN STD_LOGIC_VECTOR(47 DOWNTO 0);
     m_axis_dout_tvalid : OUT STD_LOGIC;
@@ -68,6 +71,9 @@ END COMPONENT;
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : cordic_0
   PORT MAP (
+    aclk => aclk,
+    aclken => aclken,
+    aresetn => aresetn,
     s_axis_cartesian_tvalid => s_axis_cartesian_tvalid,
     s_axis_cartesian_tdata => s_axis_cartesian_tdata,
     m_axis_dout_tvalid => m_axis_dout_tvalid,
