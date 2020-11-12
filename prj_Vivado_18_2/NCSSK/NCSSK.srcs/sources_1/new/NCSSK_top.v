@@ -15,7 +15,11 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Revision 1.00 - Solve one-dimensional pitch angle(2020/11/08 05:38)
+// Revision 1.00 (2020/11/08 05:38)
+//               - Solve one-dimensional pitch angle
+// Revision 1.10 (2020/11/13/ 02:38)
+//               - Fixed timing error
+//               - Add ability to calculate azimuth angle from 2 stations
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +32,8 @@ module NCSSK_top
     input   wire            [6:0]   delay_point     ,
     input   wire                    rom_fft_rst_n   ,
 
-    output  wire    signed  [20:0]  pitch_angle       
+    output  wire            [21:0]  angle           ,
+    output  wire                    angle_valid      
 );
 
 //clock_distrb_inst
@@ -45,22 +50,23 @@ wire            [21:0]  fft_max_real            ;
 wire            [15:0]  m_axis_data_tuser       ;
 
 //get_phase_inst
-wire            [12:0]  arctan_result           ;
+wire            [13:0]  arctan_result           ;
 wire                    m_axis_dout_tvalid      ;
 
 //get_phase_difference_inst
-wire            [12:0]  phase_difference_a      ;
-wire            [12:0]  phase_difference_b      ;
+wire            [13:0]  phase_difference_a      ;
+wire            [13:0]  phase_difference_b      ;
 wire                    phase_out_valid         ;
+wire                    pulse                   ;
 
 //phase_diff_times_kesai_inst
-wire            [18:0] mult_out                 ;
+wire            [19:0]  mult_out                ;
 wire                    mult_out_valid          ;
 
-//get_pitch_angle_inst
-wire    signed  [20:0]  arccos_result           ;
+//get_angle_inst
+// ...
 
-assign  pitch_angle = arccos_result             ;
+// assign  pitch_angle = arccos_result             ;
 
 clk_wiz_0   clock_dist_inst
 (
@@ -107,6 +113,7 @@ get_phase   get_phase_inst
     .m_axis_data_tuser   (m_axis_data_tuser ),
     .fft_max_img         (fft_max_img       ),
     .fft_max_real        (fft_max_real      ),
+    .lock                (locked            ),
 
     .arctan_result       (arctan_result     ),
     .m_axis_dout_tvalid  (m_axis_dout_tvalid)
@@ -122,7 +129,8 @@ get_phase_difference    get_phase_difference_inst
 
     .phase_difference_a      (phase_difference_a  ),
     .phase_difference_b      (phase_difference_b  ),
-    .phase_out_valid         (phase_out_valid     ) 
+    .phase_out_valid         (phase_out_valid     ),
+    .pulse                   (pulse               ) 
 );
 
 phase_diff_times_kesai  phase_diff_times_kesai_inst
@@ -131,20 +139,22 @@ phase_diff_times_kesai  phase_diff_times_kesai_inst
     .sys_rst_n       (sys_rst_n         ),
     .multiplier_a    (phase_difference_a),
     .locked          (locked            ),
+    .pulse           (pulse             ),
 
-    .mult_out        (mult_out          ),
+    .mult_out_reg2   (mult_out          ),
     .mult_out_valid  (mult_out_valid    )
 );
 
-get_pitch_angle get_pitch_angle_inst
+get_angle get_angle_inst
 (
-    .Clk             (sys_clk       ),
-    .Rst_n           (sys_rst_n     ),
-    .clock_lock      (locked        ),
-    .data_in_valid   (mult_out_valid),
+    .Clk                (sys_clk       ),
+    .Rst_n              (sys_rst_n     ),
+    .clock_lock         (locked        ),
+    .data_in_valid      (mult_out_valid),
+    .data_in            (mult_out      ),
 
-    .data_in         (mult_out      ),
-    .arccos_result   (arccos_result ) 
+    .arccos_result      (angle         ),
+    .arccos_result_valid(angle_valid   )
 );
 
 endmodule

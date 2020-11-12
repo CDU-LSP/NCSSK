@@ -55,12 +55,12 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 c_sub_0 your_instance_name (
-  .A(A),        // input wire [12 : 0] A
-  .B(B),        // input wire [12 : 0] B
+  .A(A),        // input wire [13 : 0] A
+  .B(B),        // input wire [13 : 0] B
   .CLK(CLK),    // input wire CLK
   .CE(CE),      // input wire CE
   .SCLR(SCLR),  // input wire SCLR
-  .S(S)        // output wire [12 : 0] S
+  .S(S)        // output wire [13 : 0] S
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

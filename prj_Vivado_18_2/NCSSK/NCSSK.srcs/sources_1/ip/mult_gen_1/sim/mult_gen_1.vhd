@@ -59,11 +59,11 @@ USE mult_gen_v12_0_14.mult_gen_v12_0_14;
 ENTITY mult_gen_1 IS
   PORT (
     CLK : IN STD_LOGIC;
-    A : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
-    B : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
+    A : IN STD_LOGIC_VECTOR(19 DOWNTO 0);
+    B : IN STD_LOGIC_VECTOR(19 DOWNTO 0);
     CE : IN STD_LOGIC;
     SCLR : IN STD_LOGIC;
-    P : OUT STD_LOGIC_VECTOR(37 DOWNTO 0)
+    P : OUT STD_LOGIC_VECTOR(39 DOWNTO 0)
   );
 END mult_gen_1;
 
@@ -95,11 +95,11 @@ ARCHITECTURE mult_gen_1_arch OF mult_gen_1 IS
     );
     PORT (
       CLK : IN STD_LOGIC;
-      A : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
-      B : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
+      A : IN STD_LOGIC_VECTOR(19 DOWNTO 0);
+      B : IN STD_LOGIC_VECTOR(19 DOWNTO 0);
       CE : IN STD_LOGIC;
       SCLR : IN STD_LOGIC;
-      P : OUT STD_LOGIC_VECTOR(37 DOWNTO 0)
+      P : OUT STD_LOGIC_VECTOR(39 DOWNTO 0)
     );
   END COMPONENT mult_gen_v12_0_14;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -121,18 +121,18 @@ BEGIN
     GENERIC MAP (
       C_VERBOSITY => 0,
       C_MODEL_TYPE => 0,
-      C_OPTIMIZE_GOAL => 1,
+      C_OPTIMIZE_GOAL => 0,
       C_XDEVICEFAMILY => "zynq",
       C_HAS_CE => 1,
       C_HAS_SCLR => 1,
-      C_LATENCY => 1,
-      C_A_WIDTH => 19,
+      C_LATENCY => 3,
+      C_A_WIDTH => 20,
       C_A_TYPE => 0,
-      C_B_WIDTH => 19,
+      C_B_WIDTH => 20,
       C_B_TYPE => 0,
-      C_OUT_HIGH => 37,
+      C_OUT_HIGH => 39,
       C_OUT_LOW => 0,
-      C_MULT_TYPE => 0,
+      C_MULT_TYPE => 1,
       C_CE_OVERRIDES_SCLR => 0,
       C_CCM_IMP => 0,
       C_B_VALUE => "10000001",

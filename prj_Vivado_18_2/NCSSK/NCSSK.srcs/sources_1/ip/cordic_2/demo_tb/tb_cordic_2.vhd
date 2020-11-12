@@ -116,13 +116,13 @@ architecture tb of tb_cordic_2 is
   -- If using ModelSim or Questa, add "-voptargs=+acc=n" to the vsim command
   -- to prevent the simulator optimizing away these signals.
   -----------------------------------------------------------------------
-  signal s_axis_cartesian_tdata_real     : std_logic_vector(37 downto 0) := (others => '0');
-  signal s_axis_cartesian_tdata_imag     : std_logic_vector(37 downto 0) := (others => '0');
-  signal s_axis_phase_tdata_real         : std_logic_vector(37 downto 0) := (others => '0');
+  signal s_axis_cartesian_tdata_real     : std_logic_vector(39 downto 0) := (others => '0');
+  signal s_axis_cartesian_tdata_imag     : std_logic_vector(39 downto 0) := (others => '0');
+  signal s_axis_phase_tdata_real         : std_logic_vector(39 downto 0) := (others => '0');
 
-  signal m_axis_dout_tdata_real  : std_logic_vector(19 downto 0) := (others => '0');
-  signal m_axis_dout_tdata_imag  : std_logic_vector(19 downto 0) := (others => '0');
-  signal m_axis_dout_tdata_phase : std_logic_vector(19 downto 0) := (others => '0');
+  signal m_axis_dout_tdata_real  : std_logic_vector(20 downto 0) := (others => '0');
+  signal m_axis_dout_tdata_imag  : std_logic_vector(20 downto 0) := (others => '0');
+  signal m_axis_dout_tdata_phase : std_logic_vector(20 downto 0) := (others => '0');
   -----------------------------------------------------------------------
   -- Testbench signals
   -----------------------------------------------------------------------
@@ -137,10 +137,10 @@ architecture tb of tb_cordic_2 is
   -----------------------------------------------------------------------
 
   constant IP_CARTESIAN_DEPTH : integer := 30;
-  constant IP_CARTESIAN_WIDTH : integer := 38;
+  constant IP_CARTESIAN_WIDTH : integer := 40;
   constant IP_CARTESIAN_SHIFT : integer := 3;  -- bit shift for amplitude
   constant IP_PHASE_DEPTH : integer := 32;
-  constant IP_PHASE_WIDTH : integer := 38;
+  constant IP_PHASE_WIDTH : integer := 40;
   constant IP_PHASE_SHIFT : integer := 0;  -- no bit shift, max amplitude
   type T_IP_INT_ENTRY is record
     re : integer;
@@ -344,9 +344,8 @@ begin
       if cartesian_tvalid_nxt /= '1' then
         s_axis_cartesian_tdata <= (others => 'X');
       else
-        -- TDATA: Real and imaginary components are each 38 bits wide and byte-aligned at their LSBs
-        s_axis_cartesian_tdata(37 downto 0) <= IP_CARTESIAN_DATA(ip_cartesian_index).re;
-        s_axis_cartesian_tdata(19 downto 38) <= (others => IP_CARTESIAN_DATA(ip_cartesian_index).re(37));  -- sign-extend;
+        -- TDATA: Real and imaginary components are each 40 bits wide and byte-aligned at their LSBs
+        s_axis_cartesian_tdata(39 downto 0) <= IP_CARTESIAN_DATA(ip_cartesian_index).re;
 
       end if;
 
@@ -355,9 +354,8 @@ begin
       if phase_tvalid_nxt /= '1' then
         s_axis_phase_tdata <= (others => 'X');
       else
-        -- TDATA: Real component is 38 bits wide and byte-aligned at its LSBs
-        s_axis_phase_tdata(37 downto 0) <= IP_PHASE_DATA(ip_phase_index).re;
-        s_axis_phase_tdata(39 downto 38) <= (others => IP_PHASE_DATA(ip_phase_index).re(37));  -- sign-extend
+        -- TDATA: Real component is 40 bits wide and byte-aligned at its LSBs
+        s_axis_phase_tdata(39 downto 0) <= IP_PHASE_DATA(ip_phase_index).re;
       end if;
 
       -- Increment input data indices
@@ -412,9 +410,9 @@ begin
   -- Assign TDATA fields to aliases, for easy simulator waveform viewing
   -----------------------------------------------------------------------
 
-  s_axis_cartesian_tdata_real  <= s_axis_cartesian_tdata(37 downto 0);
+  s_axis_cartesian_tdata_real  <= s_axis_cartesian_tdata(39 downto 0);
 
-  m_axis_dout_tdata_real       <= m_axis_dout_tdata(19 downto 0);
+  m_axis_dout_tdata_real       <= m_axis_dout_tdata(20 downto 0);
 
 end tb;
 

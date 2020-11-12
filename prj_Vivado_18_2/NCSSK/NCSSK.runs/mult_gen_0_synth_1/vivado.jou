@@ -2,11 +2,11 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sun Nov  8 02:53:57 2020
-# Process ID: 22648
-# Current directory: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/mult_gen_0_synth_1
+# Start of session at: Wed Nov 11 22:37:53 2020
+# Process ID: 2188
+# Current directory: E:/vivadoPrj/2018.2/NCSSK/NCSSK.runs/mult_gen_0_synth_1
 # Command line: vivado.exe -log mult_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mult_gen_0.tcl
-# Log file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/mult_gen_0_synth_1/mult_gen_0.vds
-# Journal file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/mult_gen_0_synth_1\vivado.jou
+# Log file: E:/vivadoPrj/2018.2/NCSSK/NCSSK.runs/mult_gen_0_synth_1/mult_gen_0.vds
+# Journal file: E:/vivadoPrj/2018.2/NCSSK/NCSSK.runs/mult_gen_0_synth_1\vivado.jou
 #-----------------------------------------------------------
 source mult_gen_0.tcl -notrace

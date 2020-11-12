@@ -1,0 +1,35 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 17 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/vivadoPrj/2018.2/NCSSK/NCSSK.sim/sim_1/behav/modelsim
+vdist_mem_gen_v8_0_12
+!s10a 1604749712
+!s110 1604945500
+!i10b 1
+!s100 kzL5LOBfbOfTO;zdBV>XQ0
+!s11b QGUBW_O01_1aXokcG^^j40
+IT96<CJEI^:ElZA9hLRH5_3
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1604749712
+8../../../../NCSSK.ip_user_files/ipstatic/simulation/dist_mem_gen_v8_0.v
+F../../../../NCSSK.ip_user_files/ipstatic/simulation/dist_mem_gen_v8_0.v
+L0 78
+OL;L;2019.2;69
+r1
+!s85 0
+31
+!s108 1604945499.000000
+!s107 ../../../../NCSSK.ip_user_files/ipstatic/simulation/dist_mem_gen_v8_0.v|
+!s90 -64|-incr|-work|dist_mem_gen_v8_0_12|+incdir+../../../../NCSSK.srcs/sources_1/ip/clk_wiz_0|../../../../NCSSK.ip_user_files/ipstatic/simulation/dist_mem_gen_v8_0.v|
+!i113 0
+o-64 -work dist_mem_gen_v8_0_12 -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+!s92 -64 -work dist_mem_gen_v8_0_12 +incdir+../../../../NCSSK.srcs/sources_1/ip/clk_wiz_0 -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+tCvgOpt 0

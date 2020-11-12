@@ -72,6 +72,8 @@ assign  after_real = (m_axis_data_tvalid)?after_real_buf:24'd0 ;
 assign  after_real_buf = m_axis_data_tdata[23:0];
 assign  after_img_buf = m_axis_data_tdata[47:24];
 
+
+
 always @(posedge Clk or negedge Rst_n) 
 begin
     if (!Rst_n)
@@ -85,6 +87,7 @@ begin
             fft_max_real <= after_real_buf[21:0];
         end
 end
+
 
 xfft_0 fft_module_inst
 (

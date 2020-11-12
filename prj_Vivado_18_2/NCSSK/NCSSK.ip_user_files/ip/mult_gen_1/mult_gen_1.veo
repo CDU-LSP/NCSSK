@@ -56,11 +56,11 @@
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 mult_gen_1 your_instance_name (
   .CLK(CLK),    // input wire CLK
-  .A(A),        // input wire [18 : 0] A
-  .B(B),        // input wire [18 : 0] B
+  .A(A),        // input wire [19 : 0] A
+  .B(B),        // input wire [19 : 0] B
   .CE(CE),      // input wire CE
   .SCLR(SCLR),  // input wire SCLR
-  .P(P)        // output wire [37 : 0] P
+  .P(P)        // output wire [39 : 0] P
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

@@ -24,40 +24,51 @@ module phase_diff_times_kesai
 (
     input   wire            sys_clk         ,
     input   wire            sys_rst_n       ,
-    input   wire    [12:0]  multiplier_a    ,
+    input   wire    [13:0]  multiplier_a    ,
     input   wire            locked          ,
+    input   wire            pulse           ,
 
-    output  wire    [18:0]  mult_out        ,
-    output  wire            mult_out_valid   
+    output  reg     [19:0]  mult_out_reg2   ,
+    output  reg             mult_out_valid   
 );
 
 //var
 wire    [5:0]   multiplier_b    ;
-wire    [18:0]  result          ;
-reg     [18:0]  old_result      ;
-// wire            test            ;
-
+wire    [19:0]  mult_out; 
+reg     [19:0]  mult_out_reg; 
 // assign multiplier_b = 12'b0_0_01_1001_0111  ; //0.39788735772973833942220940843129 * 2^10
 assign  multiplier_b = 6'b1_0_1000  ; //1.25 * 2^5
-// assign mult_out = result[24:10]             ;
-assign  mult_out = result           ;
-assign  mult_out_valid = (old_result == result) ? 1'b1 : 1'b0;
 
-always@(posedge sys_clk or negedge sys_rst_n)
-    if(sys_rst_n == 1'b0)
-        old_result <= 19'b0;
-    else
-        old_result <= mult_out;
+
+always @(posedge sys_clk) 
+begin
+    if (!sys_rst_n) begin
+    mult_out_valid <= 1'd0;
+    end
+    else if (pulse) 
+    begin
+        mult_out_valid <= 1'd1;
+    end
+    else begin
+        mult_out_valid <= mult_out_valid;
+    end
+end
+
+always@(posedge sys_clk)
+    begin
+        mult_out_reg <= mult_out;
+        mult_out_reg2 <= mult_out_reg;
+    end
 
 mult_gen_0  mult_inst 
 (
     .CLK    (sys_clk), // input wire CLK
-    .A      (multiplier_a), // input wire [12 : 0] A
+    .A      (multiplier_a), // input wire [13 : 0] A
     .B      (multiplier_b), // input wire [5 : 0] B
     .CE     (locked),       // input wire CE
     .SCLR   (~sys_rst_n),   // input wire SCLR
     
-    .P      (result)        // output wire [18 : 0] P
+    .P      (mult_out)        // output wire [19 : 0] P
 );
 
 endmodule
