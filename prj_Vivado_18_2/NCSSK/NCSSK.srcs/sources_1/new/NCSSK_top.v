@@ -14,10 +14,10 @@
 // Dependencies: 
 // 
 // Revision:
-// Revision 0.01 - File Created
-// Revision 1.00 (2020/11/08 05:38)
+// Revision 0.0.1 - File Created
+// Revision 1.0.0 (2020/11/08 05:38)
 //               - Solve one-dimensional pitch angle
-// Revision 1.10 (2020/11/13/ 02:38)
+// Revision 1.1.0 (2020/11/13/ 02:38)
 //               - Fixed timing error
 //               - Add ability to calculate azimuth angle from 2 stations
 // Additional Comments:
