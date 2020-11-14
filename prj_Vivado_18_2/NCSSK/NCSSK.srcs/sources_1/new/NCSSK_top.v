@@ -24,17 +24,32 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+// NCSSK_top NCSSK_top_inst
+// (
+//     .sys_clk_PS_100M (sys_clk_PS_100M),
+//     .sys_rst_n       (sys_rst_n),
+//     .in_delay_point  (delay_point),
+//     .rom_fft_rst_n   (rom_fft_rst_n),
+//     .out_angle       (angle),
+//     .angle_valid     (angle_valid) 
+// );
 
 module NCSSK_top
 (
-    input   wire                    sys_clk_PL      ,
+    input   wire                    sys_clk_PS_100M ,
     input   wire                    sys_rst_n       ,
-    input   wire            [6:0]   delay_point     ,
+    input   wire            [31:0]  in_delay_point  ,
     input   wire                    rom_fft_rst_n   ,
 
-    output  wire            [21:0]  angle           ,
+    output  wire            [31:0]  out_angle       ,
     output  wire                    angle_valid      
 );
+
+//var
+wire    [6:0]   delay_point;
+wire    [21:0]  angle;
+assign delay_point = in_delay_point[6:0];
+assign out_angle = {9'b0, angle};
 
 //clock_distrb_inst
 wire                    sys_clk                 ;
@@ -71,14 +86,14 @@ wire                    mult_out_valid          ;
 clk_wiz_0   clock_dist_inst
 (
     // Clock out ports
-    .sys_clk(sys_clk),      // output sys_clk
+    .sys_clk    (sys_clk        ),  // output sys_clk
 
     // Status and control signals
-    .resetn(sys_rst_n),        // input resetn
-    .locked(locked),        // output locked
+    .resetn     (sys_rst_n      ),  // input resetn
+    .locked     (locked         ),  // output locked
 
     // Clock in ports
-    .clk_in1(sys_clk_PL)       // input clk_in1
+    .clk_in1    (sys_clk_PS_100M)   // input clk_in1
 );
 
 rom_read_signal read_signal_inst
@@ -153,7 +168,7 @@ get_angle get_angle_inst
     .data_in_valid      (mult_out_valid),
     .data_in            (mult_out      ),
 
-    .arccos_result      (angle         ),
+    .add_result         (angle         ),
     .arccos_result_valid(angle_valid   )
 );
 

@@ -1,0 +1,36 @@
+/*
+ * AXI_GPIO.c
+ *
+ *  Created on: 2020年11月13日
+ *      Author: benjia
+ */
+
+#include "AXI_GPIO.h"
+
+XGpio o_gpio_angle, o_gpio_angle_valid, i_gpio_delay_point, i_gpio_rom_fft_rst_n, i_gpio_sys_rst_n;
+
+void init_o_gpio_angle(void)
+{
+    XGpio_Initialize(&o_gpio_angle, GPIO_ANGLE_ID);   //初始化GPIO
+    XGpio_SetDataDirection(&o_gpio_angle, 1, 0X0);                     //设置GPIO输出方向
+}
+
+void init_o_gpio_angle_valid(void)
+{
+
+}
+
+void init_i_gpio_delay_point(void)
+{
+
+}
+
+void init_i_gpio_rom_fft_rst_n(void)
+{
+
+}
+
+void init_i_gpio_sys_rst_n(void)
+{
+
+}

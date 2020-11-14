@@ -1,0 +1,16 @@
+/*
+ * AXI_GPIO.c
+ *
+ *  Created on: 2020年11月13日
+ *      Author: benjia
+ */
+
+#include "AXI_GPIO.h"
+
+XGpio gpio_angle;
+
+void init_gpio_angle(void)
+{
+
+}
+
