@@ -12,8 +12,8 @@
 # //  18 U.S.C. Section 1905.
 # //
 # do {tb_NCSSK_simulate.do}
-# vsim -voptargs=""+acc"" -L xil_defaultlib -L xpm -L dist_mem_gen_v8_0_12 -L unisims_ver -L unimacro_ver -L secureip -lib xil_defaultlib xil_defaultlib.tb_NCSSK xil_defaultlib.glbl 
-# Start time: 02:33:01 on Nov 13,2020
+# vsim -voptargs=""+acc"" -L xil_defaultlib -L dist_mem_gen_v8_0_12 -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm -lib xil_defaultlib xil_defaultlib.tb_NCSSK xil_defaultlib.glbl 
+# Start time: 15:10:19 on Nov 14,2020
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading work.tb_NCSSK(fast)
 # Loading work.NCSSK_top(fast)
@@ -191,9 +191,11 @@
 # Loading unisims_ver.LUT3(fast__31)
 # Loading work.c_addsub_0(fast)
 # Loading work.c_addsub_0_c_addsub_v12_0_12(fast)
+# Loading work.ila_get_phase(fast)
 # Loading work.get_phase_difference(fast)
 # Loading work.c_sub_0(fast)
 # Loading work.c_sub_0_c_addsub_v12_0_12(fast)
+# Loading work.ila_phase_diff(fast)
 # Loading work.phase_diff_times_kesai(fast)
 # Loading work.mult_gen_0(fast)
 # Loading work.mult_gen_0_mult_gen_v12_0_14(fast)
@@ -217,15 +219,20 @@
 # Loading work.cordic_1_cordic_v6_0_14(fast)
 # Loading work.c_addsub_1(fast)
 # Loading work.c_addsub_1_c_addsub_v12_0_12(fast)
+# Loading work.ila_get_angle(fast)
 # Loading work.glbl(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (23) does not match connection size (22) for port 'add_result'. The port definition is at: ../../../../NCSSK.srcs/sources_1/new/get_angle.v(31).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_NCSSK/NCSSK_top_inst/get_angle_inst File: ../../../../NCSSK.srcs/sources_1/new/NCSSK_top.v Line: 163
 # 1
 # 1
 # .main_pane.wave.interior.cs.body.pw.wf
 # .main_pane.structure.interior.cs.body.struct
 # .main_pane.objects.interior.cs.body.tree
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+# Warning: [Unisim MMCME2_ADV-20] Input CLKIN1 period and attribute CLKIN1_PERIOD are not same. Instance tb_NCSSK.NCSSK_top_inst.clock_dist_inst.inst.mmcm_adv_inst 
 restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt2
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # Loading work.tb_NCSSK(fast)
 # Loading work.NCSSK_top(fast)
 # Loading work.clk_wiz_0(fast)
@@ -402,9 +409,11 @@ restart
 # Loading unisims_ver.LUT3(fast__31)
 # Loading work.c_addsub_0(fast)
 # Loading work.c_addsub_0_c_addsub_v12_0_12(fast)
+# Loading work.ila_get_phase(fast)
 # Loading work.get_phase_difference(fast)
 # Loading work.c_sub_0(fast)
 # Loading work.c_sub_0_c_addsub_v12_0_12(fast)
+# Loading work.ila_phase_diff(fast)
 # Loading work.phase_diff_times_kesai(fast)
 # Loading work.mult_gen_0(fast)
 # Loading work.mult_gen_0_mult_gen_v12_0_14(fast)
@@ -428,19 +437,24 @@ restart
 # Loading work.cordic_1_cordic_v6_0_14(fast)
 # Loading work.c_addsub_1(fast)
 # Loading work.c_addsub_1_c_addsub_v12_0_12(fast)
+# Loading work.ila_get_angle(fast)
 # Loading work.glbl(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (23) does not match connection size (22) for port 'add_result'. The port definition is at: ../../../../NCSSK.srcs/sources_1/new/get_angle.v(31).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_NCSSK/NCSSK_top_inst/get_angle_inst File: ../../../../NCSSK.srcs/sources_1/new/NCSSK_top.v Line: 163
 run -all
 # WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
-# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time              5630000 ns: 
+# Warning: [Unisim MMCME2_ADV-20] Input CLKIN1 period and attribute CLKIN1_PERIOD are not same. Instance tb_NCSSK.NCSSK_top_inst.clock_dist_inst.inst.mmcm_adv_inst 
+# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time              6070000 ns: 
 # Reading from out-of-range address. Max address in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst is        1023
-# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time             55580000 ns: 
+# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time             55570000 ns: 
 # Reading from out-of-range address. Max address in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst is        1023
-# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time            106232000 ns: 
+# Warning: [Unisim MMCME2_ADV-20] Input CLKIN1 period and attribute CLKIN1_PERIOD are not same. Instance tb_NCSSK.NCSSK_top_inst.clock_dist_inst.inst.mmcm_adv_inst 
+# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time            106390000 ns: 
 # Reading from out-of-range address. Max address in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst is        1023
-# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time            156062000 ns: 
+# WARNING in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst at time            155750000 ns: 
 # Reading from out-of-range address. Max address in tb_NCSSK.NCSSK_top_inst.read_signal_inst.read_signal_inst.inst is        1023
-# ** Note: $stop    : ../../../../NCSSK.srcs/sim_1/new/tb_NCSSK.v(81)
+# ** Note: $stop    : ../../../../NCSSK.srcs/sim_1/new/tb_NCSSK.v(79)
 #    Time: 200520 ns  Iteration: 0  Instance: /tb_NCSSK
-# Break in Module tb_NCSSK at ../../../../NCSSK.srcs/sim_1/new/tb_NCSSK.v line 81
-# End time: 02:36:02 on Nov 13,2020, Elapsed time: 0:03:01
-# Errors: 0, Warnings: 0
+# Break in Module tb_NCSSK at ../../../../NCSSK.srcs/sim_1/new/tb_NCSSK.v line 79
+# End time: 15:59:26 on Nov 14,2020, Elapsed time: 0:49:07
+# Errors: 0, Warnings: 1

@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../../NCSSK.srcs/sources_1/ip/c_sub_1/sim/c_sub_1.vhd" \
+
+nosort

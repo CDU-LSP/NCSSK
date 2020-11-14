@@ -1,0 +1,13 @@
+/*
+ * helloworld.h
+ *
+ *  Created on: 2020年11月13日
+ *      Author: benjia
+ */
+
+#ifndef SRC_HELLOWORLD_H_
+#define SRC_HELLOWORLD_H_
+
+void init_gpio(void);
+
+#endif /* SRC_HELLOWORLD_H_ */

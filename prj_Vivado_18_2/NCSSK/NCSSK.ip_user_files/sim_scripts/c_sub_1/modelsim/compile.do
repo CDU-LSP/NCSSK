@@ -5,8 +5,8 @@ vlib modelsim_lib/msim/xil_defaultlib
 
 vmap xil_defaultlib modelsim_lib/msim/xil_defaultlib
 
-vlog -work xil_defaultlib -64 -incr \
-"../../../../NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1_sim_netlist.v" \
+vcom -work xil_defaultlib -64 -93 \
+"../../../../NCSSK.srcs/sources_1/ip/c_sub_1/sim/c_sub_1.vhd" \
 
 
 vlog -work xil_defaultlib \

@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/synth_1'
+HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log NCSSK_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source NCSSK_top.tcl
+EAStep vivado -log mod_cpu_ps_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source mod_cpu_ps_wrapper.tcl

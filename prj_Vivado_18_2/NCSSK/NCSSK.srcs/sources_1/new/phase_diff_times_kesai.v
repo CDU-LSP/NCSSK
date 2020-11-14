@@ -71,4 +71,10 @@ mult_gen_0  mult_inst
     .P      (mult_out)        // output wire [19 : 0] P
 );
 
+// ila_kesai ila_kesai_inst
+// (
+//     .clk(sys_clk), // input wire clk
+//     .probe0(mult_out_reg2) // input wire [19:0] probe0
+// );
+
 endmodule

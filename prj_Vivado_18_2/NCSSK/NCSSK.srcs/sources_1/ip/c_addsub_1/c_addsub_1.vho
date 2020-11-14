@@ -54,11 +54,12 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 COMPONENT c_addsub_1
   PORT (
-    A : IN STD_LOGIC_VECTOR(21 DOWNTO 0);
-    B : IN STD_LOGIC_VECTOR(20 DOWNTO 0);
+    A : IN STD_LOGIC_VECTOR(22 DOWNTO 0);
+    B : IN STD_LOGIC_VECTOR(22 DOWNTO 0);
     CLK : IN STD_LOGIC;
     CE : IN STD_LOGIC;
-    S : OUT STD_LOGIC_VECTOR(21 DOWNTO 0)
+    SCLR : IN STD_LOGIC;
+    S : OUT STD_LOGIC_VECTOR(22 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -73,6 +74,7 @@ your_instance_name : c_addsub_1
     B => B,
     CLK => CLK,
     CE => CE,
+    SCLR => SCLR,
     S => S
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ---------
