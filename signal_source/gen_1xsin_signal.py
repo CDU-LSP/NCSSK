@@ -22,13 +22,15 @@ mpl.rcParams['axes.unicode_minus'] = False  # 显示负号
 
 test_y = []
 # signal_freq = int(1e6)  # 1MHz
-signal_freq = 360000  # 1MHz
+signal_freq = 195312.5  # 1MHz
+sampling_rate = 50000000  # 1MHz
 # sampling_rate = int(8e6)  # 8MHz
-sampling_rate = 23040000  # 8MHz
+# sampling_rate = 23040000  # 8MHz
+
 # sampling_rate = 4e6  # 4MHz
 # N = 128
 # N = 2048
-N = 1024
+N = 1024*128
 # N = 4096
 # 是否写文件？1->写；0->不写
 flag = 0
@@ -52,7 +54,7 @@ y = 1 * np.cos(2 * np.pi * signal_freq * (x + 1 / sampling_rate * (sampling_rate
 # y = y + 100
 # y = y * 10 + 10
 # y = np.rint(y)
-
+N = 1024*56
 # print(len(y))
 y = y[:N]
 
