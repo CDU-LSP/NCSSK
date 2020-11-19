@@ -71,6 +71,7 @@ def get_target_coordinate():
     print("Enter target coordinate:")
     print("X,Y")
     str_target_coordinate = input()
+    str_target_coordinate = str_target_coordinate.replace("，", ",")
     # str_target_coordinate = "5,2.88"
     # list_target_coordinate = list(map(int, str_target_coordinate.split(",")))
     list_target_coordinate = list(map(float, str_target_coordinate.split(",")))
@@ -255,6 +256,7 @@ def get_error():
     error = np.sqrt(np.square(x[5] - x[4]) + np.square(y[5] - y[4]))
     return error
 
+
 def main():
     global x, y, sx, sy, baseline_length
     init()
@@ -299,6 +301,8 @@ def main():
             elif choice == "N" or "n":
                 x = x[0:4]
                 y = y[0:4]
+            else:
+                pass
 
         N = 0
         for i in range(N):
