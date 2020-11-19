@@ -65,39 +65,34 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param tcl.collectionResultDisplayLimit 0
   set_param simulator.modelsimInstallPath D:/modeltech64_2019.2/win64
-  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7z020clg400-1
   set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.cache/wt [current_project]
-  set_property parent.project_path E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.xpr [current_project]
-  set_property ip_output_repo E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.cache/ip [current_project]
+  set_property webtalk.parent_dir E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.cache/wt [current_project]
+  set_property parent.project_path E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.xpr [current_project]
+  set_property ip_output_repo E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  add_files -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.runs/synth_1/mod_cpu_ps_wrapper.dcp
+  add_files -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/synth_1/mod_cpu_ps_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0.xci
-  add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps.bd
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/ila_get_angle/ila_get_angle.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/ila_get_phase/ila_get_phase.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/ila_phase_diff/ila_phase_diff.xci
-  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0.xci
+  add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps.bd
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1.xci
   set_param project.isImplRun false
-  read_xdc E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc
+  read_xdc E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc
   set_param project.isImplRun true
   link_design -top mod_cpu_ps_wrapper -part xc7z020clg400-1
   set_param project.isImplRun false

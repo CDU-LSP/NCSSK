@@ -137,15 +137,15 @@ c_sub_0 get_phase_difference_inst
     .S    (phase_difference)// output wire [13 : 0] S
 );
 
-ila_phase_diff ila_phase_diff_inst
-(
-    .clk(sys_clk), // input wire clk
-    .probe0(phase), // input wire [13:0]  probe1 
-    .probe1(phase_difference_a), // input wire [13:0]  probe1 
-	.probe2(phase_all), // input wire [27:0]  probe2 
-	.probe3(bigger_phase), // input wire [13:0]  probe3 
-	.probe4(smaller_phase), // input wire [13:0]  probe4
-    .probe5(din_valid) // input wire [0:0]  probe5
-);
+// ila_phase_diff ila_phase_diff_inst
+// (
+//     .clk(sys_clk), // input wire clk
+//     .probe0(phase), // input wire [13:0]  probe1 
+//     .probe1(phase_difference_a), // input wire [13:0]  probe1 
+// 	.probe2(phase_all), // input wire [27:0]  probe2 
+// 	.probe3(bigger_phase), // input wire [13:0]  probe3 
+// 	.probe4(smaller_phase), // input wire [13:0]  probe4
+//     .probe5(din_valid) // input wire [0:0]  probe5
+// );
 
 endmodule

@@ -204,14 +204,14 @@ c_addsub_0 add_module
     .S(add_result)             // output wire [13 : 0] S
 );
 
-ila_get_phase ila_get_phase_inst
-(
-    .clk(Clk), // input wire clk
+// ila_get_phase ila_get_phase_inst
+// (
+//     .clk(Clk), // input wire clk
 
-	.probe0(m_axis_dout_tdata), // input wire [15:0]  probe0  
-	.probe1(add), // input wire [12:0]  probe1 
-	.probe2(add_module_enable), // input wire [0:0]  probe2 
-	.probe3(add_result) // input wire [13:0]  probe3
-);
+// 	.probe0(m_axis_dout_tdata), // input wire [15:0]  probe0  
+// 	.probe1(add), // input wire [12:0]  probe1 
+// 	.probe2(add_module_enable), // input wire [0:0]  probe2 
+// 	.probe3(add_result) // input wire [13:0]  probe3
+// );
 
 endmodule
