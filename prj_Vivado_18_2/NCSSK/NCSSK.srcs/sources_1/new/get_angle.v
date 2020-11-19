@@ -299,18 +299,18 @@ c_addsub_1 add
     .S(add_result)                                        // output wire [22 : 0] S
 );
 
-ila_get_angle ila_get_angle_inst
-(
-	.clk(Clk), // input wire clk
+// ila_get_angle ila_get_angle_inst
+// (
+// 	.clk(Clk), // input wire clk
 
 
-	.probe0(data_in_reg2), // input wire [19:0]  probe0  
-	.probe1(Mul_result_buf), // input wire [39:0]  probe1 
-	.probe2(sub_result), // input wire [39:0]  probe2 
-	.probe3(sqrt_result), // input wire [23:0]  probe3
-    .probe4(arccos_result_buf), // input wire [23:0]  probe4
-    .probe5(s_axis_cartesian_tdata), // input wire [47:0]  probe5
-    .probe6(arctan_enable) // input wire [0:0]  probe6
-);
+// 	.probe0(data_in_reg2), // input wire [19:0]  probe0  
+// 	.probe1(Mul_result_buf), // input wire [39:0]  probe1 
+// 	.probe2(sub_result), // input wire [39:0]  probe2 
+// 	.probe3(sqrt_result), // input wire [23:0]  probe3
+//     .probe4(arccos_result_buf), // input wire [23:0]  probe4
+//     .probe5(s_axis_cartesian_tdata), // input wire [47:0]  probe5
+//     .probe6(arctan_enable) // input wire [0:0]  probe6
+// );
 
 endmodule

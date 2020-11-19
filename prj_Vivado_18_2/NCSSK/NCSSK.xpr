@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.xpr">
+<Project Version="7" Minor="38" Path="E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="fd486c82e65146d5b8d8e6d9009895be"/>
@@ -159,7 +159,7 @@
       <Filter Type="Constrs"/>
       <File Path="$PSRCDIR/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../Xilinx/pynq-z2/pynq-z2_v1.0.xdc"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../Xilinx/pynq-z2/pynq-z2_v1.0.xdc"/>
           <Attr Name="ImportTime" Val="1525925450"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -328,6 +328,7 @@
     <FileSet Name="ila_get_angle" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ila_get_angle">
       <File Path="$PSRCDIR/sources_1/ip/ila_get_angle/ila_get_angle.xci">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -341,6 +342,7 @@
     <FileSet Name="ila_get_phase" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ila_get_phase">
       <File Path="$PSRCDIR/sources_1/ip/ila_get_phase/ila_get_phase.xci">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -354,6 +356,7 @@
     <FileSet Name="ila_phase_diff" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ila_phase_diff">
       <File Path="$PSRCDIR/sources_1/ip/ila_phase_diff/ila_phase_diff.xci">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

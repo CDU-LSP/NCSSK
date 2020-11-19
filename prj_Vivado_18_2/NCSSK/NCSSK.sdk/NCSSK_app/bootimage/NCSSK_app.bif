@@ -1,4 +1,4 @@
-//arch = zynq; split = false; format = BIN
+//arch = zynq; split = false; format = MCS
 the_ROM_image:
 {
 	[bootloader]E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.sdk\FSBL\Debug\FSBL.elf

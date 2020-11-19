@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Sat Nov 14 15:00:11 2020
+| Date         : Wed Nov 18 16:37:28 2020
 | Host         : BenjiaH running 64-bit major release  (build 9200)
 | Command      : report_utilization -file mod_cpu_ps_wrapper_utilization_synth.rpt -pb mod_cpu_ps_wrapper_utilization_synth.pb
 | Design       : mod_cpu_ps_wrapper
@@ -30,14 +30,14 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                |  245 |     0 |     53200 |  0.46 |
-|   LUT as Logic             |  225 |     0 |     53200 |  0.42 |
+| Slice LUTs*                |  175 |     0 |     53200 |  0.33 |
+|   LUT as Logic             |  155 |     0 |     53200 |  0.29 |
 |   LUT as Memory            |   20 |     0 |     17400 |  0.11 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |   20 |     0 |           |       |
-| Slice Registers            |  353 |     0 |    106400 |  0.33 |
-|   Register as Flip Flop    |  325 |     0 |    106400 |  0.31 |
-|   Register as Latch        |   28 |     0 |    106400 |  0.03 |
+| Slice Registers            |  269 |     0 |    106400 |  0.25 |
+|   Register as Flip Flop    |  255 |     0 |    106400 |  0.24 |
+|   Register as Latch        |   14 |     0 |    106400 |  0.01 |
 | F7 Muxes                   |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                   |    0 |     0 |     13300 |  0.00 |
 +----------------------------+------+-------+-----------+-------+
@@ -57,9 +57,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 161   |          Yes |           - |        Reset |
+| 147   |          Yes |           - |        Reset |
 | 1     |          Yes |         Set |            - |
-| 191   |          Yes |       Reset |            - |
+| 121   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -148,17 +148,17 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  191 |        Flop & Latch |
 | FDCE     |  133 |        Flop & Latch |
-| LUT3     |   80 |                 LUT |
-| LUT5     |   57 |                 LUT |
-| LUT6     |   49 |                 LUT |
-| LUT2     |   45 |                 LUT |
-| LUT4     |   32 |                 LUT |
-| LDCE     |   28 |        Flop & Latch |
+| FDRE     |  121 |        Flop & Latch |
+| LUT2     |   52 |                 LUT |
+| LUT5     |   48 |                 LUT |
+| LUT6     |   45 |                 LUT |
+| LUT3     |   36 |                 LUT |
+| LUT4     |   26 |                 LUT |
 | SRL16E   |   20 |  Distributed Memory |
+| LDCE     |   14 |        Flop & Latch |
 | CARRY4   |    9 |          CarryLogic |
-| LUT1     |    8 |                 LUT |
+| LUT1     |    7 |                 LUT |
 | FDSE     |    1 |        Flop & Latch |
 +----------+------+---------------------+
 
@@ -181,9 +181,6 @@ Table of Contents
 | mod_cpu_ps_axi_gpio_0_1           |    1 |
 | mod_cpu_ps_axi_gpio_0_0           |    1 |
 | mod_cpu_ps_auto_pc_0              |    1 |
-| ila_phase_diff                    |    1 |
-| ila_get_phase                     |    1 |
-| ila_get_angle                     |    1 |
 | dist_mem_gen_0                    |    1 |
 | cordic_2                          |    1 |
 | cordic_1                          |    1 |
