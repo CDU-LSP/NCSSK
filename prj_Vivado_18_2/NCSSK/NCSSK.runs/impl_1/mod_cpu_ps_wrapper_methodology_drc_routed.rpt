@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Wed Nov 18 16:40:24 2020
+| Date         : Fri Nov 20 15:43:30 2020
 | Host         : BenjiaH running 64-bit major release  (build 9200)
 | Command      : report_methodology -file mod_cpu_ps_wrapper_methodology_drc_routed.rpt -pb mod_cpu_ps_wrapper_methodology_drc_routed.pb -rpx mod_cpu_ps_wrapper_methodology_drc_routed.rpx
 | Design       : mod_cpu_ps_wrapper
@@ -39,7 +39,7 @@ Table of Contents
 -----------------
 TIMING-4#1 Warning
 Invalid primary clock redefinition on a clock tree  
-Invalid clock redefinition on a clock tree. The primary clock NCSSK_top_inst/clock_dist_inst/inst/clk_in1 is defined downstream of clock clk_fpga_0 and overrides its insertion delay and/or waveform definition
+Invalid clock redefinition on a clock tree. The primary clock NCSSK_top_inst/clock_dist_inst/inst/clk_in_PS is defined downstream of clock clk_fpga_0 and overrides its insertion delay and/or waveform definition
 Related violations: <none>
 
 TIMING-6#1 Warning
@@ -279,7 +279,7 @@ Related violations: <none>
 
 TIMING-27#1 Warning
 Invalid primary clock on hierarchical pin  
-A primary clock NCSSK_top_inst/clock_dist_inst/inst/clk_in1 is created on an inappropriate internal pin NCSSK_top_inst/clock_dist_inst/inst/clk_in1. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
+A primary clock NCSSK_top_inst/clock_dist_inst/inst/clk_in_PS is created on an inappropriate internal pin NCSSK_top_inst/clock_dist_inst/inst/clk_in_PS. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
 Related violations: <none>
 
 

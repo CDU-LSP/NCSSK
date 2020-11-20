@@ -2,11 +2,11 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Nov 18 16:36:41 2020
-# Process ID: 11540
-# Current directory: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/synth_1
+# Start of session at: Fri Nov 20 15:39:54 2020
+# Process ID: 13184
+# Current directory: E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.runs/synth_1
 # Command line: vivado.exe -log mod_cpu_ps_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mod_cpu_ps_wrapper.tcl
-# Log file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/synth_1/mod_cpu_ps_wrapper.vds
-# Journal file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/synth_1\vivado.jou
+# Log file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.runs/synth_1/mod_cpu_ps_wrapper.vds
+# Journal file: E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source mod_cpu_ps_wrapper.tcl -notrace

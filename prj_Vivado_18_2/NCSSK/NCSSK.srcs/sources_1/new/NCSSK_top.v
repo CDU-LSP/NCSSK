@@ -93,7 +93,7 @@ clk_wiz_0   clock_dist_inst
     .locked     (locked         ),  // output locked
 
     // Clock in ports
-    .clk_in1    (sys_clk_PS_100M)   // input clk_in1
+    .clk_in_PS  (sys_clk_PS_100M)   // input clk_in_PS
 );
 
 rom_read_signal read_signal_inst
