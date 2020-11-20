@@ -178,7 +178,7 @@ int main(void)
             }
 
         }
-        usleep(1000);
+        usleep(10000);
     }
 }
 
@@ -362,7 +362,7 @@ float direction(u32 delay_point1, u32 delay_point2)
             usleep(1);
             angle = XGpio_DiscreteRead(&i_gpio_angle, 1);
             real_angle = (float) angle / 2097152 * 180;
-            print("\n");
+//            print("\n");
             break;
         }
     }

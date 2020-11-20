@@ -3,7 +3,7 @@
 	<item value="false" key="mod_cpu_ps_wrapper_hw_platform_0-partial_bit"/>
 	<item value="Auto Detect" key="mod_cpu_ps_wrapper_hw_platform_0-device"/>
 	<item value="mod_cpu_ps_wrapper_hw_platform_0" key="programfpga.hwplatform"/>
-	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.runs\impl_1\mod_cpu_ps_wrapper.bit" key="mod_cpu_ps_wrapper_hw_platform_0-bitFile"/>
+	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.runs\impl_1\mod_cpu_ps_wrapper.bit" key="mod_cpu_ps_wrapper_hw_platform_0-bitFile"/>
 	<item value="Local" key="mod_cpu_ps_wrapper_hw_platform_0-target"/>
 	<item value="" key="mod_cpu_ps_wrapper_hw_platform_0-bmmFile"/>
 </section>

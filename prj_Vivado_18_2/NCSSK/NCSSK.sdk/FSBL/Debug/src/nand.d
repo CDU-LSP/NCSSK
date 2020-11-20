@@ -17,7 +17,7 @@ src/nand.o src/nand.o: ../src/nand.c \
  ../../NCSSK_app_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../../NCSSK_app_bsp/ps7_cortexa9_0/include/xil_assert.h \
  ../src/fsbl_debug.h \
- E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.sdk\mod_cpu_ps_wrapper_hw_platform_0/ps7_init.h
+ E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\mod_cpu_ps_wrapper_hw_platform_0/ps7_init.h
 
 ../../NCSSK_app_bsp/ps7_cortexa9_0/include/xparameters.h:
 
@@ -59,4 +59,4 @@ src/nand.o src/nand.o: ../src/nand.c \
 
 ../src/fsbl_debug.h:
 
-E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.sdk\mod_cpu_ps_wrapper_hw_platform_0/ps7_init.h:
+E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\mod_cpu_ps_wrapper_hw_platform_0/ps7_init.h:

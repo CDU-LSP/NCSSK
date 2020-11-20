@@ -1,4 +1,0 @@
-NumberHits:1
-Timestamp: Tue Nov 10 19:34:28 UTC 2020
-VLNV: xilinx.com:ip:c_addsub:12.0
-SynthRuntime: 32

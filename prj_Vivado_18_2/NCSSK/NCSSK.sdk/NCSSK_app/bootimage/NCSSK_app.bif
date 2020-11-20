@@ -1,7 +1,7 @@
 //arch = zynq; split = false; format = MCS
 the_ROM_image:
 {
-	[bootloader]E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.sdk\FSBL\Debug\FSBL.elf
-	E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.runs\impl_1\mod_cpu_ps_wrapper.bit
-	E:\Users\benji\OneDrive\FPGA_Project\NCSSK_copy_v1.1.0\NCSSK.sdk\NCSSK_app\Debug\NCSSK_app.elf
+	[bootloader]E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\FSBL\Debug\FSBL.elf
+	E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.runs\impl_1\mod_cpu_ps_wrapper.bit
+	E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\NCSSK_app\Debug\NCSSK_app.elf
 }
