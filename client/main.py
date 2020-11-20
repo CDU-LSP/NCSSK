@@ -310,7 +310,7 @@ def main():
             time.sleep(1)
 
         for i in range(len(tx_delay_point)):
-            time.sleep(0.01)
+            time.sleep(0.02)
             serial_tx(ser, str(tx_delay_point[i]))
 
         while True:
