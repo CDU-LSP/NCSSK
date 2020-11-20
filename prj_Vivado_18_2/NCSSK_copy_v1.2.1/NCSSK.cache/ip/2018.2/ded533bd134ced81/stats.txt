@@ -1,4 +1,0 @@
-NumberHits:0
-Timestamp: Wed Nov 11 15:19:48 UTC 2020
-VLNV: xilinx.com:ip:cordic:6.0
-SynthRuntime: 55
