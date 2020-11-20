@@ -310,13 +310,13 @@ def main():
             time.sleep(1)
 
         for i in range(len(tx_delay_point)):
-            time.sleep(0.5)
+            time.sleep(0.01)
             serial_tx(ser, str(tx_delay_point[i]))
 
         while True:
             A_B = serial_rx(ser)
             if "A" in A_B:
-                # B = serial_rx(ser)
+                A_B = A_B[A_B.find("A"):]
                 print(A_B)
                 break
         A = float(A_B[1:A_B.find("B")])
