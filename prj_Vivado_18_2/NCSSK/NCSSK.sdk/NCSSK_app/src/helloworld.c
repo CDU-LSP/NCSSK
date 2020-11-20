@@ -46,7 +46,7 @@
  * ------------------------------------------------
  * | COMMENT&NOTE                                 |
  * ------------------------------------------------
- *   Clock:100MHz  50MHz
+ *   Clock:100MHz
  *
  */
 
@@ -63,6 +63,8 @@
 #define UART_DEVICE_ID      XPAR_XUARTPS_0_DEVICE_ID
 #define INTC_DEVICE_ID      XPAR_SCUGIC_SINGLE_DEVICE_ID
 #define UART_INT_IRQ_ID     XPAR_XUARTPS_0_INTR
+
+//#define ECHO_ENABLE
 
 /* Statement */
 #define UART_TX      0
@@ -151,48 +153,32 @@ int main(void)
 //    print("Waiting....\n");
     while (1)
     {
-        switch (state)
+        if (ReceivedFlag)
         {
-        case UART_RXCHECK: /* Check receiver flag, send received data */
-        {
-            if (ReceivedFlag)
+            /* Reset receiver pointer, flag, byte number */
+            ReceivedBufferPtr = ReceivedBuffer;
+            SendBufferPtr = ReceivedBuffer;
+            SendByteNum = ReceivedByteNum;
+            ReceivedFlag = 0;
+            ReceivedByteNum = 1;
+            recv_data = atoi(SendBufferPtr);
+#ifdef ECHO_ENABLE
+            printf("%d\n", recv_data);
+#endif
+            memset(ReceivedBuffer, 0, sizeof ReceivedBuffer); //clear RecvBuffer
+            delay_point_buffer[i++] = recv_data;
+            if (i >= 4)
             {
-                /* Reset receiver pointer, flag, byte number */
-                ReceivedBufferPtr = ReceivedBuffer;
-                SendBufferPtr = ReceivedBuffer;
-                SendByteNum = ReceivedByteNum;
-                ReceivedFlag = 0;
-                ReceivedByteNum = 1;
-                recv_data = atoi(SendBufferPtr);
-//                printf("%d\n", recv_data);
-                memset(ReceivedBuffer, 0, sizeof ReceivedBuffer); //clear RecvBuffer
-                delay_point_buffer[i++] = recv_data;
-                if (i >= 4)
-                {
-                    real_angle_A = direction(delay_point_buffer[0], delay_point_buffer[1]);
-//                    printf("A%f\n", real_angle);
-                    real_angle_B = direction(delay_point_buffer[2], delay_point_buffer[3]);
-                    printf("A%fB%f\n", real_angle_A, real_angle_B);
-                    i = 0;
-                }
-//                UartPsSend(&Uart_PS, SendBufferPtr, SendByteNum);
+                real_angle_A = direction(delay_point_buffer[0],
+                        delay_point_buffer[1]);
+                real_angle_B = direction(delay_point_buffer[2],
+                        delay_point_buffer[3]);
+                printf("A%fB%f\n", real_angle_A, real_angle_B);
+                i = 0;
             }
-            else
-            {
-                state = UART_WAIT;
-            }
-            break;
+
         }
-        case UART_WAIT: /* Wait for 1s */
-        {
-//            sleep(1);
-            usleep(10000);
-            state = UART_RXCHECK;
-            break;
-        }
-        default:
-            break;
-        }
+        usleep(1000);
     }
 }
 
@@ -358,10 +344,11 @@ float direction(u32 delay_point1, u32 delay_point2)
     u32 angle, angle_valid;
     float real_angle;
     reset_PL();
-    usleep(10);
+    usleep(1);
+
     XGpio_DiscreteWrite(&o_gpio_delay_point, 1, delay_point1);
     reset_ROM_FFT();
-    usleep(1000);
+    usleep(100);
 
     XGpio_DiscreteWrite(&o_gpio_delay_point, 1, delay_point2);
     reset_ROM_FFT();
@@ -375,10 +362,10 @@ float direction(u32 delay_point1, u32 delay_point2)
             usleep(1);
             angle = XGpio_DiscreteRead(&i_gpio_angle, 1);
             real_angle = (float) angle / 2097152 * 180;
-            printf("\n");
+            print("\n");
             break;
         }
     }
-    sleep(1);
+//    sleep(1);
     return real_angle;
 }

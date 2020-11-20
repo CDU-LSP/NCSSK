@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1605688594">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1605857988">
   <File Type="PA-TCL" Name="mod_cpu_ps_wrapper.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="mod_cpu_ps_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="mod_cpu_ps_wrapper_reports.tcl"/>
@@ -105,7 +105,7 @@
     <Filter Type="Constrs"/>
     <File Path="$PSRCDIR/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../Xilinx/pynq-z2/pynq-z2_v1.0.xdc"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../Xilinx/pynq-z2/pynq-z2_v1.0.xdc"/>
         <Attr Name="ImportTime" Val="1525925450"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

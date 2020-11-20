@@ -24,86 +24,86 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.cache/wt [current_project]
-set_property parent.project_path E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.xpr [current_project]
+set_property webtalk.parent_dir E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.cache/wt [current_project]
+set_property parent.project_path E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
-set_property ip_output_repo e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.cache/ip [current_project]
+set_property ip_output_repo e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/720kHzcos_23.04MHz_1024.coe
+add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/720kHzcos_23.04MHz_1024.coe
 read_verilog -library xil_defaultlib {
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/NCSSK_top.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/fft_signal.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/get_angle.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/get_phase.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/get_phase_difference.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/phase_diff_times_kesai.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/new/rom_read_signal.v
-  E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/hdl/mod_cpu_ps_wrapper.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/NCSSK_top.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/fft_signal.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/get_angle.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/get_phase.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/get_phase_difference.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/phase_diff_times_kesai.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/new/rom_read_signal.v
+  E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/hdl/mod_cpu_ps_wrapper.v
 }
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_addsub_0/c_addsub_0_ooc.xdc]
 
-add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps.bd
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_xbar_0/mod_cpu_ps_xbar_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps_ooc.xdc]
+add_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps.bd
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_xbar_0/mod_cpu_ps_xbar_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/bd/mod_cpu_ps/mod_cpu_ps_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/xfft_0/xfft_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_0/cordic_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_sub_0/c_sub_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/mult_gen_0/mult_gen_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_sub_1/c_sub_1_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_1/cordic_1_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/cordic_2/cordic_2_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/mult_gen_1/mult_gen_1_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
 
-read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1.xci
-set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1_ooc.xdc]
+read_ip -quiet E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1.xci
+set_property used_in_implementation false [get_files -all e:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/c_addsub_1/c_addsub_1_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -113,8 +113,8 @@ set_property used_in_implementation false [get_files -all e:/Users/benji/OneDriv
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc
-set_property used_in_implementation false [get_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc]
+read_xdc E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc
+set_property used_in_implementation false [get_files E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/constrs_1/imports/pynq-z2/pynq-z2_v1.0.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="mod_cpu_ps" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605286974"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605286974"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605286974"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605286974"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605857584"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605857584"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605857584"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605857584"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\mod_cpu_ps_processing_system7_0_0\mod_cpu_ps_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
@@ -56,7 +56,6 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip\mod_cpu_ps_ps7_0_axi_periph_0\mod_cpu_ps_ps7_0_axi_periph_0.xci" Type="IP">
-        <Instance HierarchyPath="ps7_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

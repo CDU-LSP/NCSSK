@@ -129,6 +129,7 @@ NCSSK_top NCSSK_top_inst
     .sys_rst_n       (sys_rst_n),
     .in_delay_point  (delay_point),
     .rom_fft_rst_n   (rom_fft_rst_n),
+    
     .out_angle       (angle),
     .angle_valid     (angle_valid) 
 );
