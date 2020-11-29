@@ -181,10 +181,16 @@ def display2D():
     # 测向目标点
     if len(x) == 6:
         ax.scatter(x[5], y[5], c="g", alpha=0.6, label='Direction target', marker="x")
-    ax.xlim(min(x + sx) - min(x + sx) * 10, max(x + sx) + max(x + sx) / 10)
-    ax.ylim(min(y + sy) - min(y + sy) * 10, max(y + sy) + max(y + sy) / 10)
+    # ax.xlim(min(x + sx) - min(x + sx) * 10, max(x + sx) + max(x + sx) / 10)
+    # ax.ylim(min(y + sy) - min(y + sy) * 10, max(y + sy) + max(y + sy) / 10)
     ax.legend()
     ax.show()
+
+
+def countdown(t):
+    for i in range(t):
+        print("{}".format(t - i))
+        time.sleep(1)
 
 
 def delay_point_process(delay_point, longer_path_flag):
@@ -214,6 +220,24 @@ def serial_rx(ser):
     rx_data = rx_data.replace("\n", "")
     rx_data = rx_data.replace("\r", "")
     return rx_data
+
+
+def send_delay_point(tx_delay_point, t, ser):
+    for i in range(len(tx_delay_point)):
+        time.sleep(t)
+        serial_tx(ser, str(tx_delay_point[i]))
+
+
+def recv_angle(ser):
+    while True:
+        A_B = serial_rx(ser)
+        if "A" in A_B:
+            A_B = A_B[A_B.find("A"):]
+            print(A_B)
+            break
+    A = float(A_B[1:A_B.find("B")])
+    B = float(A_B[A_B.find("B") + 1:])
+    return A, B
 
 
 def check_PS(ser):
@@ -296,31 +320,17 @@ def main():
             DEBUG_PRINT(tx_delay_point)
             display2D()
             choice = input("Y/N?\n")
-            if choice == "Y" or "y":
+            if choice == "Y" or choice == "y":
                 break
-            elif choice == "N" or "n":
+            elif choice == "N" or choice == "n":
                 x = x[0:4]
                 y = y[0:4]
             else:
                 pass
 
-        N = 0
-        for i in range(N):
-            print("{}".format(N - i))
-            time.sleep(1)
-
-        for i in range(len(tx_delay_point)):
-            time.sleep(0.02)
-            serial_tx(ser, str(tx_delay_point[i]))
-
-        while True:
-            A_B = serial_rx(ser)
-            if "A" in A_B:
-                A_B = A_B[A_B.find("A"):]
-                print(A_B)
-                break
-        A = float(A_B[1:A_B.find("B")])
-        B = float(A_B[A_B.find("B") + 1:])
+        countdown(0)
+        send_delay_point(tx_delay_point, 0.02, ser)
+        A, B = recv_angle(ser)
         DEBUG_PRINT(A)
         DEBUG_PRINT(B)
         positioning_target_coordinate = positioning_target(A, B)
