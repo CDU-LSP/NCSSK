@@ -55,7 +55,7 @@
 COMPONENT dist_mem_gen_0
   PORT (
     a : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-    spo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    spo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------

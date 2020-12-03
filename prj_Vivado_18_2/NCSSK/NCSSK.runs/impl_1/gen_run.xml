@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1605857990">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1607014591">
   <File Type="BITSTR-BMM" Name="mod_cpu_ps_wrapper_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="mod_cpu_ps_wrapper_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="mod_cpu_ps_wrapper_timing_summary_init.rpt"/>
@@ -71,7 +71,7 @@
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/ip/c_addsub_0/c_addsub_0.xci">
+    <File Path="$PSRCDIR/sources_1/ip/div_gen_0/div_gen_0.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -92,13 +92,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/fft_signal.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/get_angle.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -106,14 +99,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/get_phase.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/get_phase_difference.v">
+    <File Path="$PSRCDIR/sources_1/new/get_zero_diff.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -128,6 +114,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/rom_read_signal.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/zero_point_find.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -149,7 +142,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ip/dist_mem_gen_0/720kHzcos_23.04MHz_1024.coe">
+    <File Path="$PSRCDIR/sources_1/ip/dist_mem_gen_0/bin_cos_64K_23.04M_1024.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -158,7 +151,6 @@
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="mod_cpu_ps_wrapper"/>
-      <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -188,16 +180,22 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="c_sub_1"/>
   <BlockFileSet Type="BlockSrcs" Name="dist_mem_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="c_sub_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="c_addsub_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="xfft_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="cordic_0"/>
   <BlockFileSet Type="BlockSrcs" Name="cordic_1"/>
   <BlockFileSet Type="BlockSrcs" Name="mult_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="mult_gen_1"/>
   <BlockFileSet Type="BlockSrcs" Name="cordic_2"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="c_addsub_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="c_addsub_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_axi_gpio_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_axi_gpio_0_4"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_axi_gpio_0_3"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_rst_ps7_0_50M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_auto_pc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mod_cpu_ps_axi_gpio_0_2"/>
 </GenRun>

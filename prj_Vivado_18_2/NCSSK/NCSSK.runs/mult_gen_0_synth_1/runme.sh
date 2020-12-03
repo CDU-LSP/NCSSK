@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/vivadoPrj/2018.2/NCSSK/NCSSK.runs/mult_gen_0_synth_1'
+HD_PWD='E:/vivadoPrj/GIt/Git/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/mult_gen_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

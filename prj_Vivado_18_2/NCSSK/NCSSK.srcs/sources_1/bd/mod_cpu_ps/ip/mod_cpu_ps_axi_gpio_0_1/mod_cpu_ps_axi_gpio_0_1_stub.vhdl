@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Fri Nov 13 03:35:17 2020
+-- Date        : Wed Dec  2 23:40:30 2020
 -- Host        : BenjiaH running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top mod_cpu_ps_axi_gpio_0_1 -prefix
 --               mod_cpu_ps_axi_gpio_0_1_ mod_cpu_ps_axi_gpio_0_0_stub.vhdl

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/Users/benji/OneDrive/FPGA_Project/copy/NCSSK/NCSSK.hw/hw_1/wave/hw_ila_data_5/hw_ila_data_5.wdb" id="1">
+         <top_modules>
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="371100fs"></ZoomStartTime>
+      <ZoomEndTime time="470701fs"></ZoomEndTime>
+      <Cursor1Time time="411000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="402"></NameColumnWidth>
+      <ValueColumnWidth column_width="157"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="6" />
+   <wave_markers>
+   </wave_markers>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/cnt_zero_reg" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/cnt_zero_reg[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt_zero_reg[2:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/temp0" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/temp0[9:0]</obj_property>
+      <obj_property name="ObjectShortName">temp0[9:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/temp1" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/temp1[9:0]</obj_property>
+      <obj_property name="ObjectShortName">temp1[9:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/delay_t_h" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/delay_t_h[9:0]</obj_property>
+      <obj_property name="ObjectShortName">delay_t_h[9:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/delay_t_l" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/delay_t_l[9:0]</obj_property>
+      <obj_property name="ObjectShortName">delay_t_l[9:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="NCSSK_top_inst/zero_point_find_inst/zero_point" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/zero_point_find_inst/zero_point[9:0]</obj_property>
+      <obj_property name="ObjectShortName">zero_point[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+</wave_config>

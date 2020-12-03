@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Fri Nov 20 15:40:38 2020
+| Date         : Fri Dec  4 00:57:27 2020
 | Host         : BenjiaH running 64-bit major release  (build 9200)
 | Command      : report_utilization -file mod_cpu_ps_wrapper_utilization_synth.rpt -pb mod_cpu_ps_wrapper_utilization_synth.pb
 | Design       : mod_cpu_ps_wrapper
@@ -30,14 +30,14 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                |  175 |     0 |     53200 |  0.33 |
-|   LUT as Logic             |  155 |     0 |     53200 |  0.29 |
-|   LUT as Memory            |   20 |     0 |     17400 |  0.11 |
+| Slice LUTs*                |   76 |     0 |     53200 |  0.14 |
+|   LUT as Logic             |   55 |     0 |     53200 |  0.10 |
+|   LUT as Memory            |   21 |     0 |     17400 |  0.12 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |   20 |     0 |           |       |
-| Slice Registers            |  269 |     0 |    106400 |  0.25 |
-|   Register as Flip Flop    |  255 |     0 |    106400 |  0.24 |
-|   Register as Latch        |   14 |     0 |    106400 |  0.01 |
+|     LUT as Shift Register  |   21 |     0 |           |       |
+| Slice Registers            |   72 |     0 |    106400 |  0.07 |
+|   Register as Flip Flop    |   72 |     0 |    106400 |  0.07 |
+|   Register as Latch        |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                   |    0 |     0 |     13300 |  0.00 |
 +----------------------------+------+-------+-----------+-------+
@@ -57,9 +57,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 147   |          Yes |           - |        Reset |
-| 1     |          Yes |         Set |            - |
-| 121   |          Yes |       Reset |            - |
+| 21    |          Yes |           - |        Reset |
+| 4     |          Yes |         Set |            - |
+| 47    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -148,18 +148,17 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     |  133 |        Flop & Latch |
-| FDRE     |  121 |        Flop & Latch |
-| LUT2     |   52 |                 LUT |
-| LUT5     |   48 |                 LUT |
-| LUT6     |   45 |                 LUT |
-| LUT3     |   36 |                 LUT |
-| LUT4     |   26 |                 LUT |
-| SRL16E   |   20 |  Distributed Memory |
-| LDCE     |   14 |        Flop & Latch |
-| CARRY4   |    9 |          CarryLogic |
+| FDRE     |   47 |        Flop & Latch |
+| LUT2     |   30 |                 LUT |
+| SRL16E   |   21 |  Distributed Memory |
+| FDCE     |   21 |        Flop & Latch |
+| LUT3     |   11 |                 LUT |
+| LUT5     |   10 |                 LUT |
+| LUT6     |    9 |                 LUT |
+| LUT4     |    7 |                 LUT |
 | LUT1     |    7 |                 LUT |
-| FDSE     |    1 |        Flop & Latch |
+| FDSE     |    4 |        Flop & Latch |
+| CARRY4   |    3 |          CarryLogic |
 +----------+------+---------------------+
 
 
@@ -169,7 +168,6 @@ Table of Contents
 +-----------------------------------+------+
 |              Ref Name             | Used |
 +-----------------------------------+------+
-| xfft_0                            |    1 |
 | mult_gen_1                        |    1 |
 | mult_gen_0                        |    1 |
 | mod_cpu_ps_xbar_0                 |    1 |
@@ -181,13 +179,12 @@ Table of Contents
 | mod_cpu_ps_axi_gpio_0_1           |    1 |
 | mod_cpu_ps_axi_gpio_0_0           |    1 |
 | mod_cpu_ps_auto_pc_0              |    1 |
+| div_gen_0                         |    1 |
 | dist_mem_gen_0                    |    1 |
 | cordic_2                          |    1 |
 | cordic_1                          |    1 |
-| cordic_0                          |    1 |
 | clk_wiz_0                         |    1 |
 | c_sub_1                           |    1 |
-| c_sub_0                           |    1 |
 | c_addsub_1                        |    1 |
 | c_addsub_0                        |    1 |
 +-----------------------------------+------+

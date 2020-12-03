@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Fri Nov 20 15:32:39 2020
+//Date        : Wed Dec  2 23:38:21 2020
 //Host        : BenjiaH running 64-bit major release  (build 9200)
 //Command     : generate_target mod_cpu_ps.bd
 //Design      : mod_cpu_ps
@@ -694,8 +694,8 @@ module mod_cpu_ps
     FIXED_IO_ps_srstb,
     angle,
     angle_valid,
+    data_in_ena,
     delay_point,
-    rom_fft_rst_n,
     sys_clk_PS_100M,
     sys_rst_n);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
@@ -721,9 +721,9 @@ module mod_cpu_ps
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
   input [31:0]angle;
   input [0:0]angle_valid;
+  output [0:0]data_in_ena;
   output [31:0]delay_point;
-  output [0:0]rom_fft_rst_n;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLK_PS_100M CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLK_PS_100M, CLK_DOMAIN mod_cpu_ps_processing_system7_0_0_FCLK_CLK0, FREQ_HZ 100000000, PHASE 0.000" *) output sys_clk_PS_100M;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLK_PS_100M CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLK_PS_100M, CLK_DOMAIN mod_cpu_ps_processing_system7_0_0_FCLK_CLK0, FREQ_HZ 1e+08, PHASE 0.000" *) output sys_clk_PS_100M;
   output [0:0]sys_rst_n;
 
   wire [31:0]axi_gpio_delay_point_gpio_io_o;
@@ -880,10 +880,10 @@ module mod_cpu_ps
   wire [0:0]rst_ps7_0_50M_interconnect_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn;
 
+  assign data_in_ena[0] = axi_gpio_rom_fft_rst_n_gpio_io_o;
   assign delay_point[31:0] = axi_gpio_delay_point_gpio_io_o;
   assign gpio_io_i_0_1 = angle[31:0];
   assign gpio_io_i_0_2 = angle_valid[0];
-  assign rom_fft_rst_n[0] = axi_gpio_rom_fft_rst_n_gpio_io_o;
   assign sys_clk_PS_100M = processing_system7_0_FCLK_CLK0;
   assign sys_rst_n[0] = axi_gpio_sys_rst_n_gpio_io_o;
   mod_cpu_ps_axi_gpio_0_3 axi_gpio_angle
@@ -928,6 +928,27 @@ module mod_cpu_ps
         .s_axi_wready(ps7_0_axi_periph_M04_AXI_WREADY),
         .s_axi_wstrb(ps7_0_axi_periph_M04_AXI_WSTRB),
         .s_axi_wvalid(ps7_0_axi_periph_M04_AXI_WVALID));
+  mod_cpu_ps_axi_gpio_0_1 axi_gpio_data_in_ena
+       (.gpio_io_o(axi_gpio_rom_fft_rst_n_gpio_io_o),
+        .s_axi_aclk(processing_system7_0_FCLK_CLK0),
+        .s_axi_araddr(ps7_0_axi_periph_M01_AXI_ARADDR[8:0]),
+        .s_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn),
+        .s_axi_arready(ps7_0_axi_periph_M01_AXI_ARREADY),
+        .s_axi_arvalid(ps7_0_axi_periph_M01_AXI_ARVALID),
+        .s_axi_awaddr(ps7_0_axi_periph_M01_AXI_AWADDR[8:0]),
+        .s_axi_awready(ps7_0_axi_periph_M01_AXI_AWREADY),
+        .s_axi_awvalid(ps7_0_axi_periph_M01_AXI_AWVALID),
+        .s_axi_bready(ps7_0_axi_periph_M01_AXI_BREADY),
+        .s_axi_bresp(ps7_0_axi_periph_M01_AXI_BRESP),
+        .s_axi_bvalid(ps7_0_axi_periph_M01_AXI_BVALID),
+        .s_axi_rdata(ps7_0_axi_periph_M01_AXI_RDATA),
+        .s_axi_rready(ps7_0_axi_periph_M01_AXI_RREADY),
+        .s_axi_rresp(ps7_0_axi_periph_M01_AXI_RRESP),
+        .s_axi_rvalid(ps7_0_axi_periph_M01_AXI_RVALID),
+        .s_axi_wdata(ps7_0_axi_periph_M01_AXI_WDATA),
+        .s_axi_wready(ps7_0_axi_periph_M01_AXI_WREADY),
+        .s_axi_wstrb(ps7_0_axi_periph_M01_AXI_WSTRB),
+        .s_axi_wvalid(ps7_0_axi_periph_M01_AXI_WVALID));
   mod_cpu_ps_axi_gpio_0_2 axi_gpio_delay_point
        (.gpio_io_o(axi_gpio_delay_point_gpio_io_o),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
@@ -949,27 +970,6 @@ module mod_cpu_ps
         .s_axi_wready(ps7_0_axi_periph_M02_AXI_WREADY),
         .s_axi_wstrb(ps7_0_axi_periph_M02_AXI_WSTRB),
         .s_axi_wvalid(ps7_0_axi_periph_M02_AXI_WVALID));
-  mod_cpu_ps_axi_gpio_0_1 axi_gpio_rom_fft_rst_n
-       (.gpio_io_o(axi_gpio_rom_fft_rst_n_gpio_io_o),
-        .s_axi_aclk(processing_system7_0_FCLK_CLK0),
-        .s_axi_araddr(ps7_0_axi_periph_M01_AXI_ARADDR[8:0]),
-        .s_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn),
-        .s_axi_arready(ps7_0_axi_periph_M01_AXI_ARREADY),
-        .s_axi_arvalid(ps7_0_axi_periph_M01_AXI_ARVALID),
-        .s_axi_awaddr(ps7_0_axi_periph_M01_AXI_AWADDR[8:0]),
-        .s_axi_awready(ps7_0_axi_periph_M01_AXI_AWREADY),
-        .s_axi_awvalid(ps7_0_axi_periph_M01_AXI_AWVALID),
-        .s_axi_bready(ps7_0_axi_periph_M01_AXI_BREADY),
-        .s_axi_bresp(ps7_0_axi_periph_M01_AXI_BRESP),
-        .s_axi_bvalid(ps7_0_axi_periph_M01_AXI_BVALID),
-        .s_axi_rdata(ps7_0_axi_periph_M01_AXI_RDATA),
-        .s_axi_rready(ps7_0_axi_periph_M01_AXI_RREADY),
-        .s_axi_rresp(ps7_0_axi_periph_M01_AXI_RRESP),
-        .s_axi_rvalid(ps7_0_axi_periph_M01_AXI_RVALID),
-        .s_axi_wdata(ps7_0_axi_periph_M01_AXI_WDATA),
-        .s_axi_wready(ps7_0_axi_periph_M01_AXI_WREADY),
-        .s_axi_wstrb(ps7_0_axi_periph_M01_AXI_WSTRB),
-        .s_axi_wvalid(ps7_0_axi_periph_M01_AXI_WVALID));
   mod_cpu_ps_axi_gpio_0_0 axi_gpio_sys_rst_n
        (.gpio_io_o(axi_gpio_sys_rst_n_gpio_io_o),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),

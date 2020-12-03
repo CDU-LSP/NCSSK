@@ -3,75 +3,34 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
+      <db_ref path="E:/Users/benji/OneDrive/FPGA_Project/copy/NCSSK/NCSSK.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
          <top_modules>
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1684000fs"></ZoomStartTime>
-      <ZoomEndTime time="3518001fs"></ZoomEndTime>
-      <Cursor1Time time="2936000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="712787fs"></ZoomEndTime>
+      <Cursor1Time time="512000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="449"></NameColumnWidth>
-      <ValueColumnWidth column_width="189"></ValueColumnWidth>
+      <ValueColumnWidth column_width="161"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
-   <wave_markers>
-   </wave_markers>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/data_in_reg2" type="array">
+   <WVObjectSize size="2" />
+   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/angle_result" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/data_in_reg2[19:0]</obj_property>
-      <obj_property name="ObjectShortName">data_in_reg2[19:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/angle_result[22:0]</obj_property>
+      <obj_property name="ObjectShortName">angle_result[22:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/Mul_result_buf" type="array">
+   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/data_in" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/Mul_result_buf[39:0]</obj_property>
-      <obj_property name="ObjectShortName">Mul_result_buf[39:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/sub_result" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/sub_result[39:0]</obj_property>
-      <obj_property name="ObjectShortName">sub_result[39:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/sqrt_result" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/sqrt_result[23:0]</obj_property>
-      <obj_property name="ObjectShortName">sqrt_result[23:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/arccos_result_buf" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/arccos_result_buf[23:0]</obj_property>
-      <obj_property name="ObjectShortName">arccos_result_buf[23:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/s_axis_cartesian_tdata" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/s_axis_cartesian_tdata[47:0]</obj_property>
-      <obj_property name="ObjectShortName">s_axis_cartesian_tdata[47:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="NCSSK_top_inst/get_angle_inst/arctan_enable" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/arctan_enable</obj_property>
-      <obj_property name="ObjectShortName">arctan_enable</obj_property>
+      <obj_property name="ElementShortName">NCSSK_top_inst/get_angle_inst/data_in[19:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[19:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>

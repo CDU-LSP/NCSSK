@@ -3,8 +3,8 @@
 
 # XDC: imports/pynq-z2/pynq-z2_v1.0.xdc
 
-# IP: ip/c_addsub_0/c_addsub_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==c_addsub_0 || ORIG_REF_NAME==c_addsub_0} -quiet] -quiet
+# IP: ip/div_gen_0/div_gen_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==div_gen_0 || ORIG_REF_NAME==div_gen_0} -quiet] -quiet
 
 # Block Designs: bd/mod_cpu_ps/mod_cpu_ps.bd
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==mod_cpu_ps || ORIG_REF_NAME==mod_cpu_ps} -quiet] -quiet
