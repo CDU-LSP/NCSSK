@@ -25,6 +25,10 @@ USB_COM = "COM4"
 BAUD_RATE = 115200
 CHECK_CODE_TX = "255"
 CHECK_CODE_RX = "254"
+# PHASE_STEP = 11.25
+PHASE_STEP = 1.0
+BASELINE_DIST = 0.4
+COM_FLAG = 1
 
 # global var
 x = [0, 0, 0, 0]
@@ -65,6 +69,11 @@ def init_serial(USB_COM, BAUDRATE):
     else:
         print("{} is connected failed".format(USB_COM))
     return ser
+
+
+def station_distance():
+    distance = np.sqrt(np.square(sx[0] - sx[1]) + np.square(sy[0] - sy[1]))
+    return distance
 
 
 def get_target_coordinate():
@@ -133,7 +142,8 @@ def get_delay_point(angle, baseline_length, longer_path_flag):
     untreated_delay_point = [0, 0]
     delay_point = [0, 0]
     for i in range(len(untreated_delay_point)):
-        untreated_delay_point[i] = np.cos(math.radians(angle[i * 2])) * 144 / 11.25
+        untreated_delay_point[i] = np.cos(math.radians(angle[i * 2])) * (360 * BASELINE_DIST) / PHASE_STEP
+        # untreated_delay_point[i] = np.cos(math.radians(angle[i * 2])) * 144 / 11.25
     for i in range(len(longer_path_flag)):
         if longer_path_flag[i] == 1 and (i % 2) == 0:
             if 0 <= i <= 1:
@@ -211,11 +221,6 @@ def serial_tx(ser, tx_data):
 
 def serial_rx(ser):
     rx_data = ser.read(2000)
-    # while True:
-    #     if rx_data != b'':
-    #         break
-    #     else:
-    #         pass
     rx_data = rx_data.decode("ascii")
     rx_data = rx_data.replace("\n", "")
     rx_data = rx_data.replace("\r", "")
@@ -255,6 +260,16 @@ def check_PS(ser):
             print("Check PS error.")
 
 
+def check_sys(ser):
+    while True:
+        rx_data = serial_rx(ser)
+        # print(rx_data)
+        if rx_data == "254":
+            print("successful")
+            ser.close()
+            break
+
+
 def positioning_target(angles0, angles1):
     positioning_target_coordinate = [0, 0]
     angle_s0 = angles0
@@ -284,20 +299,17 @@ def get_error():
 def main():
     global x, y, sx, sy, baseline_length
     init()
-    ser = init_serial(USB_COM, BAUD_RATE)
-    ser.open()
-    time.sleep(1)
-    # while True:
-    #     str1 = serial_rx(ser)
-    #     print(str1)
-    #     if str1 == "254":
-    #         print("successful")
-    #         # ser.close()
-    #         break
+    if COM_FLAG:
+        ser = init_serial(USB_COM, BAUD_RATE)
+        ser.open()
+    time.sleep(0.02)
+    # check_sys(ser)
     while True:
         while True:
             print("S0 coordinate:{},{}".format(sx[0], sy[0]))
             print("S1 coordinate:{},{}".format(sx[1], sy[1]))
+            st_distance = station_distance()
+            print("S0 S1 distance:{:.2f}m".format(st_distance))
             target_coordinate = get_target_coordinate()
             # DEBUG_PRINT(target_coordinate)
             x.append(target_coordinate[0])
@@ -329,8 +341,9 @@ def main():
                 pass
 
         countdown(0)
-        send_delay_point(tx_delay_point, 0.02, ser)
-        A, B = recv_angle(ser)
+        if COM_FLAG:
+            send_delay_point(tx_delay_point, 0.02, ser)
+            A, B = recv_angle(ser)
         DEBUG_PRINT(A)
         DEBUG_PRINT(B)
         positioning_target_coordinate = positioning_target(A, B)
