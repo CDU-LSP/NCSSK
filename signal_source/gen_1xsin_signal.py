@@ -21,21 +21,15 @@ mpl.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文
 mpl.rcParams['axes.unicode_minus'] = False  # 显示负号
 
 test_y = []
-# signal_freq = int(1e6)  # 1MHz
-signal_freq = 195312.5  # 1MHz
-sampling_rate = 50000000  # 1MHz
-# sampling_rate = int(8e6)  # 8MHz
-# sampling_rate = 23040000  # 8MHz
+signal_freq = 64000  # 720KHz
+sampling_rate = 23040000  # 23.04MHz
 
-# sampling_rate = 4e6  # 4MHz
-# N = 128
-# N = 2048
-N = 1024*128
-# N = 4096
+
+N = 1024
 # 是否写文件？1->写；0->不写
 flag = 0
 # 相位移动
-signal_phase = 90
+signal_phase = 0
 print(signal_phase)
 
 # 采样点选择1400个，因为设置的信号频率分量最高为600赫兹，根据采样定理知采样频率要大于信号频率2倍，所以这里设置采样频率为1400赫兹（即一秒内有1400个采样点，一样意思的）
@@ -45,7 +39,6 @@ x = np.linspace(0, 1, sampling_rate)
 
 # 设置需要采样的信号，频率为signal_freq
 # y = 1 * np.cos(2 * np.pi * signal_freq * x)
-
 y = 1 * np.cos(2 * np.pi * signal_freq * (x + 1 / sampling_rate * (sampling_rate / signal_freq * signal_phase / 360)))
 # y = 1 * np.cos(2 * np.pi * signal_freq * x)
 # y = 0.5 * np.sin(2 * np.pi * signal_freq * x) + 0.5 * np.sin(2 * np.pi * int(1.05e6) * x)
@@ -54,19 +47,30 @@ y = 1 * np.cos(2 * np.pi * signal_freq * (x + 1 / sampling_rate * (sampling_rate
 # y = y + 100
 # y = y * 10 + 10
 # y = np.rint(y)
-N = 1024*56
+# N = 1024
 # print(len(y))
 y = y[:N]
 
-y_temp = []
-for i in range(len(y)):
-    y[i] = round(y[i], 1)
-    y[i] = y[i] * 10
-    y[i] = int(y[i])
-    y_temp.append(y[i])
-    # print(y[i])
-y = y_temp
+# y_temp = []
+# for i in range(len(y)):
+#     y[i] = round(y[i], 1)
+#     y[i] = y[i] * 10
+#     y[i] = int(y[i])
+#     y_temp.append(y[i])
+#     # print(y[i])
+# y = y_temp
 
+for i in range(len(y)):
+    y[i] = np.around(y[i], decimals=3)
+    y[i] = y[i]*1000
+    y[i] = np.rint(y[i])
+    # y[i] = int(y[i])
+    y[i] = str(y[i])
+    # y[i] = int(y[i])
+print(y[:100])
+# y = y.astype(int)
+
+print(type(y[1]))
 # y = y[2:514]
 # print(y[:10])
 fft_y = fft(y)  # 快速傅里叶变换
@@ -113,12 +117,14 @@ plt.title('原始波形')
 plt.subplot(232)
 # plt.plot(x, fft_y, 'black')
 plt.plot(x, np.real(fft_y), 'black')
-plt.title('双边振幅谱(未求振幅绝对值)', fontsize=9, color='black')
+# plt.title('双边振幅谱(未求振幅绝对值)', fontsize=9, color='black')
+plt.title('FFT 实部', fontsize=9, color='black')
 
 plt.subplot(233)
 # plt.plot(x, abs_y, 'r')
 plt.plot(x, np.imag(fft_y), 'r')
-plt.title('双边振幅谱(未归一化)', fontsize=9, color='red')
+# plt.title('双边振幅谱(未归一化)', fontsize=9, color='red')
+plt.title('FFT 虚部', fontsize=9, color='red')
 
 plt.subplot(234)
 plt.plot(x, angle_y, 'violet')
@@ -163,7 +169,6 @@ if flag == 1:
         y[i] = bin(y[i])
         y[i] = str(y[i]).replace("0b", "")
 
-
         print(y[i])
         if y[i][0] == "-":
             y[i] = int(y[i])
@@ -176,7 +181,7 @@ if flag == 1:
             print(y[i])
             # 十进制
             y[i] = int(y[i], 2)
-            print("十进制",y[i])
+            print("十进制", y[i])
             y[i] = y[i] + 1
             # 二进制
             y[i] = bin(y[i])
