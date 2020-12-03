@@ -59,7 +59,7 @@ USE dist_mem_gen_v8_0_12.dist_mem_gen_v8_0_12;
 ENTITY dist_mem_gen_0 IS
   PORT (
     a : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-    spo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    spo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END dist_mem_gen_0;
 
@@ -103,7 +103,7 @@ ARCHITECTURE dist_mem_gen_0_arch OF dist_mem_gen_0 IS
     );
     PORT (
       a : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-      d : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+      d : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       dpra : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       clk : IN STD_LOGIC;
       we : IN STD_LOGIC;
@@ -115,10 +115,10 @@ ARCHITECTURE dist_mem_gen_0_arch OF dist_mem_gen_0 IS
       qdpo_rst : IN STD_LOGIC;
       qspo_srst : IN STD_LOGIC;
       qdpo_srst : IN STD_LOGIC;
-      spo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-      dpo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-      qspo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-      qdpo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      spo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+      dpo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+      qspo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+      qdpo : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
     );
   END COMPONENT dist_mem_gen_v8_0_12;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -127,7 +127,7 @@ ARCHITECTURE dist_mem_gen_0_arch OF dist_mem_gen_0 IS
   ATTRIBUTE CHECK_LICENSE_TYPE OF dist_mem_gen_0_arch : ARCHITECTURE IS "dist_mem_gen_0,dist_mem_gen_v8_0_12,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
   ATTRIBUTE CORE_GENERATION_INFO OF dist_mem_gen_0_arch: ARCHITECTURE IS "dist_mem_gen_0,dist_mem_gen_v8_0_12,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=dist_mem_gen,x_ipVersion=8.0,x_ipCoreRevision=12,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_FAMILY=zynq,C_ADDR_WIDTH=10,C_DEFAULT_DATA=0,C_DEPTH=1024,C_HAS_CLK=0,C_HAS_D=0,C_HAS_DPO=0,C_HAS_DPRA=0,C_HAS_I_CE=0,C_HAS_QDPO=0,C_HAS_QDPO_CE=0,C_HAS_QDPO_CLK=0,C_HAS_QDPO_RST=0,C_HAS_QDPO_SRST=0,C_HAS_QSPO=0,C_HAS_QSPO_CE=0,C_HAS_QSPO_RST=0,C_HAS_QSPO_SRST=0,C_HAS_SPO=1,C_HAS_WE=0,C_MEM_INI" & 
-"T_FILE=dist_mem_gen_0.mif,C_ELABORATION_DIR=./,C_MEM_TYPE=0,C_PIPELINE_STAGES=0,C_QCE_JOINED=0,C_QUALIFY_WE=0,C_READ_MIF=1,C_REG_A_D_INPUTS=0,C_REG_DPRA_INPUT=0,C_SYNC_ENABLE=1,C_WIDTH=8,C_PARSER_TYPE=1}";
+"T_FILE=dist_mem_gen_0.mif,C_ELABORATION_DIR=./,C_MEM_TYPE=0,C_PIPELINE_STAGES=0,C_QCE_JOINED=0,C_QUALIFY_WE=0,C_READ_MIF=1,C_REG_A_D_INPUTS=0,C_REG_DPRA_INPUT=0,C_SYNC_ENABLE=1,C_WIDTH=10,C_PARSER_TYPE=1}";
 BEGIN
   U0 : dist_mem_gen_v8_0_12
     GENERIC MAP (
@@ -161,12 +161,12 @@ BEGIN
       C_REG_A_D_INPUTS => 0,
       C_REG_DPRA_INPUT => 0,
       C_SYNC_ENABLE => 1,
-      C_WIDTH => 8,
+      C_WIDTH => 10,
       C_PARSER_TYPE => 1
     )
     PORT MAP (
       a => a,
-      d => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 8)),
+      d => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 10)),
       dpra => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 10)),
       clk => '0',
       we => '0',

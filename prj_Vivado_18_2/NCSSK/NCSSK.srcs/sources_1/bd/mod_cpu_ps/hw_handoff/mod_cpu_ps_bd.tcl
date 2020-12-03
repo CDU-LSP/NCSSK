@@ -162,8 +162,8 @@ proc create_root_design { parentCell } {
   # Create ports
   set angle [ create_bd_port -dir I -from 31 -to 0 angle ]
   set angle_valid [ create_bd_port -dir I -from 0 -to 0 angle_valid ]
+  set data_in_ena [ create_bd_port -dir O -from 0 -to 0 data_in_ena ]
   set delay_point [ create_bd_port -dir O -from 31 -to 0 delay_point ]
-  set rom_fft_rst_n [ create_bd_port -dir O -from 0 -to 0 rom_fft_rst_n ]
   set sys_clk_PS_100M [ create_bd_port -dir O -type clk sys_clk_PS_100M ]
   set sys_rst_n [ create_bd_port -dir O -from 0 -to 0 sys_rst_n ]
 
@@ -180,18 +180,18 @@ proc create_root_design { parentCell } {
    CONFIG.C_GPIO_WIDTH {1} \
  ] $axi_gpio_angle_valid
 
+  # Create instance: axi_gpio_data_in_ena, and set properties
+  set axi_gpio_data_in_ena [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_data_in_ena ]
+  set_property -dict [ list \
+   CONFIG.C_ALL_OUTPUTS {1} \
+   CONFIG.C_GPIO_WIDTH {1} \
+ ] $axi_gpio_data_in_ena
+
   # Create instance: axi_gpio_delay_point, and set properties
   set axi_gpio_delay_point [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_delay_point ]
   set_property -dict [ list \
    CONFIG.C_ALL_OUTPUTS {1} \
  ] $axi_gpio_delay_point
-
-  # Create instance: axi_gpio_rom_fft_rst_n, and set properties
-  set axi_gpio_rom_fft_rst_n [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_rom_fft_rst_n ]
-  set_property -dict [ list \
-   CONFIG.C_ALL_OUTPUTS {1} \
-   CONFIG.C_GPIO_WIDTH {1} \
- ] $axi_gpio_rom_fft_rst_n
 
   # Create instance: axi_gpio_sys_rst_n, and set properties
   set axi_gpio_sys_rst_n [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_sys_rst_n ]
@@ -987,27 +987,27 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins axi_gpio_sys_rst_n/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_gpio_rom_fft_rst_n/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_gpio_data_in_ena/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins axi_gpio_delay_point/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins axi_gpio_angle/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M04_AXI [get_bd_intf_pins axi_gpio_angle_valid/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M04_AXI]
 
   # Create port connections
   connect_bd_net -net axi_gpio_delay_point_gpio_io_o [get_bd_ports delay_point] [get_bd_pins axi_gpio_delay_point/gpio_io_o]
-  connect_bd_net -net axi_gpio_rom_fft_rst_n_gpio_io_o [get_bd_ports rom_fft_rst_n] [get_bd_pins axi_gpio_rom_fft_rst_n/gpio_io_o]
+  connect_bd_net -net axi_gpio_rom_fft_rst_n_gpio_io_o [get_bd_ports data_in_ena] [get_bd_pins axi_gpio_data_in_ena/gpio_io_o]
   connect_bd_net -net axi_gpio_sys_rst_n_gpio_io_o [get_bd_ports sys_rst_n] [get_bd_pins axi_gpio_sys_rst_n/gpio_io_o]
   connect_bd_net -net gpio_io_i_0_1 [get_bd_ports angle] [get_bd_pins axi_gpio_angle/gpio_io_i]
   connect_bd_net -net gpio_io_i_0_2 [get_bd_ports angle_valid] [get_bd_pins axi_gpio_angle_valid/gpio_io_i]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_ports sys_clk_PS_100M] [get_bd_pins axi_gpio_angle/s_axi_aclk] [get_bd_pins axi_gpio_angle_valid/s_axi_aclk] [get_bd_pins axi_gpio_delay_point/s_axi_aclk] [get_bd_pins axi_gpio_rom_fft_rst_n/s_axi_aclk] [get_bd_pins axi_gpio_sys_rst_n/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_ports sys_clk_PS_100M] [get_bd_pins axi_gpio_angle/s_axi_aclk] [get_bd_pins axi_gpio_angle_valid/s_axi_aclk] [get_bd_pins axi_gpio_data_in_ena/s_axi_aclk] [get_bd_pins axi_gpio_delay_point/s_axi_aclk] [get_bd_pins axi_gpio_sys_rst_n/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_50M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_50M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_gpio_angle/s_axi_aresetn] [get_bd_pins axi_gpio_angle_valid/s_axi_aresetn] [get_bd_pins axi_gpio_delay_point/s_axi_aresetn] [get_bd_pins axi_gpio_rom_fft_rst_n/s_axi_aresetn] [get_bd_pins axi_gpio_sys_rst_n/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_gpio_angle/s_axi_aresetn] [get_bd_pins axi_gpio_angle_valid/s_axi_aresetn] [get_bd_pins axi_gpio_data_in_ena/s_axi_aresetn] [get_bd_pins axi_gpio_delay_point/s_axi_aresetn] [get_bd_pins axi_gpio_sys_rst_n/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
 
   # Create address segments
   create_bd_addr_seg -range 0x00010000 -offset 0x41230000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_angle/S_AXI/Reg] SEG_axi_gpio_angle_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41240000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_angle_valid/S_AXI/Reg] SEG_axi_gpio_angle_valid_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41220000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_delay_point/S_AXI/Reg] SEG_axi_gpio_delay_point_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41210000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_rom_fft_rst_n/S_AXI/Reg] SEG_axi_gpio_rom_fft_rst_n_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41210000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_data_in_ena/S_AXI/Reg] SEG_axi_gpio_rom_fft_rst_n_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_gpio_sys_rst_n/S_AXI/Reg] SEG_axi_gpio_sys_rst_n_Reg
 
 

@@ -1,0 +1,149 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2020/12/02 19:09:30
+// Design Name: 
+// Module Name: zero_point_find
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module zero_point_find(Clk,Rst_n,ROM_data,data_input_en,cnt_addr,pedge,div_en,zero_reg);
+
+    input Clk                   ;
+    input Rst_n                 ;
+    input [9:0]ROM_data         ;
+    input data_input_en         ;
+    input [9:0] cnt_addr        ;
+
+    output  pedge               ;
+    output  reg div_en          ;
+    output  reg [19:0] zero_reg ;
+
+
+wire            zero_find       ;
+
+reg     [9:0]   temp0           ;
+reg     [9:0]   temp1           ;
+reg     [2:0]   cnt_zero_reg    ;
+reg             zero_start      ;
+reg     [9:0]   zero_point      ;
+
+assign  zero_find = (pedge)?1:0;
+assign  pedge = (temp0[9]) & (!temp1[9]);
+
+always @(posedge Clk) 
+begin   
+    if (!Rst_n) 
+    begin
+    zero_point <= 10'd0;
+    end
+    else if (pedge) 
+    begin
+        zero_point <= cnt_addr;
+    end
+    else begin
+        zero_point <= zero_point;
+    end
+end
+
+always @(posedge Clk) 
+begin
+    if (!Rst_n) 
+    begin
+    zero_start <= 1'd0;
+    end
+    else if (data_input_en) 
+    begin
+        zero_start <= 1'd1;
+    end
+    else begin
+        zero_start <= zero_start;
+    end
+end
+
+always @(posedge Clk) 
+begin
+    if  (!Rst_n)
+    begin
+        temp0 <= 10'b0;
+        temp1 <= 10'b0;
+    end
+    else if (data_input_en) begin
+    temp0 <= ROM_data;
+    temp1 <= ROM_data;
+    end
+    else if (zero_start)
+    begin
+    temp0 <= ROM_data;
+    temp1 <= temp0;
+    end
+    else begin
+         temp0 <= temp0 ;
+         temp1 <= temp1 ;
+    end
+end
+
+always @(posedge Clk)
+begin
+    if (!Rst_n) 
+    begin
+    zero_reg <= 20'd0;
+    div_en <= 1'd0;
+    end
+    else if (cnt_zero_reg == 3'd1) 
+    begin
+    zero_reg [9:0] <= zero_point; 
+    end
+    else if (cnt_zero_reg == 3'd2)
+    begin
+        zero_reg [19:10] <= zero_point;
+        div_en <= 1'd1; 
+    end
+    else begin
+        zero_reg <= zero_reg;
+        div_en <= div_en;
+    end
+end
+
+always @(posedge pedge or negedge Rst_n) 
+begin
+    if (!Rst_n)
+    begin
+        cnt_zero_reg <= 3'd0;
+    end
+    else if (cnt_zero_reg >= 3'd2)
+    begin
+        cnt_zero_reg <= 3'd0;   
+    end
+    else begin
+        cnt_zero_reg <= cnt_zero_reg + 1'd1;
+    end
+end
+
+ila_zero_find ila_zero_find_inst
+(
+    .clk(Clk), // input wire clk
+
+    .probe0(ROM_data), // input wire [9:0] probe0
+    .probe1(cnt_addr), // input wire [9:0]  probe1 
+    .probe2(zero_reg), // input wire [19:0]  probe2 
+    .probe3(temp0), // input wire [9:0]  probe3 
+    .probe4(temp1), // input wire [9:0]  probe4 
+    .probe5(cnt_zero_reg), // input wire [2:0]  probe5 
+    .probe6(zero_point) // input wire [9:0]  probe6
+);
+
+endmodule

@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.runs/mod_cpu_ps_processing_system7_0_0_synth_1'
+HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/prj_copy/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.runs/mod_cpu_ps_processing_system7_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

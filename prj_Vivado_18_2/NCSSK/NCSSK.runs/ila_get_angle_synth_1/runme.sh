@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.1.0/NCSSK.runs/ila_get_angle_synth_1'
+HD_PWD='E:/Users/benji/OneDrive/FPGA_Project/copy/NCSSK/NCSSK.runs/ila_get_angle_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

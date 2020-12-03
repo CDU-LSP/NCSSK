@@ -1,0 +1,96 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2020/12/02 19:09:30
+// Design Name: 
+// Module Name: zero_point_find
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module zero_point_find
+(
+    input   wire            sys_clk     ,
+    input   wire            sys_rst_n   ,
+    input   wire    [9:0]   ROM_data    ,
+    input   wire            data_in_en  ,
+    input   wire    [9:0]   cnt_addr    ,
+
+    output  wire            out_valid   ,
+    output  wire    [9:0]   zero_point   
+);
+
+//var
+reg     [9:0]   temp0       ;
+reg     [9:0]   temp1       ;
+reg             zero_start  ;
+
+always @(posedge sys_clk) 
+begin
+    if (!sys_rst_n) 
+    begin
+        zero_start <= 1'd0;
+    end
+    else if (data_in_en) 
+    begin
+        zero_start <= 1'd1;
+    end
+    else
+    begin
+        zero_start <= zero_start;
+    end
+end
+
+always @(posedge sys_clk) 
+begin
+    if  (!sys_rst_n)
+    begin
+        temp0 <= 10'b0;
+        temp1 <= 10'b0;
+    end
+    else if (data_in_en)
+    begin
+        temp0 <= ROM_data;
+        temp1 <= ROM_data;
+    end
+    else if (zero_start)
+    begin
+        temp0 <= ROM_data;
+        temp1 <= temp0;
+    end
+    else
+    begin
+        temp0 <= temp0 ;
+        temp1 <= temp1 ;
+    end
+end
+
+assign  out_valid = (temp0[9]) & (!temp1[9]);
+
+
+ila_zero_find ila_zero_find_inst
+(
+    .clk(Clk), // input wire clk
+
+    .probe0(ROM_data), // input wire [9:0] probe0
+    .probe1(cnt_addr), // input wire [9:0]  probe1 
+    .probe2(zero_reg), // input wire [19:0]  probe2 
+    .probe3(temp0), // input wire [9:0]  probe3 
+    .probe4(temp1), // input wire [9:0]  probe4 
+    .probe5(cnt_zero_reg), // input wire [2:0]  probe5 
+    .probe6(zero_point) // input wire [9:0]  probe6
+);
+
+endmodule

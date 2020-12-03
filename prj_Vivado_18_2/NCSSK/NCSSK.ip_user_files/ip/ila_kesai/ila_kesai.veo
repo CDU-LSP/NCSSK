@@ -57,7 +57,7 @@ ila_kesai your_instance_name (
 	.clk(clk), // input wire clk
 
 
-	.probe0(probe0) // input wire [19:0] probe0
+	.probe0(probe0) // input wire [13:0] probe0
 );
 
 // INST_TAG_END ------ End INSTANTIATION Template ---------

@@ -1,13 +1,13 @@
 /*
  * AXI_GPIO.c
  *
- *  Created on: 2020年11月13日
+ *  Created on: 2020骞�11鏈�13鏃�
  *      Author: benjia
  */
 
 #include "AXI_GPIO.h"
 
-XGpio i_gpio_angle, i_gpio_angle_valid, o_gpio_delay_point, o_gpio_rom_fft_rst_n, o_gpio_sys_rst_n;
+XGpio i_gpio_angle, i_gpio_angle_valid, o_gpio_delay_point, o_gpio_data_in_ena, o_gpio_sys_rst_n;
 
 void init_i_gpio_angle(void)
 {
@@ -27,10 +27,10 @@ void init_o_gpio_delay_point(void)
     XGpio_SetDataDirection(&o_gpio_delay_point, 1, 0X0);
 }
 
-void init_o_gpio_rom_fft_rst_n(void)
+void init_o_gpio_data_in_ena(void)
 {
-    XGpio_Initialize(&o_gpio_rom_fft_rst_n, GPIO_ROM_FFT_RST_N_ID);
-    XGpio_SetDataDirection(&o_gpio_rom_fft_rst_n, 1, 0X0);
+    XGpio_Initialize(&o_gpio_data_in_ena, GPIO_DATA_IN_ENA_ID);
+    XGpio_SetDataDirection(&o_gpio_data_in_ena, 1, 0X0);
 }
 
 void init_o_gpio_sys_rst_n(void)
@@ -39,11 +39,11 @@ void init_o_gpio_sys_rst_n(void)
     XGpio_SetDataDirection(&o_gpio_sys_rst_n, 1, 0X0);
 }
 
-void reset_ROM_FFT(void)
+void data_in_ena(void)
 {
-    XGpio_DiscreteWrite(&o_gpio_rom_fft_rst_n, 1, 0x0);
+    XGpio_DiscreteWrite(&o_gpio_data_in_ena, 1, 0xFFFF);
     usleep(10);
-    XGpio_DiscreteWrite(&o_gpio_rom_fft_rst_n, 1, 0xFFFF);
+    XGpio_DiscreteWrite(&o_gpio_data_in_ena, 1, 0x0);
 }
 
 void reset_PL(void)

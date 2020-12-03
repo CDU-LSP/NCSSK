@@ -26,7 +26,7 @@ module get_phase_difference
     input   wire            sys_rst_n               ,
     input   wire            din_valid               ,
     input   wire            locked                  ,
-    input   wire    [13:0]  phase                   ,
+    input   wire    [9:0]   phase                   ,
 
     // output  wire    [25:0]  phase_difference_a_b    ,
     output  wire    [13:0]  phase_difference_a      ,

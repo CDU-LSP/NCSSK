@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xD76D77DF3AE3DF12" bd:device="xc7z020clg400-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="mod_cpu_ps" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x32E9ADC0888D68E" bd:device="xc7z020clg400-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="mod_cpu_ps" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -166,7 +166,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>1e+08</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -204,7 +204,7 @@
       </spirit:views>
       <spirit:ports>
         <spirit:port>
-          <spirit:name>rom_fft_rst_n</spirit:name>
+          <spirit:name>data_in_ena</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -816,7 +816,7 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>axi_gpio_rom_fft_rst_n</spirit:instanceName>
+        <spirit:instanceName>axi_gpio_data_in_ena</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="axi_gpio" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">mod_cpu_ps_axi_gpio_0_1</spirit:configurableElementValue>
@@ -880,7 +880,7 @@
       <spirit:interconnection>
         <spirit:name>ps7_0_axi_periph_M01_AXI</spirit:name>
         <spirit:activeInterface spirit:busRef="M01_AXI" spirit:componentRef="ps7_0_axi_periph"/>
-        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_gpio_rom_fft_rst_n"/>
+        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_gpio_data_in_ena"/>
       </spirit:interconnection>
       <spirit:interconnection>
         <spirit:name>ps7_0_axi_periph_M02_AXI</spirit:name>
@@ -901,8 +901,8 @@
     <spirit:adHocConnections>
       <spirit:adHocConnection>
         <spirit:name>axi_gpio_rom_fft_rst_n_gpio_io_o</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_rom_fft_rst_n" spirit:portRef="gpio_io_o"/>
-        <spirit:externalPortReference spirit:portRef="rom_fft_rst_n"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_data_in_ena" spirit:portRef="gpio_io_o"/>
+        <spirit:externalPortReference spirit:portRef="data_in_ena"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>axi_gpio_sys_rst_n_gpio_io_o</spirit:name>
@@ -931,7 +931,7 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="slowest_sync_clk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst_n" spirit:portRef="s_axi_aclk"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_rom_fft_rst_n" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_data_in_ena" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_delay_point" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle_valid" spirit:portRef="s_axi_aclk"/>
@@ -952,7 +952,7 @@
         <spirit:name>rst_ps7_0_50M_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="peripheral_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst_n" spirit:portRef="s_axi_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_rom_fft_rst_n" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_data_in_ena" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_delay_point" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle_valid" spirit:portRef="s_axi_aresetn"/>
@@ -2840,7 +2840,7 @@
           </spirit:segment>
           <spirit:segment>
             <spirit:name>SEG_axi_gpio_rom_fft_rst_n_Reg</spirit:name>
-            <spirit:displayName>/axi_gpio_rom_fft_rst_n/S_AXI/Reg</spirit:displayName>
+            <spirit:displayName>/axi_gpio_data_in_ena/S_AXI/Reg</spirit:displayName>
             <spirit:addressOffset>0x41210000</spirit:addressOffset>
             <spirit:range>64K</spirit:range>
           </spirit:segment>
