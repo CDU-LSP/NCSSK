@@ -29,6 +29,7 @@ CHECK_CODE_RX = "254"
 PHASE_STEP = 1.0
 BASELINE_DIST = 0.4
 COM_FLAG = 1
+SEND_INTERVAL = 0.1
 
 # global var
 x = [0, 0, 0, 0]
@@ -342,7 +343,7 @@ def main():
 
         countdown(0)
         if COM_FLAG:
-            send_delay_point(tx_delay_point, 0.02, ser)
+            send_delay_point(tx_delay_point, SEND_INTERVAL, ser)
             A, B = recv_angle(ser)
         DEBUG_PRINT(A)
         DEBUG_PRINT(B)
