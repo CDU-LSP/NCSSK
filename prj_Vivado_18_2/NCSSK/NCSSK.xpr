@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="E:/Users/benji/OneDrive/FPGA_Project/copy/NCSSK/NCSSK.xpr">
+<Project Version="7" Minor="38" Path="E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="fd486c82e65146d5b8d8e6d9009895be"/>
@@ -75,11 +75,11 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xci">
-          <Proxy FileSetName="mod_cpu_ps_processing_system7_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1.xci">
+          <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_2"/>
@@ -87,20 +87,20 @@
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_3"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xci">
+          <Proxy FileSetName="mod_cpu_ps_processing_system7_0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_4"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_1/mod_cpu_ps_axi_gpio_0_1.xci">
-          <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_1"/>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0.xci">
+          <Proxy FileSetName="mod_cpu_ps_auto_pc_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_xbar_0/mod_cpu_ps_xbar_0.xci">
           <Proxy FileSetName="mod_cpu_ps_xbar_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0.xci">
           <Proxy FileSetName="mod_cpu_ps_rst_ps7_0_50M_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0.xci">
-          <Proxy FileSetName="mod_cpu_ps_auto_pc_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/NCSSK_top.v">
