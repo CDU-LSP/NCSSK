@@ -12,20 +12,12 @@ STATION1L_COORDINATE = [0, 0]
 STATION1R_COORDINATE = [0.4, 0]
 STATION2L_COORDINATE = [999.6, 0]
 STATION2R_COORDINATE = [1000, 0]
-# STATION1_COORDINATE = [(STATION1L_COORDINATE[0] + STATION1R_COORDINATE[0] / 2),
-#                        (STATION1L_COORDINATE[1] + STATION1R_COORDINATE[1] / 2)]
-# STATION2_COORDINATE = [(STATION2L_COORDINATE[0] + STATION2R_COORDINATE[0] / 2),
-#                        (STATION2L_COORDINATE[1] + STATION2R_COORDINATE[1] / 2)]
 STATION_COORDINATE = STATION1L_COORDINATE + STATION1R_COORDINATE + STATION2L_COORDINATE + STATION2R_COORDINATE
-# DEBUG_PRINT(STATION1_COORDINATE)
-# DEBUG_PRINT(STATION2_COORDINATE)
-# DEBUG_PRINT(STATION_COORDINATE)
 LAMBDA = 1.0  # 波长(假定720KHz信号波长为1.0单位。目的:简化运算)
 USB_COM = "COM4"
 BAUD_RATE = 115200
 CHECK_CODE_TX = "255"
 CHECK_CODE_RX = "254"
-# PHASE_STEP = 11.25
 PHASE_STEP = 1.0
 BASELINE_DIST = 0.4
 COM_FLAG = 1
@@ -53,12 +45,6 @@ def init():
     sy[1] = station2_coordinate[1]
     baseline_length = x[1] - x[0]
 
-    # DEBUG_PRINT(x)
-    # DEBUG_PRINT(y)
-    # DEBUG_PRINT(sx)
-    # DEBUG_PRINT(sy)
-    # DEBUG_PRINT(baseline_length)
-
 
 def init_serial(USB_COM, BAUDRATE):
     ser = serial.Serial(USB_COM, BAUDRATE, timeout=0.5)
@@ -82,12 +68,7 @@ def get_target_coordinate():
     print("X,Y")
     str_target_coordinate = input()
     str_target_coordinate = str_target_coordinate.replace("，", ",")
-    # str_target_coordinate = "5,2.88"
-    # list_target_coordinate = list(map(int, str_target_coordinate.split(",")))
     list_target_coordinate = list(map(float, str_target_coordinate.split(",")))
-    # DEBUG_PRINT(list_target_coordinate)
-    # print(type(list_target_coordinate))
-    # print(type(list_target_coordinate[0]))
     return list_target_coordinate
 
 
@@ -144,7 +125,6 @@ def get_delay_point(angle, baseline_length, longer_path_flag):
     delay_point = [0, 0]
     for i in range(len(untreated_delay_point)):
         untreated_delay_point[i] = np.cos(math.radians(angle[i * 2])) * (360 * BASELINE_DIST) / PHASE_STEP
-        # untreated_delay_point[i] = np.cos(math.radians(angle[i * 2])) * 144 / 11.25
     for i in range(len(longer_path_flag)):
         if longer_path_flag[i] == 1 and (i % 2) == 0:
             if 0 <= i <= 1:
@@ -264,7 +244,6 @@ def check_PS(ser):
 def check_sys(ser):
     while True:
         rx_data = serial_rx(ser)
-        # print(rx_data)
         if rx_data == "254":
             print("successful")
             ser.close()
@@ -317,18 +296,9 @@ def main():
             y.append(target_coordinate[1])
 
             dis = measure_s_t_dis(x, y)
-            # DEBUG_PRINT(dis)
-
             longer_path_flag = find_longer_path(dis)
-            # DEBUG_PRINT(longer_path_flag)
-
             angle, real_azimuth = get_azimuth(dis, x, y, longer_path_flag)
-            # DEBUG_PRINT(angle)
-            # DEBUG_PRINT(real_azimuth)
-
             delay_point = get_delay_point(angle, baseline_length, longer_path_flag)
-            # DEBUG_PRINT(delay_point)
-
             tx_delay_point = delay_point_process(delay_point, longer_path_flag)
             DEBUG_PRINT(tx_delay_point)
             display2D()
