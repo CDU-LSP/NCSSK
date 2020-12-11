@@ -51,80 +51,71 @@
  */
 
 #include "helloworld.h"
-#include <stdio.h>
-#include "platform.h"
-#include "xil_printf.h"
-#include "sleep.h"
-#include "xscugic.h"
-#include "uart_parameter.h"
-#include <stdlib.h>
-#include "AXI_GPIO.h"
-
-#define UART_DEVICE_ID      XPAR_XUARTPS_0_DEVICE_ID
-#define INTC_DEVICE_ID      XPAR_SCUGIC_SINGLE_DEVICE_ID
-#define UART_INT_IRQ_ID     XPAR_XUARTPS_0_INTR
 
 //#define ECHO_ENABLE
 
-/* Statement */
-#define UART_TX      0
-#define UART_RXCHECK 1
-#define UART_WAIT    2
-
-/* maximum receiver length */
-#define MAX_LEN         20
-
-/* Command */
-#define OK_STATUS_TX        1
-#define CHECK_CODE_RX       255
-#define RST_CODE_RX         254
-#define ROM_FFT_RST_CODE_RX 253
 /************************** Variable Definitions *****************************/
 
 XUartPs Uart_PS; /* Instance of the UART Device */
 XScuGic IntcInstPtr;
-
 /* UART receiver buffer */
 u8 ReceivedBuffer[MAX_LEN];
 /* UART receiver buffer pointer*/
 u8 *ReceivedBufferPtr;
 /* UART receiver byte number */
 volatile u32 ReceivedByteNum;
-
 volatile u32 ReceivedFlag;
-//var definition
-extern XGpio i_gpio_angle, i_gpio_angle_valid, o_gpio_delay_point,
-        o_gpio_data_in_ena, o_gpio_sys_rst_n;
+int Status;
+XUartPs_Config *Config;
+u32 SendByteNum;
+u8 *SendBufferPtr;
+u8 recv_data;
+u8 i = 0;
+u8 delay_point_buffer[4] = { 0 };
+float real_angle_A = 0.0;
+float real_angle_B = 0.0;
 
-/*
- * Function declaration
- */
-int UartPsSend(XUartPs *InstancePtr, u8 *BufferPtr, u32 NumBytes);
-int UartPsRev(XUartPs *InstancePtr, u8 *BufferPtr, u32 NumBytes);
-int SetupInterruptSystem(XScuGic *IntcInstancePtr, XUartPs *UartInstancePtr,
-        u16 UartIntrId);
-void Handler(void *CallBackRef);
+extern XGpio i_gpio_angle, i_gpio_angle_valid, o_gpio_delay_point,
+        o_gpio_data_in_ena, o_gpio_sys_rst;
 
 int main(void)
 {
+    init();
+    while (1)
+    {
+        if (ReceivedFlag)
+        {
+            /* Reset receiver pointer, flag, byte number */
+            ReceivedBufferPtr = ReceivedBuffer;
+            SendBufferPtr = ReceivedBuffer;
+            SendByteNum = ReceivedByteNum;
+            ReceivedFlag = 0;
+            ReceivedByteNum = 1;
+            recv_data = atoi((char *)SendBufferPtr);
+#ifdef ECHO_ENABLE
+            printf("%d\n", recv_data);
+#endif
+            memset(ReceivedBuffer, 0, sizeof ReceivedBuffer); //clear RecvBuffer
+            delay_point_buffer[i++] = recv_data;
+            if (i >= 4)
+            {
+                real_angle_A = direction(delay_point_buffer[0],
+                        delay_point_buffer[1]);
+                real_angle_B = direction(delay_point_buffer[2],
+                        delay_point_buffer[3]);
+                printf("A%fB%f\n", real_angle_A, real_angle_B);
+                i = 0;
+            }
+        }
+        usleep(10000);
+    }
+}
+
+void init(void)
+{
     init_platform();
-//    print("111\n");
     init_gpio();
-    int Status;
-    XUartPs_Config *Config;
-
-    u32 SendByteNum;
-    u8 *SendBufferPtr;
-    u8 state = UART_RXCHECK;
-    u8 recv_data;
-    u8 i = 0;
-    u8 delay_point_buffer[4] =
-    { 0 };
-//    u32 angle = 0;
-    float real_angle_A = 0.0;
-    float real_angle_B = 0.0;
     ReceivedBufferPtr = ReceivedBuffer;
-
     ReceivedFlag = 0;
     ReceivedByteNum = 0;
 
@@ -149,36 +140,6 @@ int main(void)
 
     SetupInterruptSystem(&IntcInstPtr, &Uart_PS, UART_INT_IRQ_ID);
     print("254\n");
-    sleep(1);
-//    print("Waiting....\n");
-    while (1)
-    {
-        if (ReceivedFlag)
-        {
-            /* Reset receiver pointer, flag, byte number */
-            ReceivedBufferPtr = ReceivedBuffer;
-            SendBufferPtr = ReceivedBuffer;
-            SendByteNum = ReceivedByteNum;
-            ReceivedFlag = 0;
-            ReceivedByteNum = 1;
-            recv_data = atoi(SendBufferPtr);
-#ifdef ECHO_ENABLE
-            printf("%d\n", recv_data);
-#endif
-            memset(ReceivedBuffer, 0, sizeof ReceivedBuffer); //clear RecvBuffer
-            delay_point_buffer[i++] = recv_data;
-            if (i >= 4)
-            {
-                real_angle_A = direction(delay_point_buffer[0],
-                        delay_point_buffer[1]);
-                real_angle_B = direction(delay_point_buffer[2],
-                        delay_point_buffer[3]);
-                printf("A%fB%f\n", real_angle_A, real_angle_B);
-                i = 0;
-            }
-        }
-        usleep(10000);
-    }
 }
 
 void init_gpio(void)
@@ -187,155 +148,7 @@ void init_gpio(void)
     init_i_gpio_angle_valid();
     init_o_gpio_delay_point();
     init_o_gpio_data_in_ena();
-    init_o_gpio_sys_rst_n();
-}
-
-int SetupInterruptSystem(XScuGic *IntcInstancePtr, XUartPs *UartInstancePtr,
-        u16 UartIntrId)
-{
-    int Status;
-    /* Configuration for interrupt controller */
-    XScuGic_Config *IntcConfig;
-
-    /* Initialize the interrupt controller driver */
-    IntcConfig = XScuGic_LookupConfig(INTC_DEVICE_ID);
-    if (NULL == IntcConfig)
-    {
-        return XST_FAILURE;
-    }
-
-    Status = XScuGic_CfgInitialize(IntcInstancePtr, IntcConfig,
-            IntcConfig->CpuBaseAddress);
-    if (Status != XST_SUCCESS)
-    {
-        return XST_FAILURE;
-    }
-
-    /*
-     * Connect the interrupt controller interrupt handler to the
-     * hardware interrupt handling logic in the processor.
-     */
-    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
-            (Xil_ExceptionHandler) XScuGic_InterruptHandler, IntcInstancePtr);
-
-    Status = XScuGic_Connect(IntcInstancePtr, UartIntrId,
-            (Xil_ExceptionHandler) Handler, (void *) UartInstancePtr);
-    if (Status != XST_SUCCESS)
-    {
-        return XST_FAILURE;
-    }
-
-    XScuGic_Enable(IntcInstancePtr, UartIntrId);
-    Xil_ExceptionEnable();
-
-    return Status;
-}
-
-void Handler(void *CallBackRef)
-{
-    XUartPs *UartInstancePtr = (XUartPs *) CallBackRef;
-    u32 ReceivedCount = 0;
-    u32 UartSrValue;
-
-    UartSrValue =
-    XUartPs_ReadReg(UartInstancePtr->Config.BaseAddress,
-            XUARTPS_SR_OFFSET) & (XUARTPS_IXR_RXOVR | XUARTPS_IXR_RXEMPTY);
-    ReceivedFlag = 0;
-
-    if (UartSrValue & XUARTPS_IXR_RXOVR) /* check if receiver FIFO trigger */
-    {
-        ReceivedCount = UartPsRev(&Uart_PS, ReceivedBufferPtr, MAX_LEN);
-        ReceivedByteNum += ReceivedCount;
-        ReceivedBufferPtr += ReceivedCount;
-        /* clear trigger interrupt */
-        XUartPs_WriteReg(UartInstancePtr->Config.BaseAddress,
-                XUARTPS_ISR_OFFSET, XUARTPS_IXR_RXOVR);
-    }
-    else if (UartSrValue & XUARTPS_IXR_RXEMPTY) /*check if receiver FIFO empty */
-    {
-        /* clear empty interrupt */
-        XUartPs_WriteReg(UartInstancePtr->Config.BaseAddress,
-                XUARTPS_ISR_OFFSET, XUARTPS_IXR_RXEMPTY);
-        ReceivedFlag = 1;
-    }
-
-}
-
-int UartPsSend(XUartPs *InstancePtr, u8 *BufferPtr, u32 NumBytes)
-{
-
-    u32 SentCount = 0U;
-
-    /* Setup the buffer parameters */
-    InstancePtr->SendBuffer.RequestedBytes = NumBytes;
-    InstancePtr->SendBuffer.RemainingBytes = NumBytes;
-    InstancePtr->SendBuffer.NextBytePtr = BufferPtr;
-
-    while (InstancePtr->SendBuffer.RemainingBytes > SentCount)
-    {
-        /* Fill the FIFO from the buffer */
-        if (!XUartPs_IsTransmitFull(InstancePtr->Config.BaseAddress))
-        {
-            XUartPs_WriteReg(InstancePtr->Config.BaseAddress,
-                    XUARTPS_FIFO_OFFSET,
-                    ((u32 )InstancePtr->SendBuffer.NextBytePtr[SentCount]));
-
-            /* Increment the send count. */
-            SentCount++;
-        }
-    }
-
-    /* Update the buffer to reflect the bytes that were sent from it */
-    InstancePtr->SendBuffer.NextBytePtr += SentCount;
-    InstancePtr->SendBuffer.RemainingBytes -= SentCount;
-
-    return SentCount;
-}
-
-int UartPsRev(XUartPs *InstancePtr, u8 *BufferPtr, u32 NumBytes)
-{
-    u32 ReceivedCount = 0;
-    u32 CsrRegister;
-
-    /* Setup the buffer parameters */
-    InstancePtr->ReceiveBuffer.RequestedBytes = NumBytes;
-    InstancePtr->ReceiveBuffer.RemainingBytes = NumBytes;
-    InstancePtr->ReceiveBuffer.NextBytePtr = BufferPtr;
-
-    /*
-     * Read the Channel Status Register to determine if there is any data in
-     * the RX FIFO
-     */
-    CsrRegister = XUartPs_ReadReg(InstancePtr->Config.BaseAddress,
-            XUARTPS_SR_OFFSET);
-
-    /*
-     * Loop until there is no more data in RX FIFO or the specified
-     * number of bytes has been received
-     */
-    while ((ReceivedCount < InstancePtr->ReceiveBuffer.RemainingBytes)
-            && (((CsrRegister & XUARTPS_SR_RXEMPTY) == (u32) 0)))
-    {
-        InstancePtr->ReceiveBuffer.NextBytePtr[ReceivedCount] = XUartPs_ReadReg(
-                InstancePtr->Config.BaseAddress, XUARTPS_FIFO_OFFSET);
-
-        ReceivedCount++;
-
-        CsrRegister = XUartPs_ReadReg(InstancePtr->Config.BaseAddress,
-                XUARTPS_SR_OFFSET);
-    }
-    InstancePtr->is_rxbs_error = 0;
-    /*
-     * Update the receive buffer to reflect the number of bytes just
-     * received
-     */
-    if (InstancePtr->ReceiveBuffer.NextBytePtr != NULL)
-    {
-        InstancePtr->ReceiveBuffer.NextBytePtr += ReceivedCount;
-    }
-    InstancePtr->ReceiveBuffer.RemainingBytes -= ReceivedCount;
-
-    return ReceivedCount;
+    init_o_gpio_sys_rst();
 }
 
 float direction(u32 delay_point1, u32 delay_point2)
@@ -361,10 +174,8 @@ float direction(u32 delay_point1, u32 delay_point2)
             usleep(1);
             angle = XGpio_DiscreteRead(&i_gpio_angle, 1);
             real_angle = (float) angle / 2097152 * 180;
-//            print("\n");
             break;
         }
     }
-//    sleep(1);
     return real_angle;
 }

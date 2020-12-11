@@ -1,0 +1,60 @@
+/*
+ * bsp_usart.c
+ *
+ *  Created on: 2020年12月11日
+ *      Author: benjia
+ */
+
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "sleep.h"
+#include "xscugic.h"
+#include "uart_parameter.h"
+#include <stdlib.h>
+
+int UartPsRev(XUartPs *InstancePtr, u8 *BufferPtr, u32 NumBytes)
+{
+    u32 ReceivedCount = 0;
+    u32 CsrRegister;
+
+    /* Setup the buffer parameters */
+    InstancePtr->ReceiveBuffer.RequestedBytes = NumBytes;
+    InstancePtr->ReceiveBuffer.RemainingBytes = NumBytes;
+    InstancePtr->ReceiveBuffer.NextBytePtr = BufferPtr;
+
+    /*
+     * Read the Channel Status Register to determine if there is any data in
+     * the RX FIFO
+     */
+    CsrRegister = XUartPs_ReadReg(InstancePtr->Config.BaseAddress,
+            XUARTPS_SR_OFFSET);
+
+    /*
+     * Loop until there is no more data in RX FIFO or the specified
+     * number of bytes has been received
+     */
+    while ((ReceivedCount < InstancePtr->ReceiveBuffer.RemainingBytes)
+            && (((CsrRegister & XUARTPS_SR_RXEMPTY) == (u32) 0)))
+    {
+        InstancePtr->ReceiveBuffer.NextBytePtr[ReceivedCount] = XUartPs_ReadReg(
+                InstancePtr->Config.BaseAddress, XUARTPS_FIFO_OFFSET);
+
+        ReceivedCount++;
+
+        CsrRegister = XUartPs_ReadReg(InstancePtr->Config.BaseAddress,
+                XUARTPS_SR_OFFSET);
+    }
+    InstancePtr->is_rxbs_error = 0;
+    /*
+     * Update the receive buffer to reflect the number of bytes just
+     * received
+     */
+    if (InstancePtr->ReceiveBuffer.NextBytePtr != NULL)
+    {
+        InstancePtr->ReceiveBuffer.NextBytePtr += ReceivedCount;
+    }
+    InstancePtr->ReceiveBuffer.RemainingBytes -= ReceivedCount;
+
+    return ReceivedCount;
+}

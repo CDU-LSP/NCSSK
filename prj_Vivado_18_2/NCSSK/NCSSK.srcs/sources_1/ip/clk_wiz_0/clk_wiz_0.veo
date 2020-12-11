@@ -73,7 +73,7 @@
     // Clock out ports
     .sys_clk(sys_clk),     // output sys_clk
     // Status and control signals
-    .resetn(resetn), // input resetn
+    .reset(reset), // input reset
     .locked(locked),       // output locked
    // Clock in ports
     .clk_in_PS(clk_in_PS));      // input clk_in_PS

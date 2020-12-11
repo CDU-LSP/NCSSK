@@ -22,8 +22,8 @@
 
 module rom_read_signal
 (
-    input   wire            Clk             ,
-    input   wire            Rst_n           ,
+    input   wire            sys_clk         ,
+    input   wire            sys_rst         ,
     input   wire    [8:0]   delay_point     ,
     input   wire            locked          ,
     input   wire            pedge           ,
@@ -43,9 +43,9 @@ reg             cnt_stop    ;
 assign ROM_addr = (locked)? cnt_addr - delay_point : 10'dz ;
 assign out_delay_t = delay_point;
 
-always @(posedge Clk) 
+always @(posedge sys_clk) 
     begin
-        if (!Rst_n) 
+        if (sys_rst) 
         begin
         cnt_addr <= 10'd360;
         cnt_stop <= 1'd0;

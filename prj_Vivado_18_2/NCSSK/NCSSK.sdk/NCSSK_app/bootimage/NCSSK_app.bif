@@ -1,4 +1,4 @@
-//arch = zynq; split = false; format = MCS
+//arch = zynq; split = false; format = BIN
 the_ROM_image:
 {
 	[bootloader]E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\FSBL\Debug\FSBL.elf

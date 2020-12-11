@@ -6,7 +6,7 @@ import copy
 import serial
 import time
 
-# All var
+# All parameters
 # -------------------- X,  Y
 STATION1L_COORDINATE = [0, 0]
 STATION1R_COORDINATE = [0.4, 0]
@@ -62,13 +62,29 @@ def station_distance():
     distance = np.sqrt(np.square(sx[0] - sx[1]) + np.square(sy[0] - sy[1]))
     return distance
 
+def input_error_detection(list_target_coordinate):
+    if len(list_target_coordinate) != 2:
+        return 0
+    elif bool(1 - isinstance(list_target_coordinate[0],float)) or bool(1 - isinstance(list_target_coordinate[1],float)):
+        return 0
+    else:
+        return 1
 
 def get_target_coordinate():
-    print("Enter target coordinate:")
-    print("X,Y")
-    str_target_coordinate = input()
-    str_target_coordinate = str_target_coordinate.replace("，", ",")
-    list_target_coordinate = list(map(float, str_target_coordinate.split(",")))
+    while True:
+        print("Enter target coordinate:")
+        print("X,Y")
+        str_target_coordinate = input()
+        str_target_coordinate = str_target_coordinate.replace("，", ",")
+        try:
+            list_target_coordinate = list(map(float, str_target_coordinate.split(",")))
+            if input_error_detection(list_target_coordinate) == 0:
+                print("Incorrect coordinate, retry again!")
+            elif input_error_detection(list_target_coordinate) == 1:
+                break
+        except Exception as e:
+            print(e)
+            pass
     return list_target_coordinate
 
 
@@ -179,9 +195,12 @@ def display2D():
 
 
 def countdown(t):
-    for i in range(t):
-        print("{}".format(t - i))
-        time.sleep(1)
+    if t <= 0:
+        return
+    elif t > 0:
+        for i in range(t):
+            print("{}".format(t - i))
+            time.sleep(1)
 
 
 def delay_point_process(delay_point, longer_path_flag):
@@ -291,7 +310,7 @@ def main():
             st_distance = station_distance()
             print("S0 S1 distance:{:.2f}m".format(st_distance))
             target_coordinate = get_target_coordinate()
-            # DEBUG_PRINT(target_coordinate)
+            DEBUG_PRINT(target_coordinate)
             x.append(target_coordinate[0])
             y.append(target_coordinate[1])
 

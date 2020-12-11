@@ -14,30 +14,26 @@
 // Dependencies: 
 // 
 // Revision:
-// Revision 0.0.1 - File Created
-// Revision 1.0.0 (2020/11/08 05:38)
-//               - Solve one-dimensional pitch angle
-// Revision 1.1.0 (2020/11/13/ 02:38)
-//               - Fixed timing error
-//               - Add ability to calculate azimuth angle from 2 stations
+//          Please see CHANGELOG.md
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
 // NCSSK_top   NCSSK_top_inst
 // (
-//     .sys_clk_PS_100M (sys_clk_PS_100M),
-//     .sys_rst_n       (sys_rst_n      ),
-//     .in_delay_point  (delay_point    ),
-//     .data_in_ena     (data_in_ena    ),
-//     .out_angle       (angle          ),
-//     .angle_valid     (angle_valid    ) 
+//     .sys_clk_PS_100M (sys_clk_PS_100M ),
+//     .sys_rst         (sys_rst         ),
+//     .in_delay_point  (delay_point     ),
+//     .data_in_ena     (data_in_ena     ),
+
+//     .out_angle       (angle           ),
+//     .angle_valid     (angle_valid     ) 
 // );
 
 module NCSSK_top
 (
     input   wire                    sys_clk_PS_100M ,
-    input   wire                    sys_rst_n       ,
+    input   wire                    sys_rst         ,
     input   wire            [31:0]  in_delay_point  ,
     input   wire                    data_in_ena     ,
 
@@ -100,7 +96,7 @@ clk_wiz_0   clock_dist_inst
     .sys_clk    (sys_clk        ),  // output sys_clk
 
     // Status and control signals
-    .resetn     (sys_rst_n      ),  // input resetn
+    .reset      (sys_rst        ),  // input reset
     .locked     (locked         ),  // output locked
 
     // Clock in ports
@@ -109,8 +105,8 @@ clk_wiz_0   clock_dist_inst
 
 rom_read_signal read_signal_inst
 (
-    .Clk            (sys_clk            ),
-    .Rst_n          (sys_rst_n          ),
+    .sys_clk        (sys_clk            ),
+    .sys_rst        (sys_rst            ),
     .delay_point    (delay_point        ),
     .locked         (locked             ),
     .pedge          (delay_t_all_ready  ),
@@ -123,8 +119,8 @@ rom_read_signal read_signal_inst
 
 zero_point_find zero_point_find_inst
 (
-    .Clk                (sys_clk            ),
-    .Rst_n              (sys_rst_n          ),
+    .sys_clk            (sys_clk            ),
+    .sys_rst            (sys_rst            ),
     .ROM_data           (signal_out         ),
     .data_input_en      (data_in_ena        ),
     .cnt_addr           (cnt_addr           ),
@@ -138,39 +134,39 @@ zero_point_find zero_point_find_inst
 
 get_zero_diff   get_zero_diff_inst
 (
-    .Clk         (sys_clk),
-    .Rst_n       (sys_rst_n),
-    .locked      (locked),
-    .div_en      (delay_t_all_ready),
-    .zero_point_h(zero_point_h),
-    .zero_point_l(zero_point_l),
+    .sys_clk        (sys_clk           ),
+    .sys_rst        (sys_rst           ),
+    .locked         (locked            ),
+    .div_en         (delay_t_all_ready ),
+    .zero_point_h   (zero_point_h      ),
+    .zero_point_l   (zero_point_l      ),
 
-    .phase_diff  (phase_diff),// 2^13
-    .outvalid    (outvalid) 
+    .phase_diff     (phase_diff        ),// 2^13
+    .outvalid       (outvalid          ) 
 );
 
 phase_diff_times_kesai  phase_diff_times_kesai_inst
 (
-    .sys_clk         (sys_clk           ),
-    .sys_rst_n       (sys_rst_n         ),
-    .multiplier_a    (phase_diff        ),
-    .locked          (locked            ),
-    .data_valid      (outvalid          ),
+    .sys_clk        (sys_clk           ),
+    .sys_rst        (sys_rst           ),
+    .multiplier_a   (phase_diff        ),
+    .locked         (locked            ),
+    .data_valid     (outvalid          ),
 
-    .mult_out_reg2   (mult_out          ),
-    .mult_out_valid  (mult_out_valid    )
+    .mult_out_reg2  (mult_out          ),
+    .mult_out_valid (mult_out_valid    )
 );
 
 get_angle get_angle_inst
 (
-    .Clk                (sys_clk       ),
-    .Rst_n              (sys_rst_n     ),
-    .clock_lock         (locked        ),
-    .data_in_valid      (mult_out_valid),
-    .data_in            (mult_out      ),
-
-    .angle_result       (angle         ),
-    .arccos_result_valid(angle_valid   )
+    .sys_clk            (sys_clk        ),
+    .sys_rst            (sys_rst        ),
+    .clock_lock         (locked         ),
+    .data_in_valid      (mult_out_valid ),
+    .data_in            (mult_out       ),
+    
+    .angle_result       (angle          ),
+    .arccos_result_valid(angle_valid    )
 );
 
 // ila_top ila_top_inst

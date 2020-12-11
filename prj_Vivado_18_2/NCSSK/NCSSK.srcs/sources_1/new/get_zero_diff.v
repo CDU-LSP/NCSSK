@@ -22,8 +22,8 @@
 
 module get_zero_diff
 (
-    input   wire            Clk         ,
-    input   wire            Rst_n       ,
+    input   wire            sys_clk         ,
+    input   wire            sys_rst       ,
     input   wire            locked      ,
     input   wire            div_en      ,
     input   wire    [9:0]   zero_point_h,
@@ -34,29 +34,29 @@ module get_zero_diff
 );
 
 
-wire    [15:0]    s_axis_dividend_tdata                             ;
-wire    [15:0]    s_axis_divisor_tdata                              ;
-wire    [23:0]    m_axis_dout_tdata                                 ;
-wire    [9:0]       sub_result                                      ;
-wire    [5:0]       div_fill                                        ;
-wire                m_axis_dout_tvalid                              ;
-wire    [9:0]       add_input_a;
-wire    [9:0]       add_input_b;              
+wire    [15:0]    s_axis_dividend_tdata ;
+wire    [15:0]    s_axis_divisor_tdata  ;
+wire    [23:0]    m_axis_dout_tdata     ;
+wire    [9:0]       sub_result          ;
+wire    [5:0]       div_fill            ;
+wire                m_axis_dout_tvalid  ;
+wire    [9:0]       add_input_a         ;
+wire    [9:0]       add_input_b         ;
 
-reg     [4:0]       cnt;
+reg     [4:0]       cnt                 ;
 
-assign  div_fill = (sub_result[9])?6'b111111:6'b000000              ;
-assign  s_axis_dividend_tdata  = {div_fill,sub_result}              ;
-assign  s_axis_divisor_tdata  =  16'b0000_0000_1011_0100            ;
-assign  phase_diff = m_axis_dout_tdata[13:0]                        ;
-assign   add_input_a = zero_point_h - 10'd0;
-assign   add_input_b = zero_point_l - 10'd0;
+assign  div_fill = (sub_result[9])?6'b111111:6'b000000      ;
+assign  s_axis_dividend_tdata  = {div_fill,sub_result}      ;
+assign  s_axis_divisor_tdata  =  16'b0000_0000_1011_0100    ;
+assign  phase_diff = m_axis_dout_tdata[13:0]                ;
+assign   add_input_a = zero_point_h - 10'd0                 ;
+assign   add_input_b = zero_point_l - 10'd0                 ;
 
 
 
-always @(posedge Clk) 
+always @(posedge sys_clk) 
 begin
-    if (!Rst_n) 
+    if (sys_rst) 
     begin
     cnt <= 5'd0;
     end
@@ -70,9 +70,9 @@ begin
     end
 end
 
-always @(posedge Clk) 
+always @(posedge sys_clk) 
 begin
-    if (!Rst_n) 
+    if (sys_rst) 
     begin
     outvalid <= 1'd0;
     end
@@ -88,17 +88,17 @@ c_addsub_0 sub
 (
     .A(add_input_b),      // input wire [9 : 0] A
     .B(add_input_a),      // input wire [9 : 0] B
-    .CLK(Clk),               // input wire CLK
+    .CLK(sys_clk),               // input wire CLK
     .CE(locked),              // input wire CE
-    .SCLR(!Rst_n),            // input wire SCLR
+    .SCLR(sys_rst),            // input wire SCLR
     .S(sub_result)            // output wire [9 : 0] S
 );
 
 div_gen_0 div_gen_0_inst
 (
-    .aclk(Clk),                                     // input wire aclk
+    .aclk(sys_clk),                                     // input wire aclk
     .aclken(locked),                                // input wire aclken
-    .aresetn(Rst_n),                                // input wire aresetn
+    .aresetn(!sys_rst),                                // input wire aresetn
     .s_axis_divisor_tvalid(div_en),                 // input wire s_axis_divisor_tvalid
     .s_axis_divisor_tdata(s_axis_divisor_tdata),    // input wire [15 : 0] s_axis_divisor_tdata
     .s_axis_dividend_tvalid(div_en),                // input wire s_axis_dividend_tvalid
@@ -109,7 +109,7 @@ div_gen_0 div_gen_0_inst
 
 // ila_zero_diff ila_zero_diff_inst
 // (
-//     .clk(Clk), // input wire clk
+//     .clk(sys_clk), // input wire clk
 
 //     .probe0(20'b0) // input wire [19:0] probe0
 // );

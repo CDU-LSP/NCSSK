@@ -7,17 +7,20 @@ LD_SRCS += \
 ../src/lscript.ld 
 
 C_SRCS += \
-../src/AXI_GPIO.c \
+../src/bsp_axi_GPIO.c \
+../src/bsp_usart.c \
 ../src/helloworld.c \
 ../src/platform.c 
 
 OBJS += \
-./src/AXI_GPIO.o \
+./src/bsp_axi_GPIO.o \
+./src/bsp_usart.o \
 ./src/helloworld.o \
 ./src/platform.o 
 
 C_DEPS += \
-./src/AXI_GPIO.d \
+./src/bsp_axi_GPIO.d \
+./src/bsp_usart.d \
 ./src/helloworld.d \
 ./src/platform.d 
 

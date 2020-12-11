@@ -23,7 +23,7 @@
 module phase_diff_times_kesai
 (
     input   wire            sys_clk         ,
-    input   wire            sys_rst_n       ,
+    input   wire            sys_rst         ,
     input   wire    [13:0]  multiplier_a    ,
     input   wire            locked          ,
     input   wire            data_valid      ,
@@ -41,7 +41,7 @@ assign  multiplier_b = 6'b1_0_1000  ; //1.25 * 2^5
 
 always @(posedge sys_clk) 
 begin
-    if (!sys_rst_n) begin
+    if (sys_rst) begin
     // reset
     cnt <= 5'd0;
     end
@@ -56,7 +56,7 @@ end
 
 always @(posedge sys_clk) 
 begin
-    if (!sys_rst_n) begin
+    if (sys_rst) begin
     mult_out_valid <= 1'd0;
     end
     else if (cnt > 5'd30) 
@@ -80,7 +80,7 @@ mult_gen_0  mult_inst
     .A      (multiplier_a), // input wire [13 : 0] A
     .B      (multiplier_b), // input wire [5 : 0] B
     .CE     (locked),       // input wire CE
-    .SCLR   (~sys_rst_n),   // input wire SCLR
+    .SCLR   (sys_rst),   // input wire SCLR
     
     .P      (mult_out)        // output wire [19 : 0] P
 );

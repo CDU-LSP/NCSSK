@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\NCSSK_app\Debug" key="bootgen_files_selection"/>
-	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.runs\impl_1" key="program_fpga_view_bit_bmm_browse_key"/>
-	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\FSBL\Debug" key="zynq_flash_files_selection"/>
-	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\FSBL\Debug" key="last_stored_selection"/>
+	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\NCSSK_app\bootimage" key="bootgen_files_selection"/>
+	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\prj_copy\NCSSK2.0.0\NCSSK.runs\impl_1" key="program_fpga_view_bit_bmm_browse_key"/>
+	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\NCSSK_app\bootimage" key="zynq_flash_files_selection"/>
+	<item value="E:\Users\benji\OneDrive\FPGA_Project\NCSSK\prj_Vivado_18_2\NCSSK\NCSSK.sdk\NCSSK_app\bootimage" key="last_stored_selection"/>
 </section>

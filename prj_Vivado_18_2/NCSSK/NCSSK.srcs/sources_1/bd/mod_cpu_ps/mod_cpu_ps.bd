@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x32E9ADC0888D68E" bd:device="xc7z020clg400-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="mod_cpu_ps" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x8B828AA01F6FF42F" bd:device="xc7z020clg400-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="mod_cpu_ps" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -214,7 +214,7 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>sys_rst_n</spirit:name>
+          <spirit:name>sys_rst</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -807,7 +807,7 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>axi_gpio_sys_rst_n</spirit:instanceName>
+        <spirit:instanceName>axi_gpio_sys_rst</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="axi_gpio" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">mod_cpu_ps_axi_gpio_0_0</spirit:configurableElementValue>
@@ -875,7 +875,7 @@
       <spirit:interconnection>
         <spirit:name>ps7_0_axi_periph_M00_AXI</spirit:name>
         <spirit:activeInterface spirit:busRef="M00_AXI" spirit:componentRef="ps7_0_axi_periph"/>
-        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_gpio_sys_rst_n"/>
+        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_gpio_sys_rst"/>
       </spirit:interconnection>
       <spirit:interconnection>
         <spirit:name>ps7_0_axi_periph_M01_AXI</spirit:name>
@@ -906,8 +906,8 @@
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>axi_gpio_sys_rst_n_gpio_io_o</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst_n" spirit:portRef="gpio_io_o"/>
-        <spirit:externalPortReference spirit:portRef="sys_rst_n"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst" spirit:portRef="gpio_io_o"/>
+        <spirit:externalPortReference spirit:portRef="sys_rst"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>axi_gpio_delay_point_gpio_io_o</spirit:name>
@@ -930,7 +930,7 @@
         <spirit:externalPortReference spirit:portRef="sys_clk_PS_100M"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="slowest_sync_clk"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst_n" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_data_in_ena" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_delay_point" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle" spirit:portRef="s_axi_aclk"/>
@@ -951,7 +951,7 @@
       <spirit:adHocConnection>
         <spirit:name>rst_ps7_0_50M_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="peripheral_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst_n" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_sys_rst" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_data_in_ena" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_delay_point" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_angle" spirit:portRef="s_axi_aresetn"/>
@@ -2846,7 +2846,7 @@
           </spirit:segment>
           <spirit:segment>
             <spirit:name>SEG_axi_gpio_sys_rst_n_Reg</spirit:name>
-            <spirit:displayName>/axi_gpio_sys_rst_n/S_AXI/Reg</spirit:displayName>
+            <spirit:displayName>/axi_gpio_sys_rst/S_AXI/Reg</spirit:displayName>
             <spirit:addressOffset>0x41200000</spirit:addressOffset>
             <spirit:range>64K</spirit:range>
           </spirit:segment>

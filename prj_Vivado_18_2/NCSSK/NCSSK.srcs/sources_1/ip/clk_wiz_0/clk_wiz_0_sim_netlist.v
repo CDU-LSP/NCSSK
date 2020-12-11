@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Fri Nov 20 15:26:59 2020
+// Date        : Wed Dec  9 16:57:59 2020
 // Host        : BenjiaH running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               E:/Users/benji/OneDrive/FPGA_Project/NCSSK_copy_v1.2.1/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
+//               E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/prj_copy/NCSSK2.0.0/NCSSK.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,34 +15,34 @@
 (* NotValidForBitStream *)
 module clk_wiz_0
    (sys_clk,
-    resetn,
+    reset,
     locked,
     clk_in_PS);
   output sys_clk;
-  input resetn;
+  input reset;
   output locked;
   input clk_in_PS;
 
   (* IBUF_LOW_PWR *) wire clk_in_PS;
   wire locked;
-  wire resetn;
+  wire reset;
   wire sys_clk;
 
   clk_wiz_0_clk_wiz_0_clk_wiz inst
        (.clk_in_PS(clk_in_PS),
         .locked(locked),
-        .resetn(resetn),
+        .reset(reset),
         .sys_clk(sys_clk));
 endmodule
 
 (* ORIG_REF_NAME = "clk_wiz_0_clk_wiz" *) 
 module clk_wiz_0_clk_wiz_0_clk_wiz
    (sys_clk,
-    resetn,
+    reset,
     locked,
     clk_in_PS);
   output sys_clk;
-  input resetn;
+  input reset;
   output locked;
   input clk_in_PS;
 
@@ -51,8 +51,7 @@ module clk_wiz_0_clk_wiz_0_clk_wiz
   wire clkfbout_buf_clk_wiz_0;
   wire clkfbout_clk_wiz_0;
   wire locked;
-  wire reset_high;
-  wire resetn;
+  wire reset;
   wire sys_clk;
   wire sys_clk_clk_wiz_0;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
@@ -172,12 +171,7 @@ module clk_wiz_0_clk_wiz_0_clk_wiz
         .PSEN(1'b0),
         .PSINCDEC(1'b0),
         .PWRDWN(1'b0),
-        .RST(reset_high));
-  LUT1 #(
-    .INIT(2'h1)) 
-    mmcm_adv_inst_i_1
-       (.I0(resetn),
-        .O(reset_high));
+        .RST(reset));
 endmodule
 `ifndef GLBL
 `define GLBL

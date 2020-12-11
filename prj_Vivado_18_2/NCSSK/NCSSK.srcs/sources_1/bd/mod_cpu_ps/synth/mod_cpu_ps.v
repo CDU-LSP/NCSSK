@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Dec  2 23:38:21 2020
+//Date        : Fri Dec 11 14:33:43 2020
 //Host        : BenjiaH running 64-bit major release  (build 9200)
 //Command     : generate_target mod_cpu_ps.bd
 //Design      : mod_cpu_ps
@@ -697,7 +697,7 @@ module mod_cpu_ps
     data_in_ena,
     delay_point,
     sys_clk_PS_100M,
-    sys_rst_n);
+    sys_rst);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -724,7 +724,7 @@ module mod_cpu_ps
   output [0:0]data_in_ena;
   output [31:0]delay_point;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLK_PS_100M CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLK_PS_100M, CLK_DOMAIN mod_cpu_ps_processing_system7_0_0_FCLK_CLK0, FREQ_HZ 1e+08, PHASE 0.000" *) output sys_clk_PS_100M;
-  output [0:0]sys_rst_n;
+  output [0:0]sys_rst;
 
   wire [31:0]axi_gpio_delay_point_gpio_io_o;
   wire [0:0]axi_gpio_rom_fft_rst_n_gpio_io_o;
@@ -885,7 +885,7 @@ module mod_cpu_ps
   assign gpio_io_i_0_1 = angle[31:0];
   assign gpio_io_i_0_2 = angle_valid[0];
   assign sys_clk_PS_100M = processing_system7_0_FCLK_CLK0;
-  assign sys_rst_n[0] = axi_gpio_sys_rst_n_gpio_io_o;
+  assign sys_rst[0] = axi_gpio_sys_rst_n_gpio_io_o;
   mod_cpu_ps_axi_gpio_0_3 axi_gpio_angle
        (.gpio_io_i(gpio_io_i_0_1),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
@@ -970,7 +970,7 @@ module mod_cpu_ps
         .s_axi_wready(ps7_0_axi_periph_M02_AXI_WREADY),
         .s_axi_wstrb(ps7_0_axi_periph_M02_AXI_WSTRB),
         .s_axi_wvalid(ps7_0_axi_periph_M02_AXI_WVALID));
-  mod_cpu_ps_axi_gpio_0_0 axi_gpio_sys_rst_n
+  mod_cpu_ps_axi_gpio_0_0 axi_gpio_sys_rst
        (.gpio_io_o(axi_gpio_sys_rst_n_gpio_io_o),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(ps7_0_axi_periph_M00_AXI_ARADDR[8:0]),

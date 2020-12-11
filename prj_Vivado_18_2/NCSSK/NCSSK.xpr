@@ -8,9 +8,9 @@
   <Configuration>
     <Option Name="Id" Val="fd486c82e65146d5b8d8e6d9009895be"/>
     <Option Name="Part" Val="xc7z020clg400-1"/>
-    <Option Name="CompiledLibDir" Val="$PPRDIR/../../../../../../modeltech64_2019.2/vivado_18.2_lib"/>
+    <Option Name="CompiledLibDir" Val="D:/modeltech64_2019.2/Vivado_2018_2_ModelSim_Lib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
-    <Option Name="CompiledLibDirModelSim" Val="$PPRDIR/../../../../../../modeltech64_2019.2/vivado_18.2_lib"/>
+    <Option Name="CompiledLibDirModelSim" Val="D:/modeltech64_2019.2/Vivado_2018_2_ModelSim_Lib"/>
     <Option Name="CompiledLibDirQuesta" Val="$PCACHEDIR/compile_simlib/questa"/>
     <Option Name="CompiledLibDirIES" Val="$PCACHEDIR/compile_simlib/ies"/>
     <Option Name="CompiledLibDirXcelium" Val="$PCACHEDIR/compile_simlib/xcelium"/>
@@ -35,19 +35,19 @@
     <Option Name="DSABoardId" Val="pynq-z2"/>
     <Option Name="DSANumComputeUnits" Val="60"/>
     <Option Name="WTXSimLaunchSim" Val="0"/>
-    <Option Name="WTModelSimLaunchSim" Val="262"/>
+    <Option Name="WTModelSimLaunchSim" Val="292"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="76"/>
-    <Option Name="WTModelSimExportSim" Val="76"/>
-    <Option Name="WTQuestaExportSim" Val="76"/>
-    <Option Name="WTIesExportSim" Val="76"/>
-    <Option Name="WTVcsExportSim" Val="75"/>
-    <Option Name="WTRivieraExportSim" Val="75"/>
-    <Option Name="WTActivehdlExportSim" Val="75"/>
+    <Option Name="WTXSimExportSim" Val="77"/>
+    <Option Name="WTModelSimExportSim" Val="77"/>
+    <Option Name="WTQuestaExportSim" Val="77"/>
+    <Option Name="WTIesExportSim" Val="77"/>
+    <Option Name="WTVcsExportSim" Val="76"/>
+    <Option Name="WTRivieraExportSim" Val="76"/>
+    <Option Name="WTActivehdlExportSim" Val="76"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -75,6 +75,9 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xci">
+          <Proxy FileSetName="mod_cpu_ps_processing_system7_0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_0/mod_cpu_ps_axi_gpio_0_0.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_0"/>
         </CompFileExtendedInfo>
@@ -84,23 +87,17 @@
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_2/mod_cpu_ps_axi_gpio_0_2.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_2"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3.xci">
-          <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_3"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_processing_system7_0_0/mod_cpu_ps_processing_system7_0_0.xci">
-          <Proxy FileSetName="mod_cpu_ps_processing_system7_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_4/mod_cpu_ps_axi_gpio_0_4.xci">
           <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_4"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0.xci">
-          <Proxy FileSetName="mod_cpu_ps_auto_pc_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_xbar_0/mod_cpu_ps_xbar_0.xci">
-          <Proxy FileSetName="mod_cpu_ps_xbar_0"/>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_axi_gpio_0_3/mod_cpu_ps_axi_gpio_0_3.xci">
+          <Proxy FileSetName="mod_cpu_ps_axi_gpio_0_3"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_rst_ps7_0_50M_0/mod_cpu_ps_rst_ps7_0_50M_0.xci">
           <Proxy FileSetName="mod_cpu_ps_rst_ps7_0_50M_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="mod_cpu_ps.bd" FileRelPathName="ip/mod_cpu_ps_xbar_0/mod_cpu_ps_xbar_0.xci">
+          <Proxy FileSetName="mod_cpu_ps_xbar_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/NCSSK_top.v">
@@ -169,6 +166,7 @@
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="mod_cpu_ps_wrapper"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -202,6 +200,7 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
+        <Option Name="SimMode" Val="post-synthesis"/>
         <Option Name="SrcSet" Val="sources_1"/>
       </Config>
     </FileSet>
@@ -417,12 +416,6 @@
     <FileSet Name="mod_cpu_ps_xbar_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/mod_cpu_ps_xbar_0">
       <Config>
         <Option Name="TopModule" Val="mod_cpu_ps_xbar_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="mod_cpu_ps_auto_pc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/mod_cpu_ps_auto_pc_0">
-      <Config>
-        <Option Name="TopModule" Val="mod_cpu_ps_auto_pc_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -675,15 +668,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="mod_cpu_ps_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="mod_cpu_ps_xbar_0" Part="xc7z020clg400-1" ConstrsSet="mod_cpu_ps_xbar_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/mod_cpu_ps_xbar_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="mod_cpu_ps_auto_pc_0_synth_1" Type="Ft3:Synth" SrcSet="mod_cpu_ps_auto_pc_0" Part="xc7z020clg400-1" ConstrsSet="mod_cpu_ps_auto_pc_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/mod_cpu_ps_auto_pc_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
         <Step Id="synth_design"/>
@@ -1050,22 +1034,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="mod_cpu_ps_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="mod_cpu_ps_xbar_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="mod_cpu_ps_xbar_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="mod_cpu_ps_auto_pc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="mod_cpu_ps_auto_pc_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="mod_cpu_ps_auto_pc_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
         <Step Id="init_design"/>

@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Dec  2 23:38:21 2020
+//Date        : Fri Dec 11 14:33:43 2020
 //Host        : BenjiaH running 64-bit major release  (build 9200)
 //Command     : generate_target mod_cpu_ps_wrapper.bd
 //Design      : mod_cpu_ps_wrapper
@@ -31,12 +31,13 @@ module mod_cpu_ps_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb
+    // ,
     // angle,
     // angle_valid,
     // data_in_ena,
     // delay_point,
     // sys_clk_PS_100M,
-    // sys_rst_n
+    // sys_rst
     );
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
@@ -64,7 +65,7 @@ module mod_cpu_ps_wrapper
   // output [0:0]data_in_ena;
   // output [31:0]delay_point;
   // output sys_clk_PS_100M;
-  // output [0:0]sys_rst_n;
+  // output [0:0]sys_rst;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -92,7 +93,7 @@ module mod_cpu_ps_wrapper
   wire [0:0]data_in_ena;
   wire [31:0]delay_point;
   wire sys_clk_PS_100M;
-  wire [0:0]sys_rst_n;
+  wire [0:0]sys_rst;
 
   mod_cpu_ps mod_cpu_ps_i
        (.DDR_addr(DDR_addr),
@@ -121,16 +122,17 @@ module mod_cpu_ps_wrapper
         .data_in_ena(data_in_ena),
         .delay_point(delay_point),
         .sys_clk_PS_100M(sys_clk_PS_100M),
-        .sys_rst_n(sys_rst_n));
+        .sys_rst(sys_rst));
 
 NCSSK_top   NCSSK_top_inst
 (
-    .sys_clk_PS_100M (sys_clk_PS_100M),
-    .sys_rst_n       (sys_rst_n      ),
-    .in_delay_point  (delay_point    ),
-    .data_in_ena     (data_in_ena    ),
-    .out_angle       (angle          ),
-    .angle_valid     (angle_valid    ) 
+    .sys_clk_PS_100M (sys_clk_PS_100M ),
+    .sys_rst         (sys_rst         ),
+    .in_delay_point  (delay_point     ),
+    .data_in_ena     (data_in_ena     ),
+
+    .out_angle       (angle           ),
+    .angle_valid     (angle_valid     ) 
 );
 
 endmodule

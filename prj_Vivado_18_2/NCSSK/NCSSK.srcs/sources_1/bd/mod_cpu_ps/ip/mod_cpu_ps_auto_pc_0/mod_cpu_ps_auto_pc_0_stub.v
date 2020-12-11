@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Wed Dec  2 23:41:18 2020
+// Date        : Wed Dec  2 23:41:17 2020
 // Host        : BenjiaH running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               E:/Users/benji/OneDrive/FPGA_Project/NCSSK/prj_Vivado_18_2/prj_copy/NCSSK/prj_Vivado_18_2/NCSSK/NCSSK.srcs/sources_1/bd/mod_cpu_ps/ip/mod_cpu_ps_auto_pc_0/mod_cpu_ps_auto_pc_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top mod_cpu_ps_auto_pc_0 -prefix
+//               mod_cpu_ps_auto_pc_0_ mod_cpu_ps_auto_pc_0_stub.v
 // Design      : mod_cpu_ps_auto_pc_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
